@@ -1,0 +1,1474 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"user",
+				"user_type"
+			],
+			[
+				"seria",
+				"serializeArray〔function〕"
+			],
+			[
+				"lo",
+				"logout〔function〕"
+			],
+			[
+				"ri",
+				"right: 〔property〕"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"marg",
+				"margin-top: 〔property〕"
+			],
+			[
+				"remove",
+				"removeClass〔function〕"
+			],
+			[
+				"no",
+				"no-repeat〔value〕"
+			],
+			[
+				"u",
+				"uppercase"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"mar",
+				"margin: 〔property〕"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
+				"st",
+				"strong	Tag"
+			],
+			[
+				"font",
+				"font-size: 〔property〕"
+			],
+			[
+				"_r",
+				"$_REQUEST〔variable〕"
+			],
+			[
+				"padd",
+				"padding-top: 〔property〕"
+			],
+			[
+				"strto",
+				"strtotime"
+			],
+			[
+				"posi",
+				"position:relative"
+			],
+			[
+				"position",
+				"position:relative"
+			],
+			[
+				"homepa",
+				"homepage\\homepageController@add_counter"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"ba",
+				"background:#ccc"
+			],
+			[
+				"get",
+				"getElementById〔function〕"
+			],
+			[
+				"margi",
+				"margin-right: 〔property〕"
+			],
+			[
+				"in",
+				"input	Tag"
+			],
+			[
+				"margin",
+				"margin-top: 〔property〕"
+			],
+			[
+				"up",
+				"uppercase"
+			],
+			[
+				"list-s",
+				"list-style"
+			],
+			[
+				"ma",
+				"margin-top: 〔property〕"
+			],
+			[
+				"n",
+				"none"
+			],
+			[
+				"data",
+				"dataUrl"
+			],
+			[
+				"_",
+				"$_GET〔variable〕"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"border",
+				"border-radius: 〔property〕"
+			],
+			[
+				"max",
+				"max-width: 〔property〕"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"array_u",
+				"array_unique"
+			],
+			[
+				"de",
+				"decimal〔value〕"
+			],
+			[
+				"bac",
+				"background-size: 〔property〕"
+			],
+			[
+				"vis",
+				"visible〔value〕"
+			],
+			[
+				"Doc",
+				"Doctors"
+			],
+			[
+				"color",
+				"color:#fff"
+			],
+			[
+				"top",
+				"top:0"
+			],
+			[
+				"sty",
+				"style=\"width:100"
+			],
+			[
+				"ff",
+				"ff4100"
+			],
+			[
+				"li",
+				"line-height"
+			],
+			[
+				"pad",
+				"padding-bottom: 〔property〕"
+			],
+			[
+				"fon",
+				"font-size: 〔property〕"
+			],
+			[
+				"ac",
+				"action"
+			],
+			[
+				"colo",
+				"color:#fff"
+			],
+			[
+				"au",
+				"auto〔value〕"
+			],
+			[
+				"back",
+				"background-size: 〔property〕"
+			],
+			[
+				"bottom",
+				"bottom:10px"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"hei",
+				"height"
+			],
+			[
+				"flo",
+				"float:left"
+			],
+			[
+				"lis",
+				"list-style: 〔property〕"
+			],
+			[
+				"fo",
+				"footer	Tag"
+			],
+			[
+				"break",
+				"word-break: 〔property〕"
+			],
+			[
+				"j",
+				"justify"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"successfu",
+				"successfully"
+			],
+			[
+				"jsone",
+				"json_decode〔function〕"
+			],
+			[
+				"cate",
+				"categories"
+			],
+			[
+				"over",
+				"overflow: 〔property〕"
+			],
+			[
+				"paddin",
+				"padding-top: 〔property〕"
+			],
+			[
+				"word",
+				"word-break: 〔property〕"
+			],
+			[
+				"int",
+				"inter-word〔value〕"
+			],
+			[
+				"text-",
+				"text-justify: 〔property〕"
+			],
+			[
+				"h",
+				"hidden〔value〕"
+			],
+			[
+				"i",
+				"i	Tag"
+			],
+			[
+				"ser",
+				"service_seeker"
+			],
+			[
+				"cus",
+				"customer"
+			],
+			[
+				"array_f",
+				"array_filter〔function〕"
+			],
+			[
+				"re",
+				"resize: 〔property〕"
+			],
+			[
+				"width",
+				"width:100"
+			],
+			[
+				"tex",
+				"text-shadow: 〔property〕"
+			],
+			[
+				"rg",
+				"rgba"
+			],
+			[
+				"co",
+				"cover"
+			],
+			[
+				"widt",
+				"width:30%;float:left"
+			],
+			[
+				"th",
+				"thead	Tag"
+			],
+			[
+				"min",
+				"min-height: 〔property〕"
+			],
+			[
+				"dis",
+				"display: 〔property〕"
+			],
+			[
+				"chil",
+				"children〔function〕"
+			],
+			[
+				"fun",
+				"function〔keyword〕"
+			],
+			[
+				"upp",
+				"uppercase〔value〕"
+			],
+			[
+				"val",
+				"value=\"0"
+			],
+			[
+				"impl",
+				"implode〔function〕"
+			],
+			[
+				"bor",
+				"border-radius: 〔property〕"
+			],
+			[
+				"rel",
+				"relative〔value〕"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"backl",
+				"background-color: 〔property〕"
+			],
+			[
+				"s",
+				"span	Tag"
+			],
+			[
+				"border-top",
+				"border-top: 〔property〕"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"o",
+				"organizer_detail"
+			],
+			[
+				"res",
+				"result〔variable〕"
+			],
+			[
+				"form",
+				"formvalidation1"
+			],
+			[
+				"webkit-a",
+				"-webkit-appearance: 〔property〕"
+			],
+			[
+				"sub",
+				"substr〔function〕"
+			],
+			[
+				"strip",
+				"stripslashes"
+			],
+			[
+				"prin",
+				"print_r〔function〕"
+			],
+			[
+				"H",
+				"Heading"
+			],
+			[
+				"B",
+				"Box"
+			],
+			[
+				"imp",
+				"implode〔function〕"
+			],
+			[
+				"l",
+				"left〔value〕"
+			],
+			[
+				"Op",
+				"option"
+			],
+			[
+				"add",
+				"addslashes〔function〕"
+			],
+			[
+				"ver",
+				"vertical-align: 〔property〕"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"margin-",
+				"margin-left: 〔property〕"
+			],
+			[
+				"he",
+				"height:100"
+			],
+			[
+				"fi",
+				"fixed〔value〕"
+			],
+			[
+				"bot",
+				"bottom:20px"
+			],
+			[
+				"font-",
+				"font-weight: 〔property〕"
+			],
+			[
+				"MA",
+				"margin-top: 〔property〕"
+			],
+			[
+				"box",
+				"box-shadow: 〔property〕"
+			],
+			[
+				"remova",
+				"removeClass〔function〕"
+			],
+			[
+				"display",
+				"display:none"
+			],
+			[
+				"size",
+				"sizeof〔function〕"
+			],
+			[
+				"with",
+				"withInput〔function〕"
+			],
+			[
+				"min-",
+				"min-width: 〔property〕"
+			],
+			[
+				"wr",
+				"nowrap〔value〕"
+			],
+			[
+				"bo",
+				"border-bottom"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"to",
+				"top"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/Http/Controllers/jobController.php",
+			"settings":
+			{
+				"buffer_size": 4080,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Http/routes.php",
+			"settings":
+			{
+				"buffer_size": 21134,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/layouts/master.blade.php",
+			"settings":
+			{
+				"buffer_size": 20327,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/js/app.js",
+			"settings":
+			{
+				"buffer_size": 3301,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 150.0,
+		"selected_items":
+		[
+			[
+				"Snippet: form",
+				"Snippet: bs3-form"
+			],
+			[
+				"Snippet: alert",
+				"Snippet: bs3-alert-danger"
+			],
+			[
+				"Snippet: lable",
+				"Snippet: bs3-label-default"
+			],
+			[
+				"Snippet: ht",
+				"Snippet: bs3-html5-template"
+			],
+			[
+				"Snippet: input-g",
+				"Snippet: bs3-input-group-addon-text"
+			],
+			[
+				"Snippet: check",
+				"Snippet: bs3-input-checkbox"
+			],
+			[
+				"Snippet: panel",
+				"Snippet: bs3-panel-heading"
+			],
+			[
+				"Snippet: ba",
+				"Snippet: bs3-badge"
+			],
+			[
+				"Snippet: footr",
+				"Snippet: bs3-panel-footer"
+			],
+			[
+				"Snippet: js",
+				"Snippet: bs3-cdn-js"
+			],
+			[
+				"Snippet: css",
+				"Snippet: bs3-cdn-css"
+			],
+			[
+				"Snippet: for",
+				"Snippet: bs3-form"
+			],
+			[
+				"Snippet: pa",
+				"Snippet: bs3-panel-footer"
+			],
+			[
+				"Snippet: pane",
+				"Snippet: bs3-panel-heading"
+			],
+			[
+				"Snippet: j",
+				"Snippet: bs3-cdn-js"
+			],
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"Snippet: tab",
+				"Snippet: bs3-table-responsive"
+			],
+			[
+				"Snippet: r",
+				"Snippet: bs3-input-radio"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: List Packages"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"advanced ",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 410.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/xampp/htdocs/lvm/8616/flyer.html",
+		"//Server/c/xampp/htdocs/jobportal/app/Http/routes.php",
+		"//Server/c/xampp/htdocs/jobportal/resources/views/admin/update_skill.balde.php",
+		"//Server/c/xampp/htdocs/jobportal/resources/views/recruiter/package.blade.php",
+		"//Server/c/xampp/htdocs/jobportal/resources/views/jobseeker_dashboard.blade.php",
+		"//Server/c/xampp/htdocs/jobportal/resources/views/recruiter_dashboard.blade.php",
+		"//Server/c/xampp/htdocs/jobportal/app/Http/Middleware/checkFrontAuth.php",
+		"//Server/c/xampp/htdocs/jobportal/resources/views/admin/adminlogin.blade.php",
+		"//Server/c/xampp/htdocs/jobportal/app/User.php",
+		"//Server/c/xampp/htdocs/jobportal/config/auth.php",
+		"//Server/c/xampp/htdocs/jobportal/app/Http/Controllers/Auth/AuthAndRoleController.php",
+		"//Server/c/xampp/htdocs/jobportal/public/js/app.js",
+		"//Server/c/xampp/htdocs/jobportal/resources/views/layouts/master.blade.php",
+		"//Server/c/xampp/htdocs/jobportal/resources/views/homepage.blade.php",
+		"//Server/c/xampp/htdocs/jobportal/app/Http/Controllers/jobController.php",
+		"//Server/c/xampp/htdocs/project/validation.php",
+		"/C/xampp/htdocs/cftlaravel/app/Http/Middleware/checkFrontAuth.php",
+		"//Server/c/xampp/htdocs/jobportal/config/app.php",
+		"//Server/c/xampp/htdocs/jobportal/app/Http/Kernel.php",
+		"//Server/c/xampp/htdocs/jobportal/app/Console/Kernel.php",
+		"//Server/c/xampp/htdocs/jobportal/bootstrap/app.php",
+		"/C/xampp/htdocs/ngo/public/js/app.js",
+		"/C/xampp/htdocs/ngo/resources/views/layout/frontmaster.blade.php",
+		"/C/xampp/htdocs/ngo/resources/views/homepage.blade.php",
+		"/C/xampp/htdocs/blog/public/admin/dist/js/app.js",
+		"//Server/c/xampp/htdocs/jobportal/app/Http/Controllers/Auth/AuthController.php",
+		"/C/xampp/htdocs/blog/config/mail.php",
+		"/C/xampp/htdocs/blog/.env",
+		"/C/xampp/htdocs/blog/app/Http/Middleware/Authenticate.php",
+		"/C/xampp/htdocs/newIndigo/app/Helpers/IitplMailer.php",
+		"/C/xampp/htdocs/newIndigo/app/Http/Controllers/intactmailController.php",
+		"/C/xampp/htdocs/blog/app/Http/Controllers/Admin/Cms/CmsController.php",
+		"/C/xampp/htdocs/blog/app/Http/routes.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/cms/pages/add_new_page.blade.php",
+		"/C/xampp/htdocs/amp_admin/app/Http/Controllers/cms/cmsController.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/dashboard.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/adminlogin.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/include/adminnavigation.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/layout/adminmaster.blade.php",
+		"/C/xampp/htdocs/blog/app/Http/Controllers/Auth/AdminLogin.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/documentation.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/include/adminheader.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/include/admin_right_sidebar.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/include/admin_footer.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/include/navigation.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/forgotpassword.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/welcome.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/layout/mail/mailmaster.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/admin/layout/mail/appointment.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/home.blade.php",
+		"/C/xampp/htdocs/amp_admin/resources/views/layout/error-notification.blade.php",
+		"/C/xampp/htdocs/blog/resources/views/auth/login.blade.php",
+		"/C/xampp/htdocs/blog/app/Http/Controllers/Auth/AuthController.php",
+		"/C/xampp/htdocs/blog/app/Http/Controllers/HomeController.php",
+		"/C/Program Files/Git/mingw64/share/doc/git-doc/git-branch.html",
+		"/C/xampp/htdocs/blog/config/auth.php",
+		"/C/Users/intact innovation/Desktop/AdminLTE-2.3.3/AdminLTE-2.3.3/pages/examples/login.html",
+		"/C/xampp/htdocs/blog/app/Http/Controllers/Auth/PasswordController.php",
+		"/C/xampp/htdocs/blog/composer.json",
+		"/C/xampp/htdocs/cftlaravel/resources/views/about_us.blade.php",
+		"/C/xampp/htdocs/cftlaravel/resources/views/errors/404.blade.php",
+		"/C/xampp/htdocs/cftlaravel/resources/views/welcome.blade.php",
+		"/C/xampp/htdocs/cftlaravel/resources/views/add_homepagecounter.blade.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/newhomepage.blade.php",
+		"/C/xampp/htdocs/cftlaravel/vendor/laravel/framework/src/Illuminate/Hashing/BcryptHasher.php",
+		"/C/xampp/htdocs/newIndigo/vendor/laravel/framework/src/Illuminate/Mail/Mailer.php",
+		"/C/xampp/htdocs/newIndigo/public/js/jquery.easy-autocomplete.js",
+		"/C/Users/intact innovation/Desktop/intactmail.php",
+		"/C/xampp/htdocs/newIndigo/app/Http/Controllers/searchController.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/include/doctor_appointment.blade.php",
+		"/C/xampp/htdocs/newIndigo/app/Http/routes.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/autosearch.blade.php",
+		"/C/xampp/htdocs/newIndigo/config/app.php",
+		"/C/xampp/htdocs/newIndigo/app/Providers/AppServiceProvider.php",
+		"/C/xampp/htdocs/newIndigo/app/Providers/HelperServiceProvider.php",
+		"/C/xampp/htdocs/newIndigo/app/Helpers/MyFuncs.php",
+		"/C/xampp/htdocs/newIndigo/app/Http/Controllers/userRegistration/userRegistrationController.php",
+		"/C/xampp/htdocs/newIndigo/app/Http/Controllers/blog/blogController.php",
+		"/C/xampp/htdocs/newIndigo/app/Helpers/daudfunction.php",
+		"/C/xampp/htdocs/newIndigo/composer.json",
+		"/C/xampp/htdocs/newIndigo/public/theme/js/main.js",
+		"/C/xampp/htdocs/newIndigo/public/theme/js/homepage.js",
+		"/C/xampp/htdocs/newIndigo/public/js/jquery.autocomplete.min.js",
+		"/C/xampp/htdocs/newIndigo/public/js/jquery.autocomplete.js",
+		"/C/xampp/htdocs/newIndigo/resources/views/autosearch.blade - Copy.php",
+		"/C/xampp/htdocs/newIndigo/public/css/jquery.auto-complete.css",
+		"/C/xampp/htdocs/newIndigo/public/js/jquery.auto-complete.min.js",
+		"/C/Users/intact innovation/Desktop/EasyAutocomplete-1.3.5/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.js",
+		"/C/xampp/htdocs/leg/resources/views/admin/login.blade.php",
+		"/C/xampp/htdocs/leg/resources/views/admin/admin_master.blade.php",
+		"/C/xampp/htdocs/leg/resources/views/docs.blade.php",
+		"/C/xampp/htdocs/leg/app/Http/routes.php",
+		"/C/xampp/htdocs/leg/resources/views/master.blade.php",
+		"/C/xampp/htdocs/match/match/resources/views/home.blade.php",
+		"/C/Program Files/Git/ReleaseNotes.html",
+		"/C/xampp/htdocs/newIndigo/public/js/bootstrap.js",
+		"/C/xampp/htdocs/cftlaravel/app/Http/routes.php",
+		"/C/xampp/htdocs/cftlaravel/app/Http/Requests/Request.php",
+		"/C/xampp/htdocs/cftlaravel/app/Http/Middleware/passFrontCommenData.php",
+		"/C/xampp/htdocs/cftlaravel/app/Http/Middleware/checkAdminAuth.php",
+		"/C/xampp/htdocs/cftlaravel/app/Http/Middleware/VerifyCsrfToken.php",
+		"/C/xampp/htdocs/cftlaravel/app/Http/Middleware/Authenticate.php",
+		"/C/xampp/htdocs/cftlaravel/app/Exceptions/Handler.php",
+		"/C/xampp/htdocs/cftlaravel/config/app.php",
+		"/C/xampp/htdocs/amp_admin/app/Http/Controllers/news/newsController.php",
+		"/C/xampp/htdocs/amp_admin/resources/views/news/viewNews.blade.php",
+		"/C/xampp/htdocs/amp_front/resources/views/news/allnews.blade.php",
+		"/C/xampp/htdocs/amp_admin/resources/views/news/2viewNews.blade.php",
+		"/C/xampp/htdocs/amp_front/app/Http/routes.php",
+		"/C/xampp/htdocs/amp_front/app/Http/Controllers/News/NewsController.php",
+		"/C/xampp/htdocs/amp_front/resources/views/joinamp.blade.php",
+		"/C/xampp/htdocs/amp_admin/app/Http/routes.php",
+		"/C/xampp/htdocs/amp_admin/resources/views/news/addNews.blade.php",
+		"/C/xampp/htdocs/amp_front/resources/views/amp_membership.blade.php",
+		"/C/xampp/htdocs/amp_front/app/Http/Controllers/AmpJobs/AmpJobsController.php",
+		"/C/xampp/htdocs/amp_front/resources/views/jobs/jobslist.blade.php",
+		"/C/xampp/htdocs/amp_front/resources/views/jobs/jobs.blade.php",
+		"/C/xampp/htdocs/amp_front/resources/views/joblist.blade.php",
+		"/C/xampp/htdocs/newIndigo/app/Http/Controllers/cms/cmsController.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/admin/adminheader.blade.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/doctorDashboard/appointment_setting.blade.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/admin/include/adminleftsidebar.blade.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/admin/cms/addpage.blade.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/cms_page.blade.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/admin/dashboard.blade.php",
+		"/C/xampp/htdocs/newIndigo/resources/views/doc_appointment.blade.php",
+		"/C/xampp/htdocs/amp_front/resources/views/test_newhome.blade.php",
+		"/C/xampp/htdocs/amp_front/resources/views/newhome.blade.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"RUSSIA",
+			"australia",
+			"update_skill",
+			"Dashboard",
+			"res",
+			"jobrecruiterlogin",
+			"REQ LOGIN",
+			"jobrecruiter\njobrecruiter",
+			"RECRUITER",
+			"logout",
+			"jobseekerlogin\njobseekerlogin",
+			"jobseekerRegistartion",
+			"jobseekerRegi",
+			"jobseekerRegistartion",
+			"JOBSEEKER",
+			"jobseekerlogin",
+			"public/admin",
+			"jobseekerlogin",
+			"LOGIN",
+			"jobseekerlogin",
+			"admin/add_new_page",
+			"adminlogin",
+			"DEFINER=`root`@`localhost`",
+			"'search",
+			"ui-autocomplete-input",
+			"select2",
+			"#doctor",
+			"doctor",
+			"'search_doctor/",
+			"search_doctor",
+			"app_dr_locations_auto",
+			"getValue",
+			"easyAutocomplete",
+			"getValue",
+			"cityzip_list_appnmt",
+			"banner_search_cityzip",
+			"Find",
+			"Find ",
+			"Find Best Doctor",
+			"Find Best Doctor, Hospital or Lab",
+			"err-dcity",
+			"get_all_doctors_locations",
+			"fillData",
+			"test",
+			"askDrvalidation",
+			"typeahead",
+			"fillData",
+			"joinamp",
+			"news",
+			"('news",
+			"news",
+			"cms/news",
+			"cms/new",
+			"cms/news",
+			"insertNews",
+			"saveNews",
+			"addNews",
+			"savePage",
+			"<!-- AMP Events ONE-->",
+			"Exception",
+			"Exceptio\\n",
+			"ask_questions_doctor",
+			"city",
+			"saveQuestion",
+			"ask_questions_doctor",
+			"saveQuestion",
+			"save_spl_Question",
+			"saveQuestion\nsaveQuestio",
+			"saveQuestion\nsaveQuestion",
+			"saveQuestion",
+			"radio_container_loading",
+			"        \n",
+			"dashboard/appointment",
+			"reply_to_answer",
+			"rep_update_txt_id",
+			"update_doc_reply",
+			"saveadvertise",
+			"alert(",
+			"getTimeSlotsofLoc_hos",
+			"doctors_appointment",
+			"save_doctor_appointment_time",
+			"err3",
+			"/doctor/dashboard/myappointment",
+			"facility_id",
+			"doctors_appointment",
+			"hospitals/appointment",
+			"disableToVal",
+			"board/appointment",
+			"dashboard/myappointment",
+			"datepicker",
+			"save_hospital_appointment",
+			"ADMINNAME2",
+			"activationData",
+			"doctor/detail",
+			"facility_providers/dashboard",
+			"DoctorG Channel",
+			"saveNewPage",
+			"Gallery",
+			"editGallery",
+			"updateGalleryimage",
+			"deleteGalleryImage",
+			"('/",
+			"post_review",
+			"doctor/detail",
+			"delete_multiplet",
+			"delete_multipleTips",
+			"owl-demo2",
+			"kode_video_bg",
+			"$pagi",
+			"theme",
+			"search",
+			"#doctor",
+			"doctor",
+			"get_all_doctors_locations",
+			"banner_search_cityzip",
+			"chosen-select",
+			"Route::get('search'",
+			"'jobs",
+			"jobs",
+			"Find Best Doctor, Hospital or Lab",
+			"getHospitalLocation",
+			"Make an Appointment",
+			"#doctor",
+			"Make an Appointment",
+			"get_all_doctors_locations",
+			"abort(",
+			"saveQuestion",
+			"Our Top Services"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"$all_provider",
+			"http://ampindia.org/",
+			"",
+			"min-width: 210px;border-bottom: 1px solid #ddd; margin-top: 0px;",
+			"#",
+			"images/blog-detail-1.jpg",
+			"images",
+			"MECAPS",
+			"Borno",
+			"{{url('news_detail')}}",
+			"{{url('event_detail')}}",
+			"",
+			"{{url('uc')}}",
+			"CFT",
+			"$allJobs->jobSkills"
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/Http/Controllers/jobController.php",
+					"settings":
+					{
+						"buffer_size": 4080,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2898,
+								2898
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2270.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/Http/routes.php",
+					"settings":
+					{
+						"buffer_size": 21134,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8398,
+								8410
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4804.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "resources/views/layouts/master.blade.php",
+					"settings":
+					{
+						"buffer_size": 20327,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12882,
+								12889
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 129.0,
+						"translation.y": 7476.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/js/app.js",
+					"settings":
+					{
+						"buffer_size": 3301,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2380,
+								2380
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1911.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"app.js",
+				"public/js/app.js"
+			],
+			[
+				"master",
+				"resources/views/layouts/master.blade.php"
+			],
+			[
+				"route",
+				"app/Http/routes.php"
+			],
+			[
+				"update_skill",
+				"resources/views/admin/update_skill.balde.php"
+			],
+			[
+				"pack",
+				"resources/views/recruiter/package.blade.php"
+			],
+			[
+				"dash",
+				"resources/views/jobseeker_dashboard.blade.php"
+			],
+			[
+				"recruiter_dashboard",
+				"resources/views/recruiter_dashboard.blade.php"
+			],
+			[
+				"jobseeker_dashboard",
+				"resources/views/jobseeker_dashboard.blade.php"
+			],
+			[
+				"ker",
+				"app/Http/Kernel.php"
+			],
+			[
+				"app",
+				"config/app.php"
+			],
+			[
+				"app.php",
+				"bootstrap/app.php"
+			],
+			[
+				"check",
+				"app/Http/Middleware/checkFrontAuth.php"
+			],
+			[
+				"jobc",
+				"app/Http/Controllers/jobController.php"
+			],
+			[
+				"adminadminlogin",
+				"resources/views/admin/adminlogin.blade.php"
+			],
+			[
+				"user.php",
+				"app/User.php"
+			],
+			[
+				"auth",
+				"config/auth.php"
+			],
+			[
+				"bootstrapapp.php",
+				"bootstrap/app.php"
+			],
+			[
+				"authandrolecontroller",
+				"app/Http/Controllers/Auth/AuthAndRoleController.php"
+			],
+			[
+				"authc",
+				"app/Http/Controllers/Auth/AuthController.php"
+			],
+			[
+				"home",
+				"resources/views/homepage.blade.php"
+			],
+			[
+				"adminm",
+				"resources/views/admin/layout/adminmaster.blade.php"
+			],
+			[
+				"cmscon",
+				"app/Http/Controllers/Admin/Cms/CmsController.php"
+			],
+			[
+				"admin/add_new_page",
+				"resources/views/admin/cms/pages/add_new_page.blade.php"
+			],
+			[
+				"configmail",
+				"config/mail.php"
+			],
+			[
+				".env",
+				".env"
+			],
+			[
+				"middlewareauth",
+				"app/Http/Middleware/Authenticate.php"
+			],
+			[
+				"configauth",
+				"config/auth.php"
+			],
+			[
+				"welcom",
+				"resources/views/welcome.blade.php"
+			],
+			[
+				"bcrypt",
+				"cftlaravel/vendor/laravel/framework/src/Illuminate/Hashing/BcryptHasher.php"
+			],
+			[
+				"",
+				"newIndigo/app/Providers/HelperServiceProvider.php"
+			],
+			[
+				"newindigomail",
+				"newIndigo/vendor/laravel/framework/src/Illuminate/Mail/Mailer.php"
+			],
+			[
+				"newindigoroute",
+				"newIndigo/app/Http/routes.php"
+			],
+			[
+				"leglogin",
+				"leg/resources/views/admin/login.blade.php"
+			],
+			[
+				"newindigoautosearch",
+				"newIndigo/resources/views/autosearch.blade.php"
+			],
+			[
+				"newindigonew",
+				"newIndigo/resources/views/newhomepage.blade.php"
+			],
+			[
+				"lehroute",
+				"leg/app/Http/routes.php"
+			],
+			[
+				"indigoautos",
+				"newIndigo/resources/views/autosearch.blade.php"
+			],
+			[
+				"amp_adminaddnews",
+				"amp_admin/resources/views/news/addNews.blade.php"
+			],
+			[
+				"indigoconnection",
+				"newIndigo/vendor/laravel/framework/src/Illuminate/Database/Connection.php"
+			],
+			[
+				"ampfrontnewho",
+				"amp_front/resources/views/newhome.blade.php"
+			],
+			[
+				"ampadmingaller",
+				"amp_admin/resources/views/gallery/editGallery.blade.php"
+			],
+			[
+				"ampadminresouinclude",
+				"amp_admin/resources/views/include/leftsidebar.blade.php"
+			],
+			[
+				"cftroute",
+				"cftlaravel/app/Http/routes.php"
+			],
+			[
+				"ampadminrout",
+				"amp_admin/app/Http/routes.php"
+			],
+			[
+				"legroute",
+				"leg/app/Http/routes.php"
+			],
+			[
+				"indigoadmin",
+				"newIndigo/resources/views/admin/adminheader.blade.php"
+			],
+			[
+				"nidigoroute",
+				"newIndigo/app/Http/routes.php"
+			],
+			[
+				"indigoroute",
+				"newIndigo/app/Http/routes.php"
+			],
+			[
+				"indigodocdash",
+				"newIndigo/resources/views/doctorDashboard/doctor_dashboard.blade.php"
+			],
+			[
+				"newindigonewho",
+				"newIndigo/resources/views/newhomepage.blade.php"
+			],
+			[
+				"amproute",
+				"amp_admin/app/Http/routes.php"
+			],
+			[
+				"ampapp",
+				"amp_front/public/js/app.js"
+			],
+			[
+				"indigonew",
+				"newIndigo/resources/views/newhomepage.blade.php"
+			],
+			[
+				"indigomain",
+				"newIndigo/public/theme/css/main.css"
+			],
+			[
+				"indigoincludeheader",
+				"newIndigo/resources/views/include/header.blade.php"
+			],
+			[
+				"indigodoctorregistartion",
+				"newIndigo/resources/views/doctorRegistartion.blade.php"
+			],
+			[
+				"indigo/rou",
+				"newIndigo/app/Http/routes.php"
+			],
+			[
+				"joblist",
+				"amp_front/resources/views/joblist.blade.php"
+			],
+			[
+				"jobsc",
+				"amp_front/app/Http/Controllers/AmpJobs/jobsController.php"
+			],
+			[
+				"jobs",
+				"intactCms/app/Http/Controllers/jobsController.php"
+			],
+			[
+				"curlfactory",
+				"cftlaravel/vendor/guzzlehttp/guzzle/src/Adapter/Curl/CurlFactory.php"
+			],
+			[
+				"curlfactory.php",
+				"cftlaravel/vendor/guzzlehttp/guzzle/src/Adapter/Curl/CurlFactory.php"
+			],
+			[
+				"heper",
+				"amp_admin/vendor/illuminate/html/helpers.php"
+			],
+			[
+				"container",
+				"amp_admin/vendor/laravel/framework/src/Illuminate/Container/Container.php"
+			],
+			[
+				"piwik",
+				"cftlaravel/vendor/robbrazier/piwik/src/RobBrazier/Piwik/Piwik.php"
+			],
+			[
+				"sites",
+				"ampfront/resources/views/siteSearch.blade.php"
+			],
+			[
+				"adminl",
+				"cftlaravel/resources/views/admin/adminleftsidebar.blade.php"
+			],
+			[
+				"ttw",
+				"cftlaravel/vendor/thujohn/twitter/src/Thujohn/Twitter/Twitter.php"
+			],
+			[
+				"twitter",
+				"ampfront/vendor/league/oauth1-client/resources/examples/twitter.php"
+			],
+			[
+				"twitt",
+				"ampfront/vendor/league/oauth1-client/src/Client/Server/Twitter.php"
+			],
+			[
+				"cftauthrole",
+				"cftlaravel/app/Http/Controllers/Auth/AuthAndRoleController.php"
+			],
+			[
+				"admin/job",
+				"cftlaravel/resources/views/admin/jobdetail.blade.php"
+			],
+			[
+				"adminleft",
+				"cftlaravel/resources/views/admin/adminleftsidebar.blade.php"
+			],
+			[
+				"authand",
+				"ampfront/app/Http/Controllers/Auth/AuthAndRoleController.php"
+			],
+			[
+				"twitter.php",
+				"cftlaravel/vendor/thujohn/twitter/src/Thujohn/Twitter/Twitter.php"
+			],
+			[
+				"twi",
+				"ampfront/vendor/league/oauth1-client/resources/examples/twitter.php"
+			],
+			[
+				"cft.env",
+				"cftlaravel/.env"
+			],
+			[
+				"env",
+				"intactCms/vendor/symfony/http-kernel/Tests/Fixtures/ExtensionNotValidBundle/ExtensionNotValidBundle.php"
+			],
+			[
+				"adminh",
+				"cftlaravel/resources/views/admin/adminheader.blade.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 172.0,
+	"status_bar_visible": true
+}
