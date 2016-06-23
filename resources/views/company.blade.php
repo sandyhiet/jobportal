@@ -1,52 +1,36 @@
-@extends('layout.master')
+@extends('layouts.master')
 @section('title', 'Home Page')
 @section('content')
 
-
-		 <!-- ============ NAVBAR START ============ -->
-
-		<div class="fm-container">
-			<!-- Menu -->
-			<div class="menu">
-				<div class="button-close text-right">
-					<a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
-				</div>
-				<ul class="nav">
-					<li class="active"><a href="{{url('/')}}">Home</a></li>
-					<li><a href="{{url('jobs')}}">Jobs</a></li>
-					<li><a href="{{url('post-a-job')}}">Post a job</a></li>
-					<li><a href="{{url('candidates')}}">Candidates</a></li>
-					<li><a href="{{url('post-a-resume')}}">Post a Resume</a></li>
-					<li><a href="#">Read More</a>
-						<ul>
-							<li><a href="{{url('job-details')}}">Job Details</a></li>
-							<li><a href="{{url('resume')}}">Resume</a></li>
-							<li><a href="{{url('company')}}">Company</a></li>
-							<li><a href="{{url('blog')}}">Blog</a></li>
-							<li><a href="{{url('post')}}">Single Post</a></li>
-							<li><a href="{{url('about')}}">About Us</a></li>
-							<li><a href="{{url('testimonials')}}">Testimonials</a></li>
-							<li><a href="{{url('options')}}">Options</a></li>
-						</ul>
-					</li>
-					<li><a href="">Job Seeker</a>
-						<ul>
-							<li><a class="link-register">Register</a></li>
-							<li><a class="link-login">Login</a></li>
-					    </ul>
-					</li>
-					<li><a href="">Job Recruiter</a>
-						<ul>
-							<li><a class="link-recruiter-register">Register</a></li>
-							<li><a class="link-recruiter-login">Login</a></li>
-					    </ul>
-					</li>
-				</ul>		
-			</div>
-			<!-- end Menu -->
-		</div>
-
 		<!-- ============ NAVBAR END ============ -->
+
+		<!-- ============ HEADER START ============ -->
+
+		<header>
+			<div id="header-background"></div>
+			<div class="container">
+				<div class="pull-left">
+					<div id="logo"><a href="index.html"><img src="images/logo.png" alt="Jobseek - Job Board Responsive HTML Template" /></a></div>
+				</div>
+				<div id="menu-open" class="pull-right">
+					<a class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
+				</div>
+				<div id="searchbox" class="pull-right">
+					<form>
+						<div class="form-group">
+							<label class="sr-only" for="searchfield">Searchbox</label>
+							<input type="text" class="form-control" id="searchfield" placeholder="Type keywords and press enter">
+						</div>
+					</form>
+				</div>
+				<div id="search" class="pull-right">
+					<a><i class="fa fa-search fa-lg"></i></a>
+				</div>
+			</div>
+		</header>
+
+		<!-- ============ HEADER END ============ -->
+
 		<!-- ============ TITLE START ============ -->
 
 		<section id="title">
@@ -274,7 +258,7 @@
 							<h2>Share it</h2>
 							<ul>
 								<li><a href="https://www.facebook.com/sharer/sharer.php?u=http://www.coffeecreamthemes.com/themes/jobseek/site/job-details.html"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="https://twitter.com/home?status=http://www.coffeecreamthemes.com/themes/jobseek/site/job-details.html"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://twitter.com/home?status=http://www.intactinnovations.com/themes/jobseek/site/job-details.html"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="https://plus.google.com/share?url=http://www.coffeecreamthemes.com/themes/jobseek/site/job-details.html"><i class="fa fa-google-plus"></i></a></li>
 								<li><a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.coffeecreamthemes.com/themes/jobseek/site/job-details.html&amp;title=Jobseek%20-%20Job%20Board%20Responsive%20HTML%20Template&amp;summary=&amp;source="><i class="fa fa-linkedin"></i></a></li>
 							</ul>
@@ -297,9 +281,4 @@
 
 		<!-- ============ CONTENT END ============ -->
 
-
-
-
-		
-
-	@endsection
+		@endsection

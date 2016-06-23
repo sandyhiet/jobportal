@@ -422,9 +422,8 @@ class AuthAndRoleController extends Controller
 
     public function recruiterlogin(){
 
-
-        $email                        = $req->email;
-        $password                     = $req->password;
+        $email              = Input::get('email');
+        $password           = Input::get('password');
         
 
 
@@ -442,35 +441,71 @@ class AuthAndRoleController extends Controller
            
         ];
 
+          $messages = [
+
+           
+            'email.required'    => 'Enter the email .',
+            'password.required'  => 'Enter the password.'
+            
+           
+        ];
+
         
 
-        $validation = Validator::make($inputs, $rules);
-
-        if( $validation->fails() ){
-            return $validation->errors();
+         $validator = Validator::make($inputs, $rules, $messages);
+        if($validator->fails()){
+            return redirect('recruiterlogin')->withInput()->with('errors', $validator->errors() );
+        } else {
+            $userdata = array(
+                'email' => Input::get('email'),
+                'password' => Input::get('password')
+            );
+ 
+            if(Auth::attempt($userdata)){
+                $getuserType = DB::table('users')->select('usertype')->where('email','=',$userdata['email'])->get();
+                if($getuserType[0]->usertype != 'jobrecruiter'){
+                    return redirect()->back()->withInput()
+                ->with('singleerrors', 'Either email or password is wrong.');
+                        
+                }else{
+                     return redirect('recruiter_dashboard');
+                }
+ 
+ 
+            } else {
+                return redirect()->back()->withInput()
+                ->with('singleerrors', 'Either email or password is wrong.');
+       
+            }
         }
 
+        // $validation = Validator::make($inputs, $rules);
 
-        Auth::logout();
-        $userdata = array(
-        'email' => Input::get('email'),
-        'password' => Input::get('password')
-        );
-
-        $remember = Input::has('remember') ? true:false;
-
-        if(Auth::attempt($userdata, $remember)){
-
-            return 'recruiter_dashboard';
-
-            //return redirect('recruiter_dashboard');
+        // if( $validation->fails() ){
+        //     return $validation->errors();
+        // }
 
 
-        } else { 
+        // Auth::logout();
+        // $userdata = array(
+        // 'email' => Input::get('email'),
+        // 'password' => Input::get('password')
+        // );
 
-        return redirect()->back();
+        // $remember = Input::has('remember') ? true:false;
 
-        }
+        // if(Auth::attempt($userdata, $remember)){
+
+        //     return 'recruiter_dashboard';
+
+        //     //return redirect('recruiter_dashboard');
+
+
+        // } else { 
+
+        // return redirect()->back();
+
+        // }
 
 
     }

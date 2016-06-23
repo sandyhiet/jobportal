@@ -105,15 +105,10 @@
               </div>
 
               <div id="recr_country_group" class="form-group {{ $errors->has('country') ? ' has-error' : '' }}">
-                <label for="job-location">Country</label>
-                <select onchange="ajaxGetstate(this.value)" class="form-control" id="country" placeholder="" name="country">
-                  <option>Select</option>
-                   <?php
-                    $countries = DB::table('tbl_country')->select('*')->get();
-                    foreach($countries as $key=>$val){
-                    ?>
-                    <option value="{{$countries[$key]->country_name}}">{{$countries[$key]->country_name}}</option>
-                   <?php }?>
+                Country
+                <select   class="countries" id="countryId" placeholder="" name="country">
+                  <option>Select Country</option>
+                  
                  </select> 
                  <span id="recr_country_helpblock" class="help-block"></span>
                   @if ($errors->has('country'))
@@ -124,15 +119,10 @@
               </div>
 
               <div id="recr_state_group" class="form-group {{ $errors->has('state') ? ' has-error' : '' }}">
-                <label for="job-region">State</label>
-                <select  class="form-control" id="state" placeholder="" name="state">
-                  <option>Select</option>
-                  <?php
-                    $state = DB::table('tbl_state')->select('*')->get();
-                    foreach($state as $key=>$val){
-                    ?>
-                    <option value="{{$state[$key]->state_name}}">{{$state[$key]->state_name}}</option>
-                    <?php }?>
+                State
+                <select  class="states" id="stateId" placeholder="" name="state">
+                  <option value="">Select State</option>
+                </select>
                 </select>
                 <span id="recr_state_helpblock" class="help-block"></span>
                  @if ($errors->has('state'))
@@ -142,9 +132,9 @@
                 @endif
               </div>
                <div id="recr_city_group" class="form-group {{ $errors->has('city') ? ' has-error' : '' }}">
-                <label for="job-region">City</label>
-                <select  class="form-control" id="city" placeholder="" name="city">
-                  <option>Select</option>
+                City
+               <select name="city" class="cities" id="cityId">
+                <option value="">Select City</option>
                 </select>
                 <span id="recr_city_helpblock" class="help-block"></span>
                  @if ($errors->has('city'))
@@ -252,15 +242,25 @@
                   </span>
                   @endif
               </div>
-              <div id="recr_web_group" class="form-group" >
+              <div id="recr_web_group"  class="form-group" >
                 <label for="company-website">Website (Optional)</label>
                 <input type="text" class="form-control" id="companywebsite" placeholder="http://" name="companywebsite">
                   <span id="recr_web_helpblock" class="help-block"></span>
+                   @if ($errors->has('companywebsite'))
+                  <span class="help-block">
+                   <strong>{{ $errors->first('companywebsite') }}</strong>
+                  </span>
+                  @endif
               </div>
-              <div class="form-group" id="recr_industry_group">
+              <div class="form-group" id="recr_industry_group" class="form-group {{ $errors->has('industries') ? ' has-error' : '' }}">
                 <label for="company-facebook">Industry</label>
                 <input type="text" class="form-control" id="industries" placeholder=""  name="industries">
                  <span id="recr_industry_helpblock" class="help-block"></span>
+                   @if ($errors->has('industries'))
+                  <span class="help-block">
+                   <strong>{{ $errors->first('industries') }}</strong>
+                  </span>
+                  @endif
               </div>
               <div class="form-group" id="recr_role_group">
                 <label for="">Role</label>
@@ -293,20 +293,6 @@
                  <input type="file" id="logo" name="logo">
                  <span id="recr_logo_helpblock" class="help-block"></span>
               </div>
-
-<select name="country" class="countries" id="countryId">
-<option value="">Select Country</option>
-</select>
-<select name="state" class="states" id="stateId">
-<option value="">Select State</option>
-</select>
-<select name="city" class="cities" id="cityId">
-<option value="">Select City</option>
-</select>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://iamrohit.in/lab/js/location.js"></script>
-
-
             </div>
           </div>
         </div> 
@@ -344,7 +330,7 @@ var ajaxGetSubCat = function(catid){
 
   $.ajax({
     type:'GET',
-    url:'http://192.168.1.158/jobportal/public/getsubcatbyid/'+catid,
+    url:'http://localhost/jobportal/public/getsubcatbyid/'+catid,
     success:function(result){
       console.log(result);
       $(result).each(function(){
@@ -371,7 +357,7 @@ var ajaxGetstate = function(catid){
 
   $.ajax({
     type:'GET',
-    url:'http://192.168.1.158/jobportal/public/getsubcatbyid/'+catid,
+    url:'http://localhost/jobportal/public/getsubcatbyid/'+catid,
     success:function(result){
       console.log(result);
       $(result).each(function(){
@@ -386,8 +372,10 @@ var ajaxGetstate = function(catid){
 </script>
 
 
-
+<!-- country state and city dropdown list -->
   
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://iamrohit.in/lab/js/location.js"></script>
 
  <!-- date picker -->
 
@@ -419,22 +407,10 @@ var ajaxGetstate = function(catid){
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 
-<!-- <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script> -->
-
-</body>
+   <script>
+      $(function () {
+        $("#example1").DataTable();
+      });
+    </script>
+  </body>
 </html>
-
-
-
-<!--  <?php
-$state = DB::table('tbl_state')->select('*')->get();
-foreach($state as $key=>$val){
-?>
-<option value="{{$state[$key]->state_name}}">{{$state[$key]->state_name}}</option>
-<?php }?> -->
-<!--  <?php
-$city = DB::table('tbl_city')->select('*')->get();
-foreach($city as $key=>$val){
-?>
-<option value="{{$city[$key]->city_name}}">{{$city[$key]->city_name}}</option>
-<?php }?> -->

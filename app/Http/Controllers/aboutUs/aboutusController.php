@@ -122,6 +122,82 @@ class aboutusController extends Controller
 
     }
 
+
+
+    public function post_contactus_query_from(Request $req){
+        $name        = $req->name;
+        $email       = $req->email;
+        $subject     = $req->subject;
+        $feedback    = $req->feedback;
+        
+ 
+       
+
+        $inputs = [
+            'name'         => $name,
+            'email'        => $email,
+            'subject'        => $subject,
+            'feedback'      => $feedback
+        ];
+    
+
+        $rules = [
+            'name'        => 'required|max:30',
+            // 'phone'       => 'required|digits_between:6,12',
+            'email'       => 'required|email|max:50',
+            'feedback'     => 'required|max:500'
+        ];
+
+        $messages = [
+            'name.required'     => 'Please Enter Your Name',
+            'email.required'    => 'Please Enter Valid Email',
+            'feedback.required'    => 'Please Enter Your Message',
+            
+        ];
+
+        $validation = Validator::make($inputs, $rules, $messages);
+
+        if( $validation->fails() ){
+            return $validation->errors();
+        }
+
+         // $phone1 = $extention.'-'.$phone;
+
+        DB::table('contactus_queries')->insert([
+            'name'=>$name,
+            'email'=>$email,
+            'subject'=>$subject,
+            'feedback'=>$feedback,
+        ]);
+
+        //notify Admin
+        
+        $datasendtomail = array(
+            'name'     => $name, 
+            'email'      => $email,
+            'enqmessage'   => $feedback,
+        );
+        $data = array( 
+            'subject' => 'New Enquiry - Job Portal',
+            'email' => $email
+        );
+
+        Mail::send('layout.mail.contact_us_mail',
+                $datasendtomail, function ($message) use ($data) 
+            {
+                $message->from(env('EMAILFROM'), env('EMAILNAME'));
+                $message->to($data['email'], env('ADMINEMAIL1'), $name = env('ADMINNAME1'));
+                $message->bcc(env('ADMINEMAIL1'), $name = env('ADMINNAME1'));
+                $message->bcc(env('ADMINEMAIL2'), $name = env('ADMINNAME2'));
+                $message->subject($data['subject']); 
+            });
+
+
+        return '1';
+
+    }
+
+
     public function saveFeaturedContent(Request $req){
 
        

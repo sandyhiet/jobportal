@@ -100,6 +100,14 @@
                         </div>
                       </div>
                     </div>
+                     <div class="col-lg-12">
+                      <div class="row">
+                        <div class="form-group">
+                          <label>Link</label>
+                          <input type="text" value="{{$slider[0]->link}}" name="link" class="form-control">
+                        </div>
+                      </div>
+                    </div>
                     <div class="col-lg-6">
                       <div class="row">
                         <div class="form-group" >
@@ -107,7 +115,7 @@
                           <input type="radio" name="status" value="1" <?php echo($slider[0]->status == 1)?'checked':'';?>>ACTIVE
                           <input type="radio" name="status" value="0" <?php echo($slider[0]->status == 0)?'checked':'';?> >DE-ACTIVE
 <!--                           
- -->                        </div>
+ -->                     </div>
                       </div>
                     </div>
                     

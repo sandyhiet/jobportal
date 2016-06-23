@@ -54,36 +54,7 @@
     // Route::get('addSlider','controllers\ImageController@getImage');
 // work start
 
-    Route::get('admin/work', function(){
-        $data = array('pagetitle'=>'Homepage Banner');
-        $work_details = DB::table('work_details')->select('*')->get();
-        $admin_profile = DB::table('admin_profile')->select('*')->get();
-        $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
-
-        return view('admin/work', $data)->with('work_details',$work_details)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
-     });
-
-    Route::post('work', 'homePage\homeSliderController@insertwork');
-     // end work
-
-     
-    Route::post('addSlider', 'homePage\homeSliderController@insertHomeSlider');
-
-
-    Route::get('deleteSliderImage/{id}', 'homePage\homeSliderController@deleteslider');
-    
-    Route::get('editSliderImage/{id}', function($id){
-                $data = array('pagetitle'=>'job_update');
-                $slider = DB::table('home_slider')->select('*')->where('id', '=', $id)->get();
-                // $category = DB::table('tbl_category')->where('category_id', '=', $id)->get();
-                return view('admin/update_homebanner', $data)->with('slider', $slider);
-        });
-
-    
-    Route::get('editSliderImage/{id}', 'homePage\homeSliderController@edittHomeSlider');
-    Route::post('updateSlider', 'homePage\homeSliderController@UpdatetHomeSlider');
-
-    // homeslider end*************************************
+   
 
 
 
@@ -104,7 +75,7 @@
     $footer_contact  = DB::table('footer_contact')->select('*')->get();
     $data = array('pagetitle'=>'Subscription Confirm');
     DB::table('mailsubscriber_id')->where('subscriber_id', '=', $id)->delete();
-    return view('subscription_confirm', $data)->with('subscriberprofile',$subscriberprofile)->with('header_contact',$header_contact)->with('social_links',$social_links)->with('logo',$logo)->with('social_links',$social_links)->with('menu',$menu)->with('footer_contact',$footer_contact);
+    return view('subscription_confirm', $data)->with('subscriberprofile',$subscriberprofile)->with('header_contact',$header_contact)->with('social_links',$social_links)->with('logo',$logo)->with('menu',$menu)->with('footer_contact',$footer_contact);
     });
 
     /*subscriber email end*/
@@ -155,16 +126,27 @@
 
 
     Route::get('/', function () {
+        $contact_usa = DB::table('contact_usa')->select('*')->get();
+        $contact_uk = DB::table('contact_uk')->select('*')->get();
         $social_links = DB::table('social_links')->get();
         $results = DB::table('job')->paginate('5');
         $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
+        $work_details =DB::table('work_details')->select('*')->where('status', '=', 1)->take(1)->get();
         $tbl_package = DB::table('tbl_package')->select('*')->get();
         $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
         $testimonials  = DB::table('testimonials')->select('*')->get();
+        $filter_gallery = DB::table('filter_gallery')->select('*')->get();
+    
 
-     return view('homepage')->with('bodytagid', 'home')->with('banners',$banners)->with('results', $results)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links);
+     return view('homepage')->with('bodytagid', 'home')->with('banners',$banners)->with('results', $results)->with('work_details', $work_details)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links)->with('filter_gallery',$filter_gallery)->with('contact_usa',$contact_usa)->with('contact_uk' ,$contact_uk);
     });
 
+    // Route::get('post_contactus_query_from' ,function(){
+
+    //         return view('post_contactus_query_from');
+    // });
+
+    Route::post('post_contactus_query_from', 'aboutUs\aboutusController@post_contactus_query_from');
 
 
     Route::get('jobs', function () {
@@ -186,9 +168,18 @@
         return view('resume');
     });
 
-    Route::get('company', function () {
-        return view('company');
-    });
+    // Route::get('company', function () {
+    //      $contact_usa = DB::table('contact_usa')->select('*')->get();
+    //     $contact_uk = DB::table('contact_uk')->select('*')->get();
+    //     $social_links = DB::table('social_links')->get();
+    //     $results = DB::table('job')->paginate('5');
+    //     $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
+    //     $work_details =DB::table('work_details')->select('*')->where('status', '=', 1)->get();
+    //     $tbl_package = DB::table('tbl_package')->select('*')->get();
+    //     $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
+    //     $testimonials  = DB::table('testimonials')->select('*')->get();
+    //     return view('company')->with('banners',$banners)->with('results', $results)->with('work_details', $work_details)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links)->with('contact_usa',$contact_usa)->with('contact_uk' ,$contact_uk);;
+    // });
 
     Route::get('blog', function () {
         return view('blog');
@@ -214,9 +205,9 @@
         return view('ajaxData');
     });
 
-Route::get('date',function(){
-    return view('date');
-});
+    Route::get('date',function(){
+        return view('date');
+    });
     /////////////////////OUT  OF MIDDLEWARE START/////////////////////////////////
 
     Route::post('saveJobs', 'job\jobController@insertJobs');
@@ -233,17 +224,7 @@ Route::get('date',function(){
     // Route::post('jobseekerregistration','jobController@jobseekerregistration');
 
     
-    Route::get('countries_json', function(){
-    return DB::table('tbl_country')->select('country_name')->get();
-    });
-    Route::get('state_json', function(){
-    return DB::table('tbl_state')->select('state_name', 'state_id')->get();
-    });
-    Route::get('district_json/{state_name}', function($state_name){
-    $tbl_state = DB::table('tbl_state')->select('state_id')->where('state_name', '=', $state_name)->get();
-    return $tbl_city= DB::table('tbl_city')->select('city_name', 'id')->where('state_id', '=', $tbl_city[0]->state_id)->get();
-    });
-
+   
       /////////////////////OUT  OF MIDDLEWARE END/////////////////////////////////
 
 
@@ -393,6 +374,247 @@ Route::get('date',function(){
         return view('admin/social_links', $data)->with('social_links',$social_links);
        });
        Route::post('update_social_links', 'homePage\homeSliderController@update_social_links');
+
+
+
+
+       /*****************CMS ROUTS START****************/
+
+
+        /*****************CMS google Analytics start****************/
+
+        // Route::get('admin/google_analytics', function(){
+        //     $data = array('pagetitle'=>'Google Analytics');
+        //     $GoogleAnalytics = DB::table('google_analytics')->select('*')->get();
+        //     return view('admin/addGoogle_analytics', $data)->with('GoogleAnalytics',$GoogleAnalytics);
+        // });
+
+        // Route::post('saveGoogleAnalytics', 'cms\cmsController@saveGoogleAnalytics');
+
+         /*****************CMS google Analytics end****************/
+
+        Route::get('admin/addpage', function(){
+            $data = array('pagetitle'=>'Add New Page');
+            return view('admin/addpage', $data);
+        });
+
+
+
+        Route::get('admin/pages', function(){
+            $data = array('pagetitle'=>'All Pages');
+            $Pages = DB::table('Pages')->select('*')->get();
+            return view('admin/pages', $data)->with('Pages', $Pages);
+        });
+        Route::post('saveNewPage', 'cms\cmsController@saveNewPage');
+        Route::get('admin/update_page/{page_title}', function($page_title){
+            $data = array('pagetitle'=>'Update Page Content');
+            $Page = DB::table('Pages')->select('*')->where('PageTitle', '=', $page_title)->get();
+            return view('admin/update_page', $data)->with('Page', $Page);
+        });
+        Route::post('editPage', 'cms\cmsController@updateCmsPage');
+        Route::get('admin/delete_page/{page_title}', function($page_title){
+            DB::table('Pages')->where('PageTitle', '=', $page_title)->delete();
+            return redirect()->back()->with('message', 'Page Deleted.');
+        });
+        // Route::get('admin/menu', function(){
+        //     $data = array('pagetitle'=>'Navigation');
+        //     $menu = DB::table('menu')->select('*')->get();
+        //     return view('admin/menu', $data)->with('menu',$menu);
+        // });
+        // Route::get('admin/menu', function(){
+        //     $data = array('pagetitle'=>'Navigation');
+        //     return view('admin/menu', $data);
+        // });
+        // Route::post('saveNavigation', 'cms\cmsController@saveNavigation');
+        // Route::get('admin/homepage_contact', function(){
+        //     $data = array('pagetitle'=>'Add New Contact');
+        //     $contact_usa = DB::table('contact_usa')->select('*')->get();
+        //     $contact_uk = DB::table('contact_uk')->select('*')->get();
+        //     $footer_contact = DB::table('footer_contact')->select('*')->get();
+            
+        //     return view('admin/homepage_contact_us', $data)->with('contact_usa', $contact_usa)->with('contact_uk', $contact_uk)->with('footer_contact', $footer_contact);
+        // });
+        Route::post('saveNewContactuk', 'cms\cmsController@saveNewContactuk');
+
+        Route::post('saveNewContactusa', 'cms\cmsController@saveNewContactusa');
+
+        Route::post('saveFooterContact', 'cms\cmsController@saveFooterContact');
+        
+
+        Route::get('admin/alladdress', function(){
+            $data = array('pagetitle'=>'Address');
+            $contactus_address = DB::table('contactus_address')->get();
+            return view('admin/alladdress', $data)->with('contactus_address', $contactus_address);
+        });
+        Route::get('admin/add_address', function(){
+            $data = array('pagetitle'=>'Add Address');
+            return view('admin/add_address', $data);
+        });
+        Route::post('add_address', 'cms\cmsController@add_address');
+        Route::get('admin/update_address/{id}', function($id){
+            $data = array('pagetitle'=>'Update Address');
+            $contactus_address = DB::table('contactus_address')->where('id', '=', $id)->get();
+            return view('admin/update_address', $data)->with('contactus_address', $contactus_address);
+        });
+        Route::post('admin/update_address', 'cms\cmsController@update_address');
+        Route::get('admin/delete_address/{id}', function($id){
+            DB::table('contactus_address')->where('id', '=', $id)->delete();
+            return redirect()->back()->with('message', 'Address Deleted.');
+        });
+        Route::get('admin/queries', function(){
+            $data = array('pagetitle'=>'Queries');
+            $contactus_queries = DB::table('contactus_queries')->orderBy('id', 'desc')->get();
+            return view('admin/queries', $data)->with('contactus_queries', $contactus_queries);
+        });
+        Route::get('admin/delete_queries/{id}', function($id){
+            DB::table('contactus_queries')->where('id', '=', $id)->delete();
+            return redirect('admin/queries')->with('message', 'Message Deleted.');
+        });
+        Route::get('admin/read_query/{id}', function($id){
+            $data = array('pagetitle'=>'Query');
+            $contactus_query = DB::table('contactus_queries')->where('id', '=', $id)->get();
+            $contactus_query_update = DB::table('contactus_queries')->where('id', '=', $id)->update([
+                'status'=>1
+            ]);
+            return view('admin/read_query', $data)->with('contactus_query', $contactus_query);
+        });
+
+        // Route::get('admin/about_kbf', function(){
+        //     $data = array('pagetitle'=>'about_kbf');
+        //     $organizer_detail= DB::table('organizer_detail')->select('*')->get();
+        //     return view('admin/about_kbf', $data)->with('organizer_detail',$organizer_detail);
+        // });
+        // Route::post('save_aboutkbf', 'cms\cmsController@save_Aboutkbf');
+
+        // Route::get('admin/kbf_map', function(){
+        //     $data = array('pagetitle'=>'KBF Map');
+        //     $map_links= DB::table('map_link')->select('*')->get();
+        //     return view('admin/kbf_map', $data)->with('map_links',$map_links);
+        // });
+
+        // Route::post('saveKbfMap', 'cms\cmsController@saveKbfMap');
+
+
+
+        /*****************CMS ROUTS END****************/
+
+
+
+        /*****************SUBSCRIBE ROUTS START****************/
+
+        
+        Route::get('admin/subscriber', function(){
+            $data = array('pagetitle'=>'Subscriber');
+            $subscriber = DB::table('subscriber')->where('status', 1)->orderBy('id', 'desc')->get();
+            return view('admin/subscriber', $data)->with('subscriber', $subscriber);
+        });
+        Route::get('admin/deletesubscriber/{id}', 'Subscriber\SubscroberController@deletesubscriber');
+
+        /*****************SUBSCRIBE ROUTS END****************/
+
+
+        
+        /***********ADMIN Broadcast ROUTES START********/
+
+        Route::get('admin/composemail', function(){
+                        $data = array('pagetitle'=>'Compose Mail');                         
+                        return view('admin.mailbroadcast', $data);
+        });
+
+        Route::post('postComposeEmail', 'Subscriber\SubscroberController@composemail');
+
+        /***********ADMIN Broadcast ROUTES END********/
+
+
+
+
+         Route::get('admin/work', function(){
+            $data = array('pagetitle'=>'Work Details');
+            $work_details = DB::table('work_details')->select('*')->get();
+            $admin_profile = DB::table('admin_profile')->select('*')->get();
+            $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+
+            return view('admin/work', $data)->with('work_details',$work_details)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
+         });
+
+        Route::post('admin/work', 'homePage\homeSliderController@insertwork');
+         // end work
+
+         
+        Route::post('addSlider', 'homePage\homeSliderController@insertHomeSlider');
+
+
+        Route::get('deleteSliderImage/{id}', 'homePage\homeSliderController@deleteslider');
+        
+        Route::get('editSliderImage/{id}', function($id){
+                    $data = array('pagetitle'=>'job_update');
+                    $slider = DB::table('home_slider')->select('*')->where('id', '=', $id)->get();
+                    // $category = DB::table('tbl_category')->where('category_id', '=', $id)->get();
+                    return view('admin/update_homebanner', $data)->with('slider', $slider);
+            });
+
+        
+        Route::get('editSliderImage/{id}', 'homePage\homeSliderController@edittHomeSlider');
+        Route::post('updateSlider', 'homePage\homeSliderController@UpdatetHomeSlider');
+
+        // homeslider end*************************************
+
+
+
+        /*/////////////Testimonials Start//////////////////*/
+
+         Route::get('admin/alltestimonials',function(){
+         $admin_profile = DB::table('admin_profile')->select('*')->get();
+         $testimonials  = DB::table('testimonials')->select('*')->get();
+         // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+
+        
+         return view('admin.alltestimonials')->with('testimonials', $testimonials)->with('admin_profile', $admin_profile);
+        });
+
+         Route::get('admin/addtestimonials',function(){
+             // $admin_profile = DB::table('admin_profile')->select('*')->get();
+             // $testimonials  = DB::table('testimonials')->select('*')->where('id', '=', $id)->get()
+             // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+
+            
+             return view('admin.addtestimonials');
+        });
+
+          Route::get('admin/editTestimonial/{id}',function($id){
+             $admin_profile = DB::table('admin_profile')->select('*')->get();
+             $testimonials  = DB::table('testimonials')->select('*')->where('id', '=', $id)->get();
+             // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+             return view('admin.updatetestimonials')->with('testimonials', $testimonials)->with('admin_profile', $admin_profile);
+        });
+        Route::post('saveTestimonial', 'testimonial\testimonialController@insertTestimonial');
+       
+        Route::post('updateTestimonials', 'testimonial\testimonialController@updateTestimonials');
+        Route::get('admin/deletetestimonial/{id}', 'testimonial\testimonialController@deletetestimonial');
+
+        /*//////////////happy clients//////////////////////////*/
+
+          Route::get('admin/clients_happy',function(){
+
+            
+
+            $filter_gallery = DB::table('filter_gallery')->select('*')->get();
+            // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+            return view('admin.clients_happy')->with('filter_gallery', $filter_gallery);
+        });
+
+        Route::post('Gallery_clients', 'client\clientController@Gallery_clients');
+
+        Route::get('delete_clients/{id}', 'client\clientController@delete_clients');
+
+
+          Route::get('admin/update_clients/{id}',function($id){
+             $filter_gallery = DB::table('filter_gallery')->select('*')->where('id', '=', $id)->get();
+             // $testimonials  = DB::table('testimonials')->select('*')->get();
+             // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+             return view('admin.update_clients')->with('filter_gallery', $filter_gallery);
+        });
+            Route::post('update_images', 'client\clientController@update_images');
 
         ///////////////////////////////// Admin Relate Work End /////////////////////////////////////////////
 
@@ -586,7 +808,10 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
 
          Route::get('job_listing', 'job\jobController@jobs');
 
+         Route::get('jobs',function(){
 
+            return view('jobs');
+         });
 
 
 });

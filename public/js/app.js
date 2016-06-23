@@ -73,6 +73,67 @@ $(function(){
 // 	return false;
 // }
 
+
+var submit_contactus_query_form = function(){
+	
+	var extension = $(".selected-dial-code").html();
+	// alert(extension);
+
+	$('#extention').val(extension);
+
+	$('#contactus_query_frm-feedback').html('').hide();
+	$('#contactus_query_frm-subject').html('').hide();
+	$('#contactus_query_frm-email').html('').hide();
+	$('#contactus_query_frm-name').html('').hide();
+
+	var prevhtml = $('#contactus_query_form_btn_submit').html();
+	$('#contactus_query_form_btn_submit').attr('disabled', 'disabled');
+	$('#contactus_query_form_btn_submit').html('<img src="images/ui-anim_basic_16x16.gif">');
+
+
+	var data = $('#contactus_query_form').serializeArray();
+	$.ajax({
+		url:baseurl+'/post_contactus_query_from',
+		type:'post',
+		data:data,
+		success:function(res){
+			//alert(res);
+			console.log(res);
+			$('#contactus_query_form_btn_submit').removeAttr('disabled');
+			$('#contactus_query_form_btn_submit').html(prevhtml);
+			if(res == '1'){
+				document.getElementById('contactus_query_form').reset();
+				$('#contactus_query_frm-message').html('Thank you for your query.').show();
+			} else {
+
+
+				if(res.email[0]){
+					$('#contactus_query_frm-email').html(res.email[0]).show();
+				} 
+				if(res.feedback[0]){
+					$('#contactus_query_frm-feedback').html(res.feedback[0]).show();
+				} 
+				if(res.name[0]){
+					$('#contactus_query_frm-name').html(res.name[0]).show();
+				}
+
+			}
+			
+		},
+		error:function(xhr,status,error){
+			alert("Status: " + status);
+            alert("Error: " + error);
+            alert("xhr: " + xhr.readyState);
+            $('#contactus_query_form_btn_submit').removeAttr('disabled');
+			$('#contactus_query_form_btn_submit').html(prevhtml);
+            document.getElementById('contactus_query_form').reset();
+		}
+	});
+	
+	return false;
+}
+	
+
 var jobseekerRegistartionForm = function(){
 	
 	
@@ -261,6 +322,50 @@ var jobrecruiterlogin = function(formid, submitbtnid, url){
 	return false;
 }
 
+
+
+		/*//////////newsletter/////////////////*/
+
+
+ var newsletter_form = function(formid, submitbtnid, url){
+	var submitbtnhtml = $(submitbtnid).html();
+	$(submitbtnid).html('<img src="images/ui-anim_basic_16x16.gif">');
+	$(submitbtnid).attr('disabled', 'disabled');
+	$('#newsletter_formgroup').removeClass();
+	$('#newsletter_formcontrol').html('');
+
+
+	var data = $(formid).serializeArray();
+	alert("Not a valid e-mail address");
+	$.ajax({
+		type:'post',
+		data:data,
+		url:data.attr("action"),
+		success:function(result){
+			alert(result);
+			
+			$(submitbtnid).removeAttr('disabled');
+			$(submitbtnid).html(submitbtnhtml);
+			if(result == '1'){
+				alert('Register successfully');
+				location.reload();
+			} else {
+				if(result.SubscriberEmail[0]){
+
+					$('#newsletter_formgroup').addClass('has-error');
+					$('#newsletter_formcontrol').html(result.SubscriberEmail[0]);
+				}  
+				
+				
+		  }
+		}
+	});
+	return false;
+  }
+
+
+
+	
 
 
      /*recruiter dashboard start*/

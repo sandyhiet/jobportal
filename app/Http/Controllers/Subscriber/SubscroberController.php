@@ -27,7 +27,7 @@ class SubscroberController extends Controller
         
      
         $SubscriberEmail    = $request->SubscriberEmail;
-        $footerSubs         = $request->footerSubs;
+        // $footerSubs         = $request->footerSubs;
 
 
         $inputs = [
@@ -44,7 +44,7 @@ class SubscroberController extends Controller
             'SubscriberEmail.unique'  => 'Already Subscribed!',
         ];
 
-        $validation = Validator::make($inputs, $rules, $messages);
+        $validation = Validator::make($inputs, $rules);
 
         if( $validation->fails() ){
            return redirect()->back()->withInput()->with('errors', $validation->errors() );

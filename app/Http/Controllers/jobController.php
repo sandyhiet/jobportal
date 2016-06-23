@@ -185,7 +185,7 @@ class jobController extends Controller
            
         ]);
 
-       return '1';
+       // return '1';
       
         return redirect()->back()->with('message', 'Thank you for Registration');
     }

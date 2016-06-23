@@ -23,6 +23,7 @@ class homeSliderController extends Controller
        $slidertitle        = $res->slidertitle;
        $sliderh1           = $res->sliderh1;
        $sliderh2           = $res->sliderh2;
+       $link               = $res->link;
        $slidertxt          = $res->slidertxt;
        $slidetbtntxt1      = $res->slidetbtntxt1;
        $slidetbtnlink1     = $res->slidetbtnlink1;
@@ -85,6 +86,7 @@ class homeSliderController extends Controller
             'slidertitle'       => $slidertitle,
             'sliderh1'          => $sliderh1,
             'sliderh2'          => $sliderh2,
+            'link'              => $link,
             'slidertxt'         => $slidertxt,
             'slidetbtntxt1'     => $slidetbtntxt1,
             'slidetbtnlink1'    => $slidetbtnlink1,
@@ -97,26 +99,26 @@ class homeSliderController extends Controller
         return redirect()->back()->with('message', 'Image Added.');
 
 
-    }
+     }
 
 
     
 
-/**************** EDIT HOME PAGE SILIDER  **********/
+   /**************** EDIT HOME PAGE SILIDER  **********/
 
-public function edittHomeSlider($id){
-   // return"fdsfdg";
-    $slider= DB::table('home_slider')->where('id', $id)->get();
-    $data = array('pagetitle'=>'Update Slider');
-    return view('admin.update_homebanner', $data)->with('slider',$slider);
-}
+    public function edittHomeSlider($id){
+       // return"fdsfdg";
+        $slider= DB::table('home_slider')->where('id', $id)->get();
+        $data = array('pagetitle'=>'Update Slider');
+        return view('admin.update_homebanner', $data)->with('slider',$slider);
+    }
 
-/**************** EDIT HOME PAGE SILIDER  **********/
+    /**************** EDIT HOME PAGE SILIDER  **********/
 
 
-/********* Update home page slider **************/
+    /********* Update home page slider **************/
 
-public function UpdatetHomeSlider(Request $res){
+    public function UpdatetHomeSlider(Request $res){
 
        
 
@@ -128,7 +130,8 @@ public function UpdatetHomeSlider(Request $res){
 
         $sliderh1           = addslashes($res->sliderh1);
         $sliderh2           = addslashes($res->sliderh2);
-        $status           = addslashes($res->status);
+        $link               = $res->link;
+        $status             = $res->status;
         
 
 
@@ -139,31 +142,34 @@ public function UpdatetHomeSlider(Request $res){
         //     return redirect()->back()->withInput()->with('error', 'Error in link or text of button 2. Please fill or leave empty both values.' );
         // }
 
-        $inputs = [
 
-            // 'sliderImage'     => $sliderImage,
 
-        ];
 
-        $rules = [
+        // $inputs = [
 
-            //'sliderText'      => 'required',
-            // 'sliderImage'     => 'required',
+        //     // 'sliderImage'     => $sliderImage,
+
+        // ];
+
+        // $rules = [
+
+        //     //'sliderText'      => 'required',
+        //     // 'sliderImage'     => 'required',
             
-        ];
+        // ];
 
-        $messages = [
+        // $messages = [
 
-            //'sliderText.required'   => 'Please enter Slider text',
-            // 'sliderImage.required'  => 'Please select an image',
+        //     //'sliderText.required'   => 'Please enter Slider text',
+        //     // 'sliderImage.required'  => 'Please select an image',
 
-        ];
+        // ];
 
-        $validation = Validator::make($inputs, $rules, $messages);
+        // $validation = Validator::make($inputs, $rules, $messages);
 
-        if( $validation->fails() ){
-            //return redirect()->back()->withInput()->with('errors', $validation->errors() );
-        }
+        // if( $validation->fails() ){
+        //     //return redirect()->back()->withInput()->with('errors', $validation->errors() );
+        // }
         
 
         if($sliderImage){
@@ -214,33 +220,85 @@ public function UpdatetHomeSlider(Request $res){
             ->where('id', $id)
             ->update([
                 'sliderImage'       => $fileName,
-                
                 'sliderh1'          => $sliderh1,
                 'sliderh2'          => $sliderh2,
+                'link'              => $link,
                 'status'            => $status
                     
             ]);
 
-       return redirect('admin/homepage_banner')->with('message', 'Banner Updated.');
+              return redirect('admin/homepage_banner')->with('message', 'Banner Updated.');
 
-    }
+         }
+ 
+        public function deleteslider($id){
 
-public function deleteslider($id){
+        DB::table('home_slider')->where('id', $id)->delete([
 
-DB::table('home_slider')->where('id', $id)->delete([
+                         'id'   => $id,
+        ]);
 
-                 'id'   => $id,
-]);
+       return redirect()->back()->with('message', ' deleted');
 
-return redirect()->back()->with('message', ' deleted');
-
-     
-
-
-    }
+         
 
 
+        }
 
+
+        public function insertwork(Request $req){
+
+
+            $title               = addslashes($req->title);
+            $content             = addslashes($req->content);
+            $video_link          = addslashes($req->video_link);
+
+
+             $inputs = [
+
+                      'title'       => $title,
+                      'content'     => $content,
+                      'video_link'  => $video_link
+            ];
+
+            $rules = [
+
+                     'title'      => 'required',
+                    'content'     => 'required',
+                    'video_link'  => 'required'
+                
+            ];
+
+            $messages = [
+
+                   'title.required'   => 'Please Enter Title',
+                   'content.required'  => 'Please Write a content',
+                   'video_link.required'  => 'Please Enter a Video link',
+
+            ];
+
+            $validation = Validator::make($inputs, $rules, $messages);
+
+            if( $validation->fails() ){
+                return redirect()->back()->withInput()->with('errors', $validation->errors() );
+            }
+        
+            DB::table('work_details')->insert([
+
+            'title'           => $title,
+            'content'         => $content,
+            'video_link'      => $video_link,
+            
+        ]);
+
+
+        
+        return redirect()->back()->with('message', 'Successfully Insert.');
+
+
+     }
+
+   
 
 /********* Update home page slider **************/
 
@@ -625,20 +683,22 @@ return redirect()->back()->with('message', ' deleted');
             $fileName1 = $newsImage;
         }
 
-  DB::table('news')->insert([
-            'newsTitle'          => $newsTitle,
-            'newsDescription'    => $newsDescription,
-            // 'status'          => $status,
-            'newsImage'          => $fileName1
-            
+      DB::table('news')->insert([
+                'newsTitle'          => $newsTitle,
+                'newsDescription'    => $newsDescription,
+                // 'status'          => $status,
+                'newsImage'          => $fileName1
+                
 
-        ]);
-       
-return redirect()->back()->with('message', 'News Added.');
+            ]);
+           
+    return redirect()->back()->with('message', 'News Added.');
 
 
-    }
- public function update_news(Request $res){
+        }
+
+
+     public function update_news(Request $res){
        $id         = $res->id;
 
 

@@ -98,13 +98,13 @@
                   <tr>
                     
                     <td style="text-transform: capitalize;">{{$clientName}}</td>
-                    <td style="text-transform: capitalize;">{{ $testimonials[$key]->clientDesignation }}</td>
+                    <td style="text-transform: capitalize;">{{ $testimonials[$key]->testiMonial }}</td>
                     <td style="text-transform: capitalize;">{{ $testimonials[$key]->clientCompany }}</td>
-                    <td style="text-transform: capitalize;">{{$file}}</td>
+                    <td style="text-transform: capitalize;"><img class="thumbnail" src="{{ url('testimonialsImages') }}/{{ $testimonials[$key]->clientImage }}" width="45" height="45" /></td>
                     
                     <td>
                       <a data-toggle="modal" data-target="#myModal{{$i}}" href="javascript:void(0);">Testimonial</a> |
-                      <a href="#">Edit</a> | <a onclick="return confirm('Delete this Testimonial?')" href="#">Delete</a>
+                      <a href="{{url('admin/editTestimonial/'.$testimonials[$key]->id)}}">Edit</a> | <a onclick="return confirm('Delete this Testimonial?')" href="{{url('admin/deletetestimonial/'.$testimonials[$key]->id)}}">Delete</a>
                       <div class="modal fade" id="myModal{{$i}}">
                         <div class="modal-dialog">
                           <div class="modal-content">

@@ -23,7 +23,7 @@
   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
   <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
-		@yield('pagestyle')
+	
 
 		<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -32,12 +32,8 @@
 		<![endif]-->
 
 	</head>
-	<?php
-	if(!isset($bodytagid)){
-		$bodytagid = '';
-	}
-	?>
-	<body id="{{$bodytagid}}">
+	
+	<body id="home">
 
 		<!-- ============ PAGE LOADER START ============ -->
 
@@ -46,6 +42,50 @@
 		</div>
 
 		<!-- ============ PAGE LOADER END ============ -->
+
+       <!-- ============ NAVBAR START ============ -->
+
+		<div class="fm-container">
+			<!-- Menu -->
+			<div class="menu">
+				<div class="button-close text-right">
+					<a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
+				</div>
+				<ul class="nav">
+					<li class="active"><a href="{{url('/')}}">Home</a></li>
+					<li><a href="{{url('#')}}">Jobs</a></li>
+					<li><a href="{{url('#')}}">Candidates</a></li>
+					<!-- <li><a href="{{url('post-a-resume')}}">Post a Resume</a></li> -->
+					<li><a href="#">Read More</a>
+						<ul>
+							<li><a href="{{url('#')}}">Job Details</a></li>
+							<li><a href="{{url('#')}}">Resume</a></li>
+							<li><a href="{{url('#')}}">Company</a></li>
+							<li><a href="{{url('#')}}">Blog</a></li>
+							<li><a href="{{url('#')}}">Single Post</a></li>
+							<li><a href="{{url('#')}}">About Us</a></li>
+							<li><a href="{{url('#')}}">Testimonials</a></li>
+							<li><a href="{{url('#')}}">Options</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Job Seeker</a>
+						<ul>
+							<li><a class="link-register">Register</a></li>
+							<li><a class="link-login">Login</a></li>
+					    </ul>
+					</li>
+					<li><a href="#">Job Recruiter</a>
+						<ul>
+							<li><a class="link-recruiter-register">Register</a></li>
+							<li><a class="link-recruiter-login">Login</a></li>
+					    </ul>
+					</li>
+				</ul>		
+			</div>
+			<!-- end Menu -->
+		</div>
+
+		<!-- ============ NAVBAR END ============ -->
 
 		
 
@@ -108,12 +148,18 @@
                     @endif
 
 						<form  action="{{url('saveFeedback')}}" method="post">
+						  <form method="post"  onsubmit="return submit_contactus_query_form();" id="contactus_query_form" >
 							<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 							 <input type="hidden" name="contactForm" value="3">
 							<input name="siteurl" id="siteurl" type="hidden" value="{{env('SITEURL')}}">
-							<div class="form-group" id="contact-name-group">
+							<div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}" id="contact-name-group">
 								<label for="contact-name" class="sr-only">Name</label>
 								<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+								@if ($errors->has('name'))
+			                  <span class="help-block">
+			                   <strong>{{ $errors->first('name') }}</strong>
+			                  </span>
+			                  @endif
 							</div>
 							<div class="form-group" id="contact-email-group">
 								<label for="contact-email" class="sr-only">Email</label>
@@ -136,34 +182,41 @@
 						<h2>Visit our office</h2>
 						<div class="row">
 							<div class="col-sm-6">
+								<?php 
+								foreach ($contact_usa as $key => $value) {
+									
+								?>
 								<h5>New York</h5>
-								<p>5 Park Avenue<br>
-								New York, NY 10016<br>
-								USA</p>
-								<p><i class="fa fa-phone"></i>+1 718.242.5555<br>
-								<i class="fa fa-fax"></i>+1 718.242.5556<br>
-								<i class="fa fa-envelope"></i><a href="mailto:ny@jobseek.com">ny@jobseek.com</a></p>
+								<p>{{$contact_usa[$key]->Location}}</p>
+								<p><i class="fa fa-phone"></i>{{$contact_usa[$key]->PhoneNumber1}}<br>
+								<i class="fa fa-fax"></i>{{$contact_usa[$key]->PhoneNumber2}}<br>
+								<i class="fa fa-envelope"></i><a href="mailto:ny@jobseek.com">{{$contact_usa[$key]->Email}}</a></p>
 								<p><i class="fa fa-clock-o"></i>Mon-Fri 9am - 5pm<br>
 								<i class="fa fa-clock-o"></i>Sat 10am - 2pm<br>
 								<i class="fa fa-clock-o"></i>Sun Closed</p>
+								<?php } ?>
 							</div>
 							<div class="col-sm-6">
+								<?php 
+								foreach ($contact_uk as $key => $value) {
+								?>
 								<h5>Los Angeles</h5>
-								<p>8605 Santa Monica Blvd<br>
-								Los Angeles, CA 90069-4109<br>
-								USA</p>
-								<p><i class="fa fa-phone"></i>+1 985.562.5555<br>
-								<i class="fa fa-fax"></i>+1 985.562.5556<br>
-								<i class="fa fa-envelope"></i><a href="mailto:la@jobseek.com">la@jobseek.com</a></p>
+								<p>{{$contact_uk[$key]->Location}}</p>
+								<p><i class="fa fa-phone"></i>{{$contact_uk[$key]->PhoneNumber1}}<br>
+								<i class="fa fa-fax"></i>{{$contact_uk[$key]->PhoneNumber2}}<br>
+								<i class="fa fa-envelope"></i><a href="mailto:la@jobseek.com">{{$contact_usa[$key]->Email}}</a></p>
 								<p><i class="fa fa-clock-o"></i>Mon-Fri 9am - 5pm<br>
 								<i class="fa fa-clock-o"></i>Sat 10am - 2pm<br>
 								<i class="fa fa-clock-o"></i>Sun Closed</p>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
+
+
 
 		<!-- ============ CONTACT END ============ -->
 
@@ -174,45 +227,35 @@
 					<div class="row">
 						<div class="col-sm-6" id="newsletter">
 							<h2>Newsletter</h2>
-							<form class="form-inline" id="newsletterSection" method="POST" action="{{url('subscribenewsletter')}}" name="form">
-							  <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-							   <input type="hidden" name="footerSubs" value="1">
-							   @if(old('footerSubs'))
-								@if( Session::has('errors') )
-								<li>
-									<div class="alert alert-danger">
-									@foreach($errors->all() as $error)
-									<p>{{$error}}</p>
-									@endforeach
-									</div>
-								</li>
-								@endif
-								@if( Session::has('message') )
-								<li>
-								<div class="alert alert-success">
-								<p>{{ Session::get('message') }}</p>
-								</div>
-								</li>
-								@endif
-								@endif
+							 <!-- @include('layout.error-notification') -->
+							<form  onsubmit=" return newsletter_form('#newsletter_form', '#newsletter_submit_btn', 'subscribenewsletter')" class="form-inline" id="newsletter_form" method="POST" action="{{url('subscribenewsletter')}}">
+								 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+								 <input type="hidden" name="footerSubs" value="1">
 
-								<div class="form-group">
+								 <div class="form-group" id="newsletter_formgroup">
 									<label class="sr-only" for="newsletter-email">Email address</label>
-									<input type="email" class="form-control"  placeholder="Email address" name="SubscriberEmail">
+									<input type="email" class="form-control" placeholder="Email address" name="SubscriberEmail" id="newsletter_formcontrol"
+									<?php echo ($errors->has('SubscriberEmail'))?'':'';?> >
+
 								</div>
-								<button type="submit" class="btn btn-primary">Sign up</button>
+								<button  type="submit" class="btn btn-primary" id=="newsletter_submit_btn">Sign up</button>
+								@if ($errors->has('SubscriberEmail'))
+								<div class="text-danger">{{ $errors->first('SubscriberEmail') }}</div>
+								@endif
 							</form>
+					         
 						</div>
+
 						<div class="col-sm-6" id="social-networks">
-							<h2>Get in touch</h2>
-							 <?php if(sizeof($social_links)>0){ ?>
+						<h2>Get in touch</h2>
+						 <?php if(sizeof($social_links)>0){ ?>
                
                       <?php 
                       $so_cl_icon = '';
                       foreach($social_links as $key=>$val){
                           switch ($social_links[$key]->social_network) {
                               case 'dribbble':
-                                  $so_cl_icon = '<i class="fa fa-dribbble"></i>';
+                                  $so_cl_icon = '<i class="fa fa-2x fa-dribbble-square"></i>';
                                   break;
                               case 'twitter':
                                   $so_cl_icon = '<i class="fa fa-2x fa-twitter-square"></i>';
@@ -221,10 +264,10 @@
                                   $so_cl_icon = '<i class="fa fa-2x fa-google-plus-square"></i>';
                                   break;
                               case 'pinterest':
-                                  $so_cl_icon = '<i class="fa fa-pinterest-p"></i>';
+                                  $so_cl_icon = '<i class="fa fa-2x fa-pinterest-square"></i>';
                                   break;
                               case 'youtube':
-                                  $so_cl_icon = '<i class="fa fa-youtube"></i></a>';
+                                  $so_cl_icon = '<i class="fa fa-2x fa-youtube-square"></i></a>';
                                   break;
                               case 'flickr':
                                   $so_cl_icon = '<i class="fa fa-flickr"></i>';
@@ -272,41 +315,24 @@
 			<div class="popup-form">
 				<div class="popup-header">
 					<a class="close"><i class="fa fa-remove fa-lg"></i></a>
-					<h2>Jobseeker Login</h2>
+					<h2>Login</h2>
 				</div>
-
-
-				<form onsubmit="return jobseekerloginValidation();" method="post" name="form7" action="{{url('jobseekerlogin')}}">
-					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+				<form>
+					<ul class="social-login">
+						<li><a class="btn btn-facebook"><i class="fa fa-facebook"></i>Sign In with Facebook</a></li>
+						<li><a class="btn btn-google"><i class="fa fa-google-plus"></i>Sign In with Google</a></li>
+						<li><a class="btn btn-linkedin"><i class="fa fa-linkedin"></i>Sign In with LinkedIn</a></li>
+					</ul>
+					<hr>
 					<div class="form-group">
-						 @if( Session::has('errors') )
-		                    <div class="alert alert-danger" style="text-align:left; padding: 11px;">
-		                       @foreach($errors->all() as $error)
-		                       <p style="color: red;">{{$error}}</p>
-		                       @endforeach
-		                     </div>
-		                  @endif
-		                  @if( Session::has('singleerrors') )
-		                    <div class="alert alert-danger" style="padding: 11px;">
-		                       <p style="color: red;">{{ Session::get('singleerrors') }}</p>
-		                     </div>
-		                  @endif
-	                </div>
-					<div class="form-group">
-						<label for="login-username">Email Id</label>
-						<input type="text" name="email" class="form-control" id="seeker_email">
-						 <span id="req_vaildemail" class="text-danger pull-right text-xs" style="display:none;">Enter vaild email id</span>
+						<label for="login-username">Username</label>
+						<input type="text" class="form-control" id="login-username">
 					</div>
 					<div class="form-group">
 						<label for="login-password">Password</label>
-						<input type="password" name="password" class="form-control" 
-						id="password">
-						 <span id="req_password" class="text-danger pull-right text-xs" style="display:none;">Required</span>
+						<input type="password" class="form-control" id="login-password">
 					</div>
 					<button type="submit" class="btn btn-primary">Sign In</button>
-					<div class="form-group">
-						New User, <a class="link-register">Register Free</a>
-					</div>
 				</form>
 			</div>
 		</div>
@@ -315,113 +341,46 @@
 
 		<!-- ============ REGISTER START ============ -->
 
-		<!-- <div class="popup" id="register">
-			<div class="popup-form">
-				<div class="popup-header">
-					<a class="close"><i class="fa fa-remove fa-lg"></i></a>
-					<h2>Jobseeker Reg</h2>
-					@include('layouts.error-notification')
-				</div>
-				<form onsubmit="return jobseekerregistration('#js_register_form', '#jobseeker_reg_submit_btn', 'jobseekerRegistartion')" id="js_register_form" action="{{url('jobseekerRegistartion')}}" method="post" autocomplete="off">
-					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-					
-					<div class="form-group">
-						<label for="register-name">Name</label>
-						<input type="text" class="form-control"  id="firstname" name="firstname">
-					</div>
-					<div class="form-group">
-						<label for="register-surname">Last Name</label>
-						<input type="text" class="form-control" id="lastname" name="lastname">
-					</div>
-					<div class="form-group">
-						<label for="register-email">Email</label>
-						<input type="email" class="form-control" id="email" name="email">
-					</div>
-					
-					<div class="form-group">
-						<label for="register-password1">Password</label>
-						<input type="password" class="form-control" id="password" 
-						name="password">
-					</div>
-					<div class="form-group">
-						<label for="register-password2">Repeat Password</label>
-						<input type="password" class="form-control" id="password" 
-						name="confirmpassword">
-					</div>
-					<button id="jobseeker_reg_submit_btn" type="submit" class="btn btn-primary">Register</button>
-				</form>
-			</div>
-		</div> -->
 
 		<div class="popup" id="register">
 			<div class="popup-form">
 				<div class="popup-header">
 					<a class="close"><i class="fa fa-remove fa-lg"></i></a>
-					<h2>Jobseeker Reg</h2>
-
-					 @if( Session::has('errors') )
-		                    <div class="alert alert-danger" style="text-align:left; padding: 11px;">
-		                       @foreach($errors->all() as $error)
-		                       <p style="color: red;">{{$error}}</p>
-		                       @endforeach
-		                     </div>
-		                  @endif
-		                  @if( Session::has('message') )
-		                    <div class="alert alert-danger" style="padding: 11px;">
-		                       <p style="color: red;">{{ Session::get('message') }}</p>
-		                     </div>
-		                  @endif
-					
+					<h2>Register</h2>
 				</div>
-				 <p id="contactus_query_frm-firstname" 
-                style="margin-bottom: 0;font-size: 14px;
-                color: red; display: none;"></p>
-                
-                <p id="contactus_query_frm-lastname" 
-                style="margin-bottom: 0;font-size: 14px;
-                color: red; display: none;"></p>
-
-                <p id="contactus_query_frm-email" 
-                style="margin-bottom: 0;font-size: 14px;
-                color: red; display: none;"></p>
-                <p id="contactus_query_frm-password" 
-                style="margin-bottom: 0;font-size: 14px;
-                color: red; display: none;"></p>
-
-                <form method="post" action="{{url('jobseekerRegistartion')}}" autocomplete="off">
-
-			
-					<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-					
-					<div id="recr_reg_fname_formgroup" class="form-group">
-						<label for="register-name">First Name</label>
-	                    <input type="text" class="form-control"  id="firstname" name="firstname">
-	                    <span id="recr_reg_fname_helpblock" class="help-block"></span>
+				<form>
+					<ul class="social-login">
+						<li><a class="btn btn-facebook"><i class="fa fa-facebook"></i>Register with Facebook</a></li>
+						<li><a class="btn btn-google"><i class="fa fa-google-plus"></i>Register with Google</a></li>
+						<li><a class="btn btn-linkedin"><i class="fa fa-linkedin"></i>Register with LinkedIn</a></li>
+					</ul>
+					<hr>
+					<div class="form-group">
+						<label for="register-name">Name</label>
+						<input type="text" class="form-control" id="register-name">
 					</div>
-					<div id="recr_reg_lname_formgroup"class="form-group">
-						<label for="register-surname">Last Name</label>
-                        <input type="text" class="form-control" id="lastname" name="lastname">
-                        <span id="recr_reg_lname_helpblock" class="help-block"></span>
+					<div class="form-group">
+						<label for="register-surname">Surname</label>
+						<input type="text" class="form-control" id="register-surname">
 					</div>
-					<div id="recr_reg_email_formgroup" class="form-group">
+					<div class="form-group">
 						<label for="register-email">Email</label>
-						<input type="text" class="form-control" id="email" name="email">
-                    	<span id="recr_reg_email_helpblock" class="help-block"></span>
+						<input type="email" class="form-control" id="register-email">
 					</div>
-					
-					<div id="recr_reg_password_formgroup" class="form-group">
+					<hr>
+					<div class="form-group">
+						<label for="register-username">Username</label>
+						<input type="text" class="form-control" id="register-username">
+					</div>
+					<div class="form-group">
 						<label for="register-password1">Password</label>
-						<input type="text" class="form-control" id="password" 
-						name="password">
-                        <span id="recr_reg_password_helpblock" class="help-block"></span>
+						<input type="password" class="form-control" id="register-password1">
 					</div>
-					<div   id="recr_reg_cpassword_formgroup" class="form-group">
-						<label for="register-password2">Re-Password</label>
-                        <input type="password" id="confirmpassword" name="confirmpassword" class="form-control"/>
-                        <span id="recr_reg_cpassword_helpblock" class="help-block"></span>
-					 </div>
-
-					<button id="jobseeker_reg_submit_btn" type="submit" class="btn btn-primary">Register</button>
+					<div class="form-group">
+						<label for="register-password2">Repeat Password</label>
+						<input type="password" class="form-control" id="register-password2">
+					</div>
+					<button type="submit" class="btn btn-primary">Register</button>
 				</form>
 			</div>
 		</div>
@@ -434,7 +393,7 @@
 		<!-- ============ Job Recruiter START ============ -->
 
 
-<!-- ============ LOGIN START ============ -->
+        <!-- ============ RECRUITER LOGIN START ============ -->
 
 		<div class="popup" id="jr_login">
 			<div class="popup-form">
@@ -473,7 +432,7 @@
 		</div>
 
 		
-		<!-- ============ REGISTER START ============ -->
+		<!-- ============ RECRUITER REGISTER START ============ -->
 
 		<div class="popup" id="jr_register">
 			<div class="popup-form">
@@ -523,107 +482,104 @@
 
 
 		<!-- Modernizr Plugin -->
-		<script src="js/modernizr.custom.79639.js"></script>
-
+		<script src="{{url('js/modernizr.custom.79639.js')}}"></script>
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
 
 		<!-- Bootstrap Plugins -->
-		<script src="js/bootstrap.min.js"></script>
+		<script src="{{url('js/bootstrap.min.js')}}"></script>
 
 		<!-- Retina Plugin -->
-		<script src="js/retina.min.js"></script>
+		<script src="{{url('js/retina.min.js')}}"></script>
 
 		<!-- ScrollReveal Plugin -->
-		<script src="js/scrollReveal.min.js"></script>
+		<script src="{{url('js/scrollReveal.min.js')}}"></script>
 
 		<!-- Flex Menu Plugin -->
-		<script src="js/jquery.flexmenu.js"></script>
+		<script src="{{url('js/jquery.flexmenu.js')}}"></script>
 
 		<!-- Slider Plugin -->
-		<script src="js/jquery.ba-cond.min.js"></script>
-		<script src="js/jquery.slitslider.js"></script>
+		<script src="{{url('js/jquery.ba-cond.min.js')}}"></script>
+		<script src="{{url('js/jquery.slitslider.js')}}"></script>
 
 		<!-- Carousel Plugin -->
-		<script src="js/owl.carousel.min.js"></script>
+		<script src="{{url('js/owl.carousel.min.js')}}"></script>
 
 		<!-- Parallax Plugin -->
-		<script src="js/parallax.js"></script>
+		<script src="{{url('js/parallax.js')}}"></script>
 
 		<!-- Counterup Plugin -->
-		<script src="js/jquery.counterup.min.js"></script>
-		<script src="js/waypoints.min.js"></script>
+		<script src="{{url('js/jquery.counterup.min.js')}}"></script>
+		<script src="{{url('js/waypoints.min.js')}}"></script>
 
 		<!-- No UI Slider Plugin -->
-		<script src="js/jquery.nouislider.all.min.js"></script>
+		<script src="{{url('js/jquery.nouislider.all.min.js')}}"></script>
 
 		<!-- Bootstrap Wysiwyg Plugin -->
-		<script src="js/bootstrap3-wysihtml5.all.min.js"></script>
-		<script src="js/jquery.validate-latest.js"></script>
+		<script src="{{url('js/bootstrap3-wysihtml5.all.min.js')}}"></script>
 
 		<!-- Flickr Plugin -->
-		<script src="js/jflickrfeed.min.js"></script>
+		<script src="{{url('js/jflickrfeed.min.js')}}"></script>
 
 		<!-- Fancybox Plugin -->
-		<script src="js/fancybox.pack.js"></script>
+		<script src="{{url('js/fancybox.pack.js')}}"></script>
 
 		<!-- Magic Form Processing -->
-		<script src="js/magic.js"></script>
+		<script src="{{url('js/magic.js')}}"></script>
 
 		<!-- jQuery Settings -->
-		<script src="js/settings.js"></script>
-		<script src="{{url('js/app.js')}}"></script>
+		<script src="{{url('js/settings.js')}}"></script>
+
 		<script type="text/javascript">
 
-			function jobseekerloginValidation(){
 
-			    var x = document.forms["form7"]["seeker_email"].value;
-			    var atpos = x.indexOf("@");
-			    var dotpos = x.lastIndexOf(".");
-			    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-			        //alert("Not a valid e-mail address");
-			        document.getElementById("req_vaildemail").style.display='block';  
-			        document.getElementById("seeker_email").focus();
-			        return false;
-			    }
-			    else {
-			      document.getElementById("req_vaildemail").style.display='none';
-			    }
+	/*//////////newsletter/////////////////*/
 
 
-			    var sb=document.getElementById("password").value;
-			    if(sb == '')
-			    {
-			    document.getElementById("req_password").style.display='block';  
-			   
-			    document.getElementById("password").focus();
-			    return false;
-			    }
-			    else{
-			      document.getElementById("req_password").style.display='none';
-			    }
-			    return true;
+	  var newsletter_form = function(formid, submitbtnid, url){
+		var submitbtnhtml = $(submitbtnid).html();
+		$(submitbtnid).html('<img src="images/ui-anim_basic_16x16.gif">');
+		$(submitbtnid).attr('disabled', 'disabled');
+		$('#newsletter_formgroup').removeClass();
+		$('#newsletter_formcontrol').html('');
 
 
+		var data = $(formid).serializeArray();
+		// alert(data);
+		// alert("Not a valid e-mail address");
+		$.ajax({
+			type:'post',
+			data:data,
+			url:url,
+			success:function(result){
+				// alert(result);
+				
+				$(submitbtnid).removeAttr('disabled');
+				$(submitbtnid).html(submitbtnhtml);
+				if(result == '0'){
+					alert('Register successfully');
+					location.reload();
+				} else {
+					if(result.SubscriberEmail[0]){
+
+						$('#newsletter_formgroup').addClass('has-error');
+						$('#newsletter_formcontrol').html(result.SubscriberEmail[0]);
+					}  
+					
+					
+			  }
 			}
+		});
+		return false;
+	  }
 
-		</script>
-		
 
+			</script>
 
 
 		@yield('pagescript')
 
-	
-
-   <?php if(old('footerSubs')){?>
-    
-    <script type="text/javascript">
-    $(function(){
-      $("html, body").animate({ scrollTop: 2500 }, 1800);
-    });
-    </script>
-    <?php }?>
+  
 	</body>
 </html>

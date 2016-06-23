@@ -115,5 +115,10 @@
 <script src="{{url('dist/js/pages/dashboard2.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('dist/js/demo.js')}}"></script>
+<script>
+      $(function () {
+        $("#example1").DataTable();
+      });
+    </script>
   </body>
 </html>

@@ -48,12 +48,12 @@
         <section class="content-header">
           <h1>
             Home Page
-            <small>Banners</small>
+            <small>works</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="#">Homepage</a></li>
-            <li class="active">Banner</li>
+            <li class="active">work</li>
           </ol>
         </section>
 
@@ -67,34 +67,43 @@
 
               <div class="box box-widget">
                 <div class='box-header with-border'>
-                  Add New Banner
+                  Add New Work
                 </div><!-- /.box-header -->
                 
                
-                 <form id="" action="{{url('work')}}" method="post" enctype="multipart/form-data">
+                 <form id="" action="{{url('admin/work')}}" method="post" enctype="multipart/form-data">
                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                   <div class='box-body'>
 
                     @include('layout.error-notification')
                     
-                    <div class="form-group">
+                   <!--  <div class="form-group">
                       <label>Banner Image</label>
                       <input type="file" name="sliderImage" class="form-control">
                     </div>
-                   
-                    <div class="col-lg-6">
+                    -->
+                    <div class="col-lg-12">
                       <div class="row">
                         <div class="form-group">
-                          <label>Heading1</label>
+                          <label>Title</label>
                           <input type="text" name="title" value="{{old('title')}}" class="form-control">
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                       <div class="row">
-                        <div class="form-group" style="margin-left: 10px;">
+                        <div class="form-group">
                           <label>Content</label>
-                          <textarea name="content"></textarea>
+                          <textarea name="content" id="content" class="form-control" style="height:200px" placeholder="Overview">{{ old('content') }}</textarea>
+                         
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="row">
+                        <div class="form-group">
+                          <label>Video Link</label>
+                          <input type="text" name="video_link" style="width:100%">
                         </div>
                       </div>
                     </div>
@@ -104,62 +113,19 @@
                           <label>Status</label>
                           <input type="radio" name="status" value="1" >ACTIVE
                           <input type="radio" name="status" value="0" >DE-ACTIVE
-<!--                           
- -->                    </div>
+                     </div>
                       </div>
                     </div>
                     
                       </div><!-- /.box-body -->
-                  <div class='box-footer box-comments'>
-                    Upload 1600 X 900 pixels png or jpg image.
-                  </div><!-- /.box-footer -->
                   <div class="box-footer">
-                    <button type="submit" class='btn btn-primary btn-xs'>Add Banner</button>
+                    <button type="submit" class='btn btn-primary btn-xs'>Add Work</button>
                   </div><!-- /.box-footer -->
                 </form>
               </div>
               
             </div>
-             <?php 
-                  if(sizeof($work_details)>0){
-
-                  foreach($work_details as $key=>$val){
-
-                  $title              = $home_slider[$key]->title;
-                  $content              = $home_slider[$key]->content;
-                  $status                = $home_slider[$key]->status;
-             ?>
-
-       
-
-            <div class="col-md-6" >
-              <!-- Box Comment -->
-              <div class="box box-widget">
-                <div class='box-header with-border'>
-                  <!-- Banner Title -->
-                </div><!-- /.box-header -->
-              <div id="draggable" class="ui-widget-content">
-                <div class='box-body'>
-                  <img class="img-responsive pad" src="{{url('sliderHomeImage/thumb501x248/'.$work_details[$key]->sliderImage)}}" alt="">
-                  
-
-                  
-                  <h4><b>Heading1: </b>{{$title}}</h4>
-                  
-                  <h5><b>Heading2: </b>{{$content}}</h5>
-                  
-                  <p><b>Text: </b>{{$status}}</p>
-                  
-                  
-                </div>
-               
-                <!-- /.box-footer -->
-              </div>
-              </div><!-- /.box -->
-            </div>
-            <?php
-            }}
-            ?>
+           
             
             
           </div>
@@ -201,9 +167,20 @@
 <script src="{{url('dist/js/pages/dashboard2.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('dist/js/demo.js')}}"></script>
+<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+
+ <script>
+      $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor1', {height: 370});
+       
+        
+        //bootstrap WYSIHTML5 - text editor
+        //$(".textarea").wysihtml5();
+      });
+    </script>
 </body>
 </html>
 
    
-  </body>
-</html>

@@ -98,18 +98,24 @@
                         </div>
                       </div>
                     </div>
+                     <div class="col-lg-12">
+                      <div class="row">
+                        <div class="form-group">
+                          <label>Link</label>
+                          <input type="text" value="{{old('link')}}" name="link" class="form-control">
+                        </div>
+                      </div>
+                    </div>
                     <div class="col-lg-6">
                       <div class="row">
                         <div class="form-group" >
                           <label>Status</label>
                           <input type="radio" name="status" value="1" >ACTIVE
-                          <input type="radio" name="status" value="0" >DE-ACTIVE
-<!--                           
- -->              </div>
+                          <input type="radio" name="status" value="0" >DE-ACTIVE   
+                       </div>
                       </div>
                     </div>
-                    
-                      </div><!-- /.box-body -->
+                    </div><!-- /.box-body -->
                   <div class='box-footer box-comments'>
                     Upload 1600 X 900 pixels png or jpg image.
                   </div><!-- /.box-footer -->
@@ -118,16 +124,15 @@
                   </div><!-- /.box-footer -->
                 </form>
               </div>
-              
             </div>
              <?php 
-                  if(sizeof($home_slider)>0){
+              if(sizeof($home_slider)>0){
 
-                  foreach($home_slider as $key=>$val){
+              foreach($home_slider as $key=>$val){
 
-                  $sliderh1              = $home_slider[$key]->sliderh1;
-                  $sliderh2              = $home_slider[$key]->sliderh2;
-                  $status                = $home_slider[$key]->status;
+              $sliderh1              = $home_slider[$key]->sliderh1;
+              $sliderh2              = $home_slider[$key]->sliderh2;
+              $status                = $home_slider[$key]->status;
              ?>
 
        
@@ -141,11 +146,7 @@
               <div id="draggable" class="ui-widget-content">
                 <div class='box-body'>
                   <img class="img-responsive pad" src="{{url('sliderHomeImage/thumb1350x690/'.$home_slider[$key]->sliderImage)}}" alt="">
-                  
-
-                  
                   <h4><b>Heading1: </b>{{$sliderh1}}</h4>
-                  
                   <h5><b>Heading2: </b>{{$sliderh2}}</h5>
                   
                   <p><b>Text: </b>{{$status}}</p>
@@ -180,7 +181,7 @@
 
     
 <!-- fghfghhf -->
-    <script src="{{url('//code.jquery.com/jquery-1.10.2.js')}}"></script>
+  <script src="{{url('//code.jquery.com/jquery-1.10.2.js')}}"></script>
   <script src="{{url('//code.jquery.com/ui/1.11.4/jquery-ui.js')}}"></script>
   <!-- gfhfghfgh -->
     <!-- jQuery 2.2.0 -->
@@ -204,20 +205,14 @@
 <script src="{{url('dist/js/pages/dashboard2.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('dist/js/demo.js')}}"></script>
+
+<script>
+      $(function () {
+        $("#example1").DataTable();
+      });
+    </script>
 </body>
 </html>
 
-    <script>
-      $(function () {
-        $(".select2").select2(); 
-      });
-    </script>
+   
 
-
-    <script>
-  $(function() {
-    $( "#draggable" ).draggable();
-  });
-  </script>
-  </body>
-</html>

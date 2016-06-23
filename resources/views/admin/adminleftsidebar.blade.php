@@ -116,7 +116,7 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-         <li class="treeview <?php echo($lasturl ==  'editSliderImage' || $secondlasturl == 'homepage_banner' || $secondlasturl == 'alltestimonials' || $lasturl == 'social_links' || $lasturl == 'work' || $lasturl == 'logo')?'active':'';?>">
+         <li class="treeview <?php echo($lasturl ==  'editSliderImage' || $secondlasturl == 'homepage_banner' || $secondlasturl == 'alltestimonials' || $lasturl == 'social_links' || $lasturl == 'work' || $lasturl == 'logo' || $lasturl == 'addtestimonials' || $lasturl == 'alltestimonials' || $lasturl == 'clients_happy')?'active':'';?>">
      <!-- HOME PAGES START*********** -->
 
       <a href="{{url('dashboard')}}">
@@ -129,9 +129,9 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
               <a href="{{url('admin/homepage_banner')}}"><i class="fa fa-circle-o"></i> Banner</a>
             </li> 
 
-           <li <?php echo($lasturl == 'alltestimonials')?'class="active"':'';?>>
+         <!--   <li <?php echo($lasturl == 'alltestimonials')?'class="active"':'';?>>
             <a href="{{url('admin/alltestimonials')}}"><i class="fa fa-circle-o"></i> Testimonials</a>
-          </li> 
+          </li>  -->
 
           <li <?php echo($lasturl == 'social_links')?'class="active"':'';?>>
             <a href="{{url('admin/social_links')}}"><i class="fa fa-circle-o"></i>Social Links</a>
@@ -140,6 +140,34 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
           <li <?php echo($lasturl == 'work')?'class="active"':'';?>>
             <a href="{{url('admin/work')}}"><i class="fa fa-circle-o"></i> Work</a>
           </li> 
+
+           <li <?php echo($lasturl == 'alltestimonials')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i>Testimonials<i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'alltestimonials')?'class="active"':'';?>>
+                <a href="{{url('admin/alltestimonials')}}"><i class="fa fa-circle-o"></i> View all</a>
+              </li>
+              <li <?php echo($lasturl == 'addtestimonials')?'class="active"':'';?>>
+              <a href="{{url('admin/addtestimonials')}}"><i class="fa fa-circle-o"></i> Add New</a>
+            </li>
+            </ul> 
+          </li>
+            <li <?php echo($lasturl == 'clients_happy')?'class="active"':'';?>>
+                <a href="{{url('admin/clients_happy')}}"><i class="fa fa-circle-o"></i> All clients</a>
+              </li>
+       <!--  <li <?php echo($lasturl == 'alltestimonials')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i>Clients<i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'clients_happy')?'class="active"':'';?>>
+                <a href="{{url('admin/clients_happy')}}"><i class="fa fa-circle-o"></i> View all</a>
+              </li>
+             
+            </ul> 
+          </li> -->
 
           <li <?php echo($lasturl =='logo')?'class="active"':'';?>>
             <a href="{{url('admin/logo')}}"><i class="fa fa-circle-o"></i>Logo
@@ -254,6 +282,100 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
         </ul>
       </li>
 
+      <!-- cms start -->
+       <li class="treeview <?php echo($secondlasturl == 'update_page' || $secondlasturl == 'read_query' || $secondlasturl == 'update_address' || $lasturl == 'alladdress' || $lasturl == 'add_address' || $lasturl == 'pages' || $lasturl == 'contact' || $lasturl == 'addpage' || $lasturl == 'queries' || $lasturl == 'menu' || $lasturl == 'homepage_contact' || $lasturl == 'about_cft' || $lasturl == 'cft_map' || $lasturl == 'Google Analytics')?'active':'';?>">
+        <a href="#">
+          <i class="fa fa-files-o"></i> <span>CMS</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li <?php echo($lasturl == 'pages')?'class="active"':'';?>>
+            <a href="{{url('admin/pages')}}"><i class="fa fa-circle-o"></i> Pages</a>
+          </li>
+          <li <?php echo($lasturl == 'addpage')?'class="active"':'';?>><a href="{{url('admin/addpage')}}"><i class="fa fa-circle-o"></i> Add New</a></li>
+
+        <!--   <li <?php echo($lasturl == 'menu')?'class="active"':'';?>><a href="{{url('admin/menu')}}"><i class="fa fa-circle-o"></i> Menu</a></li> -->
+
+           <!-- google analytics start -->
+          <!-- <li <?php echo($lasturl == 'Google Analytics')?'class="active"':'';?>>
+            <a href="{{url('admin/google_analytics')}}">
+               <a href="{{url('admin/google_analytics')}}"><i class="fa fa-circle-o"></i>Google Analytics</a></li>
+            </a>
+          </li> -->
+          <!-- google analytics end -->
+
+          <li <?php echo($lasturl == 'alladdress' || $secondlasturl == 'read_query' || $lasturl == 'queries' || $secondlasturl == 'update_address' || $lasturl == 'add_address' || $lasturl == 'homepage_contact')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i> Contact Us <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'alladdress')?'class="active"':'';?>>
+                <a href="{{url('admin/alladdress')}}"><i class="fa fa-angle-double-right"></i> All Address</a>
+              </li>
+              <li <?php echo($lasturl == 'add_address')?'class="active"':'';?>>
+                <a href="{{url('admin/add_address')}}"><i class="fa fa-angle-double-right"></i> Add New Address</a>
+              </li>
+              <li <?php echo($lasturl == 'queries')?'class="active"':'';?>>
+                <a href="{{url('admin/queries')}}">
+                  <i class="fa fa-angle-double-right"></i> Queries 
+                  <?php
+                  $contactus_query_new = DB::table('contactus_queries')->where('status', '=', 0)->count();
+                  ?>
+                  @if($contactus_query_new != 0)
+                  <small class="label pull-right bg-red">{{$contactus_query_new}}</small>
+                  @endif
+                </a>
+              </li>
+              <li <?php echo($lasturl == 'homepage_contact')?'class="active"':'';?>>
+                <a href="{{url('admin/homepage_contact')}}"><i class="fa fa-angle-double-right"></i>Home Page Contact</a>
+              </li>
+            </ul> 
+          </li>
+
+         <!--  <li <?php echo($lasturl == 'about_kbf' || $lasturl == 'kbf_map')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i> Side Bar <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'about_kbf')?'class="active"':'';?>>
+                <a href="{{url('admin/about_kbf')}}"><i class="fa fa-angle-double-right"></i> About KBF</a>
+              </li>
+              <li <?php echo($lasturl == 'kbf_map')?'class="active"':'';?>>
+                <a href="{{url('admin/kbf_map')}}"><i class="fa fa-angle-double-right"></i>KBF Map</a>
+              </li>
+          
+            </ul> 
+          </li> -->
+
+
+          
+        </ul>
+      </li>
+
+      <!-- cms end -->
+
+      <!-- subscriber start -->
+       <li class="treeview <?php echo($lasturl == 'subscriber')?'active':'';?>">
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>Subscriber</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li <?php echo($lasturl == 'subscriber')?'class="active"':'';?>><a href="{{url('admin/subscriber')}}"><i class="fa fa-circle-o"></i> View All</a></li>
+        </ul>
+      </li>
+      <li class="treeview <?php echo($lasturl == 'composemail')?'active':'';?>">
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>Broadcast</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+          <li <?php echo($lasturl == 'composemail')?'class="active"':'';?>><a href="{{url('admin/composemail')}}"><i class="fa fa-circle-o"></i> Compose Mail</a></li>
+        </ul>
+      </li>
+
+      <!-- subscriber end -->
   <!-- Recruiter List -->
         <li class="treeview">
           <a href="#">
