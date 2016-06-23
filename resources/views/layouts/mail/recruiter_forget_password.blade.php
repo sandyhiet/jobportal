@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Thank you</title>
+<title>jobportal</title>
 	
 
 <style type="text/css">
@@ -252,14 +252,14 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 		<td></td>
 		<td class="header container" style="display:block;max-width:600px; margin:0 auto; clear:both">
 			
-			<!-- 	<div class="content">
+				<div class="content">
 					<table bgcolor="#ef4a2b" style="width: 600px;">
 					<tr>
-						<td><img src="{{env('SITEURLFOLDERIMAGEPATH').'emailer_logo.jpg'}}" /></td>
+						<td><img src="{{env('SITEURLFOLDERIMAGEPATH').'emailer_logo.png'}}" /></td>
 						<td align="right"><h6 class="collapse"></h6></td>
 					</tr>
 				</table>
-				</div> -->
+				</div>
 				
 		</td>
 		<td></td>
@@ -278,17 +278,17 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 					<td>
 						
 						<!-- banner -->
-						<!-- <p><img src="{{env('SITEURLFOLDERIMAGEPATH').'emailer_banner.jpg'}}"></p> -->
-						<!-- /banner -->
+						<p><img src="{{env('SITEURLFOLDERIMAGEPATH').'emailer_banner.jpg'}}"></p><!-- /banner -->
 						
 						<!-- Callout Panel -->
 						<p style="padding:15px; background-color:#474747; margin-bottom: 15px;color:#fff; font-size:20px;">
-							WELCOME TO Job Portal 
+							Click here to Reset Password
+						<!-- <h2><b>Jobseekers Registration</b></h2>	  -->
 						</p><!-- /Callout Panel -->
 						
-						<h3> Thanks <small> for Asking Question </small></h3>
+						<!-- <h3> Thanks <small> for Registration </small></h3> -->
 						<p style="color: #000;">
-                      <!--  {!!$mailmessage!!} -->
+                       {!!$mailmessage!!}
                         </p>
 						<br/>
 						<br/>							
@@ -301,9 +301,10 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 									<table align="left" style="width: 280px; min-width: 279px; float:left; padding: 15px;">
 										<tr>
 											<td>				
+																			
 												<h5 class="">Contact Info:</h5>												
-												<p style="color: #000;">Phone: <strong>+xx-xxxxxxxxxx</strong><br/>
-                Email: <strong><a href="emailto: info@intactinnovations.com" style="text-decoration: underline;"> info@intactinnovations.com</a></strong></p>
+												<p style="color: #000;">Phone: <strong>+(770) 123 566 7899</strong><br/>
+                Email: <strong><a href="emailto:info@jobportal.org" style="text-decoration: underline;">info@jobportal.org</a></strong></p>
                 
 											</td>
 										</tr>

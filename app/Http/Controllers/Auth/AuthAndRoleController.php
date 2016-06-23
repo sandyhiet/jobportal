@@ -7,6 +7,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
 use Redirect;
 use Auth;
 use Session;
@@ -51,7 +52,7 @@ class AuthAndRoleController extends Controller
 
     }
     
-    public function volunteerLogout(){
+    public function recruiter_logout(){
 
         Auth::logout();
         //return View::make('logout');
@@ -192,6 +193,196 @@ class AuthAndRoleController extends Controller
 
 
     }
+
+
+    public function saverecruiterLogin(){
+        //Auth::logout();
+
+        $email              = Input::get('email');
+        $password           = Input::get('password');
+
+        $inputs = [
+
+            'email'              => $email,
+            'password'           => $password,
+        ];
+
+        $rules = [
+
+            'email'          => 'required |email|max:50',
+            'password'       => 'required',
+        ];
+
+        $messages = [
+
+           
+            'email.required'    => 'Enter the email .',
+            'password.required'  => 'Enter the password.'
+            
+           
+        ];
+
+        $validator = Validator::make($inputs, $rules, $messages);
+        if($validator->fails()){
+            return redirect('recruiter_login')->withInput()->with('errors', $validator->errors() );
+        } else {
+            $userdata = array(
+                'email' => Input::get('email'),
+                'password' => Input::get('password')
+            );
+
+            $remember = Input::has('remember') ? true:false;
+    
+            if(Auth::attempt($userdata, $remember)){
+                $getuserType = DB::table('users')->select('*')->where('email','=',$userdata['email'])->get();
+                if($getuserType[0]->activeAccount != 1){
+                    return redirect()->back()->withInput()
+                ->with('singleerrors', 'Your account is deactive');
+                        
+                }elseif($getuserType[0]->usertype != 'jobrecruiter'){
+                    return redirect()->back()->withInput()
+                ->with('singleerrors', 'Either email or password is wrong.');
+                        
+                }else{
+                     return redirect('recruiter_dashboard');
+                }
+ 
+ 
+            } else {
+                return redirect()->back()->withInput()
+                ->with('singleerrors', 'Either email or password is wrong.');
+       
+            }
+        }
+ 
+    }
+
+    public function update_resetpassword(Request $req){
+       
+        $id = $req->id;
+        $password = $req->password;
+        $repassword = $req->repassword;
+        $inputs = [
+
+            'password'                  => $password,
+            'repassword'                => $repassword,
+            
+        ];
+
+        $rules = [
+
+            'password'                  => 'required',
+            'repassword'                => 'required',
+        ];
+
+        $messages = [
+
+            'password.required'             => 'Enter password .',
+            'repassword.required'           => 'Re-enter password.',
+
+        ];
+
+        $validator = Validator::make($inputs, $rules , $messages);
+        if($validator->fails()){
+            return redirect()->back()->withInput()->with('errors', $validator->errors() );
+        }else {
+            $userdata = array(
+                'password' => $req->password,
+                'repassword' => $req->repassword
+            );
+            if($userdata['password']!=$userdata['repassword']){
+             Session::flash('flash_message', 'Password not match.'); 
+             return redirect()->back()->withInput()->with('flash_message', 'Password not match.');  
+         }else{
+            $hashpassword = Hash::make($userdata['password']);
+            DB::table('resetrequest_id')->where('user_id', '=', $id)->delete();
+            DB::table('users')
+            ->where('id', $id)
+            ->update(['password' => $hashpassword]);
+           
+            return redirect('recruiter_login');
+         }
+        }    
+    }
+    public function recruiterresetpassword(Request $req){
+       
+        $email = $req->email;
+      
+        $inputs = [
+
+            'email'                  => $email,
+            
+            
+        ];
+
+        $rules = [
+
+            'email'                  => 'required|email|max:50',
+            
+        ];
+
+        $messages = [
+
+            'email.required'             => 'Enter registered email .',
+            'email.email'                => 'Enter valid email.',
+
+        ];
+
+        
+
+        $validator = Validator::make($inputs, $rules, $messages);
+        if($validator->fails()){
+            return redirect()->back()->withInput()->with('errors', $validator->errors() );
+        }
+
+
+        $vaildEmail = DB::table('users')->select('email')->where('usertype', 'jobrecruiter')->where('activeAccount', 1)->get();
+          //return $vaildEmail;
+          foreach ($vaildEmail as $key => $value) {
+             $allemail= $vaildEmail[$key]->email;
+              if($allemail != $email){
+
+                    $ExistHeading = DB::table('users')->where('email', '=', $email)->where('usertype', 'jobrecruiter')->where('activeAccount', 1)->count();
+                    if($ExistHeading == 0){
+                        return redirect()->back()->withInput()->with('singleerror', 'Please Enter Registered Email-Id.' );
+                    }
+                }
+               
+           } 
+
+
+
+        $user_id = DB::table('users')->select('*')->where('email','=',$email)->where('usertype', 'jobrecruiter')->where('activeAccount', 1)->get();
+        $id = $user_id[0]->id;
+        $hashvalue = rand(1,999999);
+        // insert hash value in forget_password table
+        DB::table('resetrequest_id')->insert([
+              'req_id' => $hashvalue,
+              'user_id' => $id
+                
+        ]);
+
+        //Recruiter Reset Password mail
+        $mailmessage    = env('SITEURL').'recruiterresetpassword/'.$id.'/'.$hashvalue;
+        $subject         = 'Forget Password';
+
+        $mailData       = array('mailmessage'=>$mailmessage);
+        $data           = array( 'email' => stripslashes($email),'subject' => $subject );       
+        Mail::send('layouts.mail.recruiter_forget_password', $mailData, function ($message) use ($data) {
+            //return $CandidateEmail;
+            $message->from(env('EMAILFROM'), env('EMAILNAME'));
+            //$message->to($CandidateEmail)->cc('bar@example.com');
+            $message->to($data['email']);
+            $message->cc('gupta.sandhya@intactinnovations.com');
+            //$message->bcc($address, $name = null);
+            //$message->replyTo($address, $name = null);
+            $message->subject($data['subject']); 
+        });
+        return redirect()->back()->withInput()->with('message','Reset password link is send to your email.');
+    }
+
+
+
 
 
     public function userupdate(){
@@ -403,22 +594,7 @@ class AuthAndRoleController extends Controller
     }
 
 
-    //     $userdata = array(
-    //         'email' => Input::get('email'),
-    //         'password' => Input::get('password')
-    //     );
-
-    //     $remember = Input::has('remember') ? true:false;
-
-    //     if(Auth::attempt($userdata, $remember)){
-    //         return 'jobseeker_dashboard';
-    //     } else { 
-    //         return 'Auth Fail';
-    //     }
-
-
-    //     return $request->email;
-    // }
+   
 
     public function recruiterlogin(){
 
