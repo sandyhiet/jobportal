@@ -3,6 +3,7 @@
 @section('content')
 
 
+<<<<<<< HEAD
      <!-- ============ NAVBAR START ============ -->
 
 		
@@ -37,11 +38,69 @@
 				<h2>{{$banners[$key]->sliderh1}}</h2>
 				<h3>{{$banners[$key]->sliderh2}}</h3>
 				<p><a href="{{url('jobs')}}" class="btn btn-lg btn-default">Find a job</a></p>
+=======
+<!-- ============ SLIDES START ============ -->
+
+		<div id="slider" class="sl-slider-wrapper">
+
+			<div class="sl-slider">
+			
+				<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+					<div class="sl-slide-inner">
+						<div class="bg-img bg-img-1"></div>
+						<div class="tint"></div>
+						<div class="slide-content">
+							<h2>Looking for a job?</h2>
+							<h3>There’s no better place to start</h3>
+							<p><a href="jobs.html" class="btn btn-lg btn-default">Find a job</a></p>
+						</div>
+					</div>
 				</div>
+			
+				<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+					<div class="sl-slide-inner">
+						<div class="bg-img bg-img-2"></div>
+						<div class="tint"></div>
+						<div class="slide-content">
+							<h2>Need an employee?</h2>
+							<h3>We've got perfect candidates</h3>
+							<p><a href="candidates.html" class="btn btn-lg btn-default">Post a job</a></p>
+						</div>
+					</div>
+>>>>>>> refs/remotes/origin/master
 				</div>
+			
+				<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
+					<div class="sl-slide-inner">
+						<div class="bg-img bg-img-3"></div>
+						<div class="tint"></div>
+						<div class="slide-content">
+							<h2>Evolving your career?</h2>
+							<h3>Find new opportunities here</h3>
+							<p><a href="jobs.html" class="btn btn-lg btn-default">Find a job</a></p>
+						</div>
+					</div>
+				</div>
+			
+				<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
+					<div class="sl-slide-inner">
+						<div class="bg-img bg-img-4"></div>
+						<div class="tint"></div>
+						<div class="slide-content">
+							<h2>Extending your team?</h2>
+							<h3>Find a perfect match</h3>
+							<p><a href="candidates.html" class="btn btn-lg btn-default">Find a cadidate</a></p>
+						</div>
+					</div>
+				</div>
+
 			</div>
+<<<<<<< HEAD
             </div>
 	
+=======
+
+>>>>>>> refs/remotes/origin/master
 			<nav id="nav-arrows" class="nav-arrows">
 				<span class="nav-arrow-prev">Previous</span>
 				<span class="nav-arrow-next">Next</span>
@@ -476,7 +535,11 @@
 
 		<!-- ============ MOBILE APP START ============ -->
 
+<<<<<<< HEAD
 		<!-- <section id="app" class="color2">
+=======
+		<section id="app" class="color2">
+>>>>>>> refs/remotes/origin/master
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-5">
@@ -495,7 +558,11 @@
 				</div>
 			</div>
 		</section>
+<<<<<<< HEAD
  -->
+=======
+
+>>>>>>> refs/remotes/origin/master
 		<!-- ============ MOBILE APP END ============ -->
 
 
@@ -528,6 +595,8 @@
 							<li>No featured jobs</li>
 							<li>Displayed for 30 days</li>
 							<li><a href="post-a-job.html" class="btn btn-primary">Choose</a></li>
+<<<<<<< HEAD
+=======
 						</ul>
 					</div>
 					<div class="col-sm-3">
@@ -538,10 +607,24 @@
 							<li>No featured jobs</li>
 							<li>Displayed for 60 days</li>
 							<li><a href="post-a-job.html" class="btn btn-primary">Choose</a></li>
+>>>>>>> refs/remotes/origin/master
 						</ul>
 					</div>
 					<div class="col-sm-3">
 						<ul>
+<<<<<<< HEAD
+							<li class="title">Company</li>
+							<li class="price">$29</li>
+							<li>3 job postings</li>
+							<li>No featured jobs</li>
+							<li>Displayed for 60 days</li>
+							<li><a href="post-a-job.html" class="btn btn-primary">Choose</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3">
+						<ul>
+=======
+>>>>>>> refs/remotes/origin/master
 							<li class="title">Enterprise</li>
 							<li class="price">$39</li>
 							<li>5 job postings</li>
@@ -568,11 +651,6 @@
 						<div class="owl-carousel">
 
 							<!-- Testimonial 1 -->
-
-							<?php 
-							foreach($testimonials as $keys => $value)
-								{
-									?>
 							<div>
 								<div class="col-sm-3 col-md-2">
 								<img class="img-circle img-responsive" src="{{ url('testimonialsImages') }}/{{ $testimonials[$keys]->clientImage }}"/>
@@ -580,18 +658,18 @@
 								</div>
 								<div class="col-sm-9 col-md-10">
 									<blockquote>
-										<p><?PHP echo stripcslashes(substr($testimonials[$keys]->testiMonial, 0, 220)); ?>...</p>
+										<p>Thanks for the great service. Jobseek has completely surpassed our expectations.
+										Jobseek is the most valuable business resource we have ever purchased.</p>
 										<footer>
-											{{$testimonials[$keys]->clientName}}
-											<cite title="Brand Manager in Ebay Inc.">{{$testimonials[$keys]->clientCompany}}</cite>
+											Anthony Walsh
+											<cite title="Brand Manager in Ebay Inc.">Brand Manager in Ebay Inc.</cite>
 										</footer>
 									</blockquote>
 								</div>
 							</div>
-							<?php } ?>
 
 							<!-- Testimonial 2 -->
-							<!-- <div>
+							<div>
 								<div class="col-sm-3 col-md-2">
 									<img src="http://placehold.it/140x140.jpg" class="img-circle img-responsive" alt="testimonial" />
 								</div>
@@ -606,10 +684,10 @@
 										</footer>
 									</blockquote>
 								</div>
-							</div> -->
+							</div>
 
 							<!-- Testimonial 3 -->
-							<!-- <div>
+							<div>
 								<div class="col-sm-3 col-md-2">
 									<img src="http://placehold.it/140x140.jpg" class="img-circle img-responsive" alt="testimonial" />
 								</div>
@@ -622,10 +700,10 @@
 										</footer>
 									</blockquote>
 								</div>
-							</div> -->
+							</div>
 
 							<!-- Testimonial 4 -->
-							<!-- <div>
+							<div>
 								<div class="col-sm-3 col-md-2">
 									<img src="http://placehold.it/140x140.jpg" class="img-circle img-responsive" alt="testimonial" />
 								</div>
@@ -638,7 +716,7 @@
 										</footer>
 									</blockquote>
 								</div>
-							</div> -->
+							</div>
 
 						</div>
 						<p><a href="testimonials.html" class="btn btn-primary">Read All</a></p>
@@ -663,23 +741,79 @@
 						<div class="owl-carousel">
 
 							<!-- Blog post 1 -->
-							<?php 
-							$i=1;
-							foreach($news as $key => $value) {?>
 							<div>
+<<<<<<< HEAD
 							
 					       <img class="img-responsive" src="{{url('newsImages/thumb800x530/'.$news[$key]->newsImage)}}"/>
 
 								
+=======
+								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
+								<h4>Lorem ipsum dolor sit amet</h4>
+								<h5>
+									<span><i class="fa fa-calendar"></i>28.08.2015</span>
+									<span><i class="fa fa-comment"></i>8 Comments</span>
+								</h5>
+								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
+								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
+							</div>
 
+							<!-- Blog post 2 -->
+							<div>
+								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
+								<h4>Lorem ipsum dolor sit amet</h4>
+								<h5>
+									<span><i class="fa fa-calendar"></i>28.08.2015</span>
+									<span><i class="fa fa-comment"></i>8 Comments</span>
+								</h5>
+								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
+								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
+							</div>
 
+							<!-- Blog post 3 -->
+							<div>
+								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
+								<h4>Lorem ipsum dolor sit amet</h4>
+								<h5>
+									<span><i class="fa fa-calendar"></i>28.08.2015</span>
+									<span><i class="fa fa-comment"></i>8 Comments</span>
+								</h5>
+								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
+								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
+							</div>
+>>>>>>> refs/remotes/origin/master
+
+							<!-- Blog post 4 -->
+							<div>
+								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
+								<h4>Lorem ipsum dolor sit amet</h4>
+								<h5>
+									<span><i class="fa fa-calendar"></i>28.08.2015</span>
+									<span><i class="fa fa-comment"></i>8 Comments</span>
+								</h5>
+								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
+								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
+							</div>
+
+<<<<<<< HEAD
 								<h4><?php echo implode(explode('_', $news[$key]->newsTitle), ' '); ?></h4>
 								
                    
                                <p style="text-align: justify;"><?PHP echo stripcslashes(substr($news[$key]->newsDescription, 0, 220)); ?>...</p>
 								<p><a href="#" class="btn btn-primary">Read more</a></p>
+=======
+							<!-- Blog post 5 -->
+							<div>
+								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
+								<h4>Lorem ipsum dolor sit amet</h4>
+								<h5>
+									<span><i class="fa fa-calendar"></i>28.08.2015</span>
+									<span><i class="fa fa-comment"></i>8 Comments</span>
+								</h5>
+								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
+								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
+>>>>>>> refs/remotes/origin/master
 							</div>
-							<?php $i++; }?>
 
 						</div>
 					</div>

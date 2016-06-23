@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>KBF</title>
+<title>jobportal</title>
 	
 
 <style type="text/css">
@@ -282,10 +282,11 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 						
 						<!-- Callout Panel -->
 						<p style="padding:15px; background-color:#474747; margin-bottom: 15px;color:#fff; font-size:20px;">
-							Yours subscription is accpected..
+							Click here to login! &raquo;
+						<!-- <h2><b>Jobseekers Registration</b></h2>	  -->
 						</p><!-- /Callout Panel -->
 						
-						<h3> Thanks <small></small></h3>
+						<!-- <h3> Thanks <small> for Registration </small></h3> -->
 						<p style="color: #000;">
                        {!!$mailmessage!!}
                         </p>
@@ -303,7 +304,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 																			
 												<h5 class="">Contact Info:</h5>												
 												<p style="color: #000;">Phone: <strong>+(770) 123 566 7899</strong><br/>
-                Email: <strong><a href="emailto:info@kbf.org" style="text-decoration: underline;">info@kbf.org</a></strong></p>
+                Email: <strong><a href="emailto:info@jobportal.org" style="text-decoration: underline;">info@jobportal.org</a></strong></p>
                 
 											</td>
 										</tr>

@@ -12,6 +12,7 @@
 		<link rel="shortcut icon" href="images/favicon.png">
 
 		<!-- Main Stylesheet -->
+<<<<<<< HEAD
 		<link href="css/style.css" rel="stylesheet">
 
 
@@ -34,6 +35,23 @@
 	</head>
 	
 	<body id="home">
+=======
+		<link href="{{url('css/style.css')}}" rel="stylesheet">
+	   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	   <link href="{{url('runnable.css')}}" rel="stylesheet" />
+	   <!-- Load jQuery and the validate plugin -->
+	   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+	   <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+	</head>
+	<?php
+	if(!isset($bodytagid)){
+		$bodytagid = '';
+	}
+	?>
+	
+	<body id="{{$bodytagid}}">
+>>>>>>> refs/remotes/origin/master
 
 		<!-- ============ PAGE LOADER START ============ -->
 
@@ -76,8 +94,15 @@
 					</li>
 					<li><a href="#">Job Recruiter</a>
 						<ul>
+<<<<<<< HEAD
 							<li><a class="link-recruiter-register">Register</a></li>
 							<li><a class="link-recruiter-login">Login</a></li>
+=======
+							<li><a href="{{url('recruiter_registration')}}">Register</a></li>
+							<li><a href="{{url('recruiter_login')}}">Login</a></li>
+							<li><a href="{{url('recruiter_logout')}}">Logout</a></li>
+							<li><a href="{{url('recruiter_jobspost')}}">Job Post</a></li>
+>>>>>>> refs/remotes/origin/master
 					    </ul>
 					</li>
 				</ul>		
@@ -97,7 +122,7 @@
 			<div id="header-background"></div>
 			<div class="container">
 				<div class="pull-left">
-					<div id="logo"><a href="{{url('/')}}"><img src="images/logo.png" alt="Jobseek - Job Board Responsive HTML Template" /></a></div>
+					<div id="logo"><a href="{{url('/')}}"><img src="{{url('images/logo.png')}}" alt="Jobseek - Job Board Responsive HTML Template" /></a></div>
 				</div>
 				<div id="menu-open" class="pull-right">
 					<a class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
@@ -124,6 +149,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<h2>Drop us a line</h2>
+<<<<<<< HEAD
 
 						 @if(old('contactForm'))
 
@@ -160,23 +186,27 @@
 			                   <strong>{{ $errors->first('name') }}</strong>
 			                  </span>
 			                  @endif
+=======
+						<form role="form" name="contact-form" id="contact-form" action="process.php">
+							<div class="form-group" id="contact-name-group">
+								<label for="contact-name" class="sr-only">Name</label>
+								<input type="text" class="form-control" id="contact-name" placeholder="Name">
+>>>>>>> refs/remotes/origin/master
 							</div>
 							<div class="form-group" id="contact-email-group">
 								<label for="contact-email" class="sr-only">Email</label>
-								<input type="email" class="form-control" id="email" name="email" placeholder="Email">
+								<input type="email" class="form-control" id="contact-email" placeholder="Email">
 							</div>
 							<div class="form-group" id="contact-subject-group">
 								<label for="contact-subject" class="sr-only">Subject</label>
-								<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+								<input type="text" class="form-control" id="contact-subject" placeholder="Subject">
 							</div>
 							<div class="form-group" id="contact-message-group">
 								<label for="contact-message" class="sr-only">Message</label>
-								<textarea class="form-control" rows="3" id="feedback" name="feedback"></textarea>
+								<textarea class="form-control" rows="3" id="contact-message"></textarea>
 							</div>
-							<button  class="btn btn-default" id="contact_us_send_now">Submit</button>
-							 <!-- <span class="output_message"></span> -->
+							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
-						  
 					</div>
 					<div class="col-sm-6">
 						<h2>Visit our office</h2>
@@ -217,7 +247,10 @@
 		</section>
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
 		<!-- ============ CONTACT END ============ -->
 
 		<!-- ============ FOOTER START ============ -->
@@ -227,6 +260,7 @@
 					<div class="row">
 						<div class="col-sm-6" id="newsletter">
 							<h2>Newsletter</h2>
+<<<<<<< HEAD
 							 <!-- @include('layout.error-notification') -->
 							<form  onsubmit=" return newsletter_form('#newsletter_form', '#newsletter_submit_btn', 'subscribenewsletter')" class="form-inline" id="newsletter_form" method="POST" action="{{url('subscribenewsletter')}}">
 								 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -237,6 +271,12 @@
 									<input type="email" class="form-control" placeholder="Email address" name="SubscriberEmail" id="newsletter_formcontrol"
 									<?php echo ($errors->has('SubscriberEmail'))?'':'';?> >
 
+=======
+							<form class="form-inline">
+								<div class="form-group">
+									<label class="sr-only" for="newsletter-email">Email address</label>
+									<input type="email" class="form-control" id="newsletter-email" placeholder="Email address">
+>>>>>>> refs/remotes/origin/master
 								</div>
 								<button  type="submit" class="btn btn-primary" id=="newsletter_submit_btn">Sign up</button>
 								@if ($errors->has('SubscriberEmail'))
@@ -247,6 +287,7 @@
 						</div>
 
 						<div class="col-sm-6" id="social-networks">
+<<<<<<< HEAD
 						<h2>Get in touch</h2>
 						 <?php if(sizeof($social_links)>0){ ?>
                
@@ -284,12 +325,16 @@
                 
                   <?php }?>
 							<!-- <a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+=======
+							<h2>Get in touch</h2>
+							<a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+>>>>>>> refs/remotes/origin/master
 							<a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
 							<a href="#"><i class="fa fa-2x fa-google-plus-square"></i></a>
 							<a href="#"><i class="fa fa-2x fa-youtube-square"></i></a>
 							<a href="#"><i class="fa fa-2x fa-vimeo-square"></i></a>
 							<a href="#"><i class="fa fa-2x fa-pinterest-square"></i></a>
-							<a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a> -->
+							<a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
 						</div>
 					</div>
 				</div>
@@ -298,8 +343,8 @@
 				<div class="container text-center">
 					<div class="row">
 						<div class="col-sm-12">
-							&copy; <?php echo date("Y");?> Job Portal<br>
-							Designed &amp; Developed by <a href="http://intactinnovations.com/" target="_blank">Intact Innovations Technologies Pvt Ltd</a>
+							&copy; 2015 Jobseek - Responsive Job Board HTML Template<br>
+							Designed &amp; Developed by <a href="http://themeforest.net/user/Coffeecream" target="_blank">Coffeecream Themes</a>
 						</div>
 					</div>
 				</div>
@@ -530,6 +575,7 @@
 
 		<!-- jQuery Settings -->
 		<script src="{{url('js/settings.js')}}"></script>
+<<<<<<< HEAD
 
 		<script type="text/javascript">
 
@@ -576,7 +622,10 @@
 
 
 			</script>
+=======
+>>>>>>> refs/remotes/origin/master
 
+		
 
 		@yield('pagescript')
 

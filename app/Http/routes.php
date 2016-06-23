@@ -211,17 +211,7 @@
     });
     /////////////////////OUT  OF MIDDLEWARE START/////////////////////////////////
 
-    Route::post('saveJobs', 'job\jobController@insertJobs');
-
-    
-    Route::post('recruiterlogin' ,'Auth\AuthAndRoleController@recruiterlogin');
-
-    Route::post('jobrecruiter','jobController@jobrecruiter');
-
-        
-    Route::post('jobseekerlogin' ,'Auth\AuthAndRoleController@jobseeker_login');
-
-    Route::post('jobseekerRegistartion','jobController@jobseekerRegistartion');
+   
     // Route::post('jobseekerregistration','jobController@jobseekerregistration');
 
     
@@ -624,7 +614,7 @@
   });
 
 
-
+/*****************JOB PORTAL FRONT ROUTE START****************/
     
 
 Route::group(['middleware' => 'checkFrontAuth'], function(){
@@ -798,7 +788,7 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
         return view('recruiter/recruiter_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
        });
 
-         Route::post('AdminProfile', 'job\jobController@AdminProfile');
+        Route::post('AdminProfile', 'job\jobController@AdminProfile');
         Route::post('updatePassword', 'job\jobController@updatePassword');
 
 
@@ -816,3 +806,78 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
 
 
 });
+
+
+/********Start Recruiter Route ******/
+
+
+Route::get('recruiter_login', function() {
+    return view('recruiter/recruiter_login');
+});
+
+Route::get('recruiter_registration', function() {
+    return view('recruiter/recruiter_registration');
+});
+
+Route::post('saverecruiterRegistration', 'jobController@saverecruiterRegistration');
+
+
+Route::get('recruiterregistration/{id}/{hashvalue}', function ($id) {
+
+    DB::table('users')->where('id','=',$id)->update([
+            
+            'activeAccount' =>1
+        ]);
+    return view('recruiter.recruiter_login');
+});
+
+Route::post('saverecruiterLogin' ,'Auth\AuthAndRoleController@saverecruiterLogin');
+
+Route::get('recruiter_forgotpassword', function() {
+    return view('recruiter/recruiterforgotpassword');
+});
+
+Route::post('recruiterresetpassword' ,'Auth\AuthAndRoleController@recruiterresetpassword');
+
+Route::get('recruiterresetpassword/{id}/{hashvalue}', function ($id) {
+   
+    $userprofile = DB::table('users')->select('*')->where('id','=',$id)->get();
+
+    return view('recruiter/recruiter_reset_password')->with('userprofile',$userprofile);
+});
+
+Route::post('recruiter_update_resetpassword', 'Auth\AuthAndRoleController@update_resetpassword');
+
+Route::get('recruiter_logout', 'Auth\AuthAndRoleController@recruiter_logout');
+
+
+Route::get('recruiter_jobspost', function() {
+    return view('recruiter/recruiter_job_post');
+});
+
+Route::post('saverecruiterjobpost', 'jobController@recruiterjobpost');
+
+
+
+/********End Recruiter Route ******/
+
+
+
+
+
+
+ Route::post('saveJobs', 'job\jobController@insertJobs');
+
+    
+    Route::post('recruiterlogin' ,'Auth\AuthAndRoleController@recruiterlogin');
+
+    Route::post('jobrecruiter','jobController@jobrecruiter');
+
+        
+    Route::post('jobseekerlogin' ,'Auth\AuthAndRoleController@jobseeker_login');
+
+    Route::post('jobseekerRegistartion','jobController@jobseekerRegistartion');
+
+
+
+/*****************JOB PORTAL FRONT ROUTE END****************/
