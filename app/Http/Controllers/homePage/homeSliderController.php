@@ -246,7 +246,7 @@ class homeSliderController extends Controller
         }
 
 
-        public function insertwork(Request $req){
+        public function updatework(Request $req){
 
 
             $title               = addslashes($req->title);
@@ -283,7 +283,7 @@ class homeSliderController extends Controller
                 return redirect()->back()->withInput()->with('errors', $validation->errors() );
             }
         
-            DB::table('work_details')->insert([
+            DB::table('work_details')->where('id', $id)->update([
 
             'title'           => $title,
             'content'         => $content,
@@ -293,7 +293,7 @@ class homeSliderController extends Controller
 
 
         
-        return redirect()->back()->with('message', 'Successfully Insert.');
+        return redirect()->back()->with('message', 'Successfully Update.');
 
 
      }

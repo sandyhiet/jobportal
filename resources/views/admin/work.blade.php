@@ -67,7 +67,7 @@
 
               <div class="box box-widget">
                 <div class='box-header with-border'>
-                  Add New Work
+                  Update Work
                 </div><!-- /.box-header -->
                 
                
@@ -119,7 +119,7 @@
                     
                       </div><!-- /.box-body -->
                   <div class="box-footer">
-                    <button type="submit" class='btn btn-primary btn-xs'>Add Work</button>
+                    <button type="submit" class='btn btn-primary btn-xs'>update Work</button>
                   </div><!-- /.box-footer -->
                 </form>
               </div>
@@ -177,7 +177,7 @@
        
         
         //bootstrap WYSIHTML5 - text editor
-        //$(".textarea").wysihtml5();
+        $(".textarea").wysihtml5();
       });
     </script>
 </body>

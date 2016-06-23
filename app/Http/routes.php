@@ -138,13 +138,14 @@
         $filter_gallery = DB::table('filter_gallery')->select('*')->get();
     
 
-     return view('homepage')->with('bodytagid', 'home')->with('banners',$banners)->with('results', $results)->with('work_details', $work_details)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links)->with('filter_gallery',$filter_gallery)->with('contact_usa',$contact_usa)->with('contact_uk' ,$contact_uk);
+      return view('homepage')->with('bodytagid', 'home')->with('banners',$banners)->with('results', $results)->with('work_details', $work_details)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links)->with('filter_gallery',$filter_gallery)->with('contact_usa',$contact_usa)->with('contact_uk' ,$contact_uk);
     });
 
-    // Route::get('post_contactus_query_from' ,function(){
 
-    //         return view('post_contactus_query_from');
-    // });
+    Route::get('readmore_work_details' ,function(){
+
+            return view('readmore_work_details');
+    });
 
     Route::post('post_contactus_query_from', 'aboutUs\aboutusController@post_contactus_query_from');
 
@@ -528,7 +529,7 @@
 
 
 
-         Route::get('admin/work', function(){
+         Route::get('admin/work/{id}', function(){
             $data = array('pagetitle'=>'Work Details');
             $work_details = DB::table('work_details')->select('*')->get();
             $admin_profile = DB::table('admin_profile')->select('*')->get();
@@ -537,7 +538,7 @@
             return view('admin/work', $data)->with('work_details',$work_details)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
          });
 
-        Route::post('admin/work', 'homePage\homeSliderController@insertwork');
+        Route::post('admin/work', 'homePage\homeSliderController@updatework');
          // end work
 
          
