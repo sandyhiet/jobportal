@@ -12,6 +12,7 @@
 		<link rel="shortcut icon" href="images/favicon.png">
 
 		<!-- Main Stylesheet -->
+
 		<link href="css/style.css" rel="stylesheet">
 
 
@@ -34,6 +35,23 @@
 	</head>
 	
 	<body id="home">
+
+		<link href="{{url('css/style.css')}}" rel="stylesheet">
+	   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+	   <link href="{{url('runnable.css')}}" rel="stylesheet" />
+	   <!-- Load jQuery and the validate plugin -->
+	   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+	   <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+	</head>
+	<?php
+	if(!isset($bodytagid)){
+		$bodytagid = '';
+	}
+	?>
+	
+	<body id="{{$bodytagid}}">
+
 
 		<!-- ============ PAGE LOADER START ============ -->
 
@@ -61,10 +79,17 @@
 							<li><a href="{{url('#')}}">Job Details</a></li>
 							<li><a href="{{url('#')}}">Resume</a></li>
 							<li><a href="{{url('#')}}">Company</a></li>
+
 							<li><a href="{{url('blog')}}">Blog</a></li>
 							<li><a href="{{url('#')}}">Single Post</a></li>
 							<li><a href="{{url('about')}}">About Us</a></li>
 							<li><a href="{{url('testimonial')}}">Testimonials</a></li>
+
+							<li><a href="{{url('#')}}">Blog</a></li>
+							<li><a href="{{url('#')}}">Single Post</a></li>
+							<li><a href="{{url('#')}}">About Us</a></li>
+							<li><a href="{{url('#')}}">Testimonials</a></li>
+
 							<li><a href="{{url('#')}}">Options</a></li>
 						</ul>
 					</li>
@@ -76,8 +101,15 @@
 					</li>
 					<li><a href="#">Job Recruiter</a>
 						<ul>
+
 							<li><a class="link-recruiter-register">Register</a></li>
 							<li><a class="link-recruiter-login">Login</a></li>
+
+							<li><a href="{{url('recruiter_registration')}}">Register</a></li>
+							<li><a href="{{url('recruiter_login')}}">Login</a></li>
+							<li><a href="{{url('recruiter_logout')}}">Logout</a></li>
+							<li><a href="{{url('recruiter_jobspost')}}">Job Post</a></li>
+
 					    </ul>
 					</li>
 				</ul>		
@@ -97,7 +129,7 @@
 			<div id="header-background"></div>
 			<div class="container">
 				<div class="pull-left">
-					<div id="logo"><a href="{{url('/')}}"><img src="images/logo.png" alt="Jobseek - Job Board Responsive HTML Template" /></a></div>
+					<div id="logo"><a href="{{url('/')}}"><img src="{{url('images/logo.png')}}" alt="Jobseek - Job Board Responsive HTML Template" /></a></div>
 				</div>
 				<div id="menu-open" class="pull-right">
 					<a class="fm-button"><i class="fa fa-bars fa-lg"></i></a>
@@ -396,54 +428,66 @@
 
 
 		<!-- Modernizr Plugin -->
+
 		<script src="js/modernizr.custom.79639.js"></script>
 
+		<script src="{{url('js/modernizr.custom.79639.js')}}"></script>
+
+
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="js/jquery-1.11.2.min.js"></script>
+		<script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
 
 		<!-- Bootstrap Plugins -->
-		<script src="js/bootstrap.min.js"></script>
+		<script src="{{url('js/bootstrap.min.js')}}"></script>
 
 		<!-- Retina Plugin -->
-		<script src="js/retina.min.js"></script>
+		<script src="{{url('js/retina.min.js')}}"></script>
 
 		<!-- ScrollReveal Plugin -->
-		<script src="js/scrollReveal.min.js"></script>
+		<script src="{{url('js/scrollReveal.min.js')}}"></script>
 
 		<!-- Flex Menu Plugin -->
-		<script src="js/jquery.flexmenu.js"></script>
+		<script src="{{url('js/jquery.flexmenu.js')}}"></script>
 
 		<!-- Slider Plugin -->
-		<script src="js/jquery.ba-cond.min.js"></script>
-		<script src="js/jquery.slitslider.js"></script>
+		<script src="{{url('js/jquery.ba-cond.min.js')}}"></script>
+		<script src="{{url('js/jquery.slitslider.js')}}"></script>
 
 		<!-- Carousel Plugin -->
-		<script src="js/owl.carousel.min.js"></script>
+		<script src="{{url('js/owl.carousel.min.js')}}"></script>
 
 		<!-- Parallax Plugin -->
-		<script src="js/parallax.js"></script>
+		<script src="{{url('js/parallax.js')}}"></script>
 
 		<!-- Counterup Plugin -->
-		<script src="js/jquery.counterup.min.js"></script>
-		<script src="js/waypoints.min.js"></script>
+		<script src="{{url('js/jquery.counterup.min.js')}}"></script>
+		<script src="{{url('js/waypoints.min.js')}}"></script>
 
 		<!-- No UI Slider Plugin -->
-		<script src="js/jquery.nouislider.all.min.js"></script>
+		<script src="{{url('js/jquery.nouislider.all.min.js')}}"></script>
 
 		<!-- Bootstrap Wysiwyg Plugin -->
+
 		<script src="js/bootstrap3-wysihtml5.all.min.js"></script>
 
+		<script src="{{url('js/bootstrap3-wysihtml5.all.min.js')}}"></script>
+
+
 		<!-- Flickr Plugin -->
-		<script src="js/jflickrfeed.min.js"></script>
+		<script src="{{url('js/jflickrfeed.min.js')}}"></script>
 
 		<!-- Fancybox Plugin -->
-		<script src="js/fancybox.pack.js"></script>
+		<script src="{{url('js/fancybox.pack.js')}}"></script>
 
 		<!-- Magic Form Processing -->
-		<script src="js/magic.js"></script>
+		<script src="{{url('js/magic.js')}}"></script>
 
 		<!-- jQuery Settings -->
+
 		<script src="js/settings.js"></script>
+
+		<script src="{{url('js/settings.js')}}"></script>
+
 
 		
 

@@ -778,7 +778,7 @@ class jobController extends Controller
 
 
 
-       public function AdminProfile(Request $req){
+    public function AdminProfile(Request $req){
        
         $name             = addslashes($req->name);
         $email            = $req->email;
