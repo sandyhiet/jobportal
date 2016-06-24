@@ -11,9 +11,6 @@ use App\Http\Requests;
 use DB;
 use Auth;
 use Validator;
-use Hash;
-use Redirect;
-use View;
 
 class jobController extends Controller
 {
@@ -21,48 +18,51 @@ class jobController extends Controller
 
      public function jobseekerRegistartion(Request $req){
 
-        //return 'adfert';
+        
     
         $firstname                    = $req->firstname;
         $lastname                     = $req->lastname;
         $email                        = $req->email;
-        $password                     = $req->password;
+        $password                     = bcrypt($req->password);
         $confirmpassword              = $req->confirmpassword;
+
         $status                       = $req->status;
 
 
         $inputs = [
-            
-            'firstname'           => $firstname,
-            'lastname'            => $lastname,
-            'email'               => $email,
-            'password'            => $password,
-            'confirmpassword'     => $confirmpassword,
+
+            'firstname'               => $firstname,
+            'lastname'                => $lastname,
+            'email'                   => $email,
+            'password'                => $password,
+            'confirmpassword'         => $confirmpassword,
         ];
-        /*//In ajax validation may or may not be taken in inputs and message it should taken be in rules//*/
+
         $rules = [
-
-            'firstname'           => 'required',
-            'lastname'            => 'required',
-            'email'               => 'required|email|unique:users|max:25',
-            'password'            => 'required',
-            'confirmpassword'     => 'required',
+            
+            'firstname'               =>'required',
+            'lastname'                =>'required',
+            'email'                   =>'required',
+            'password'                =>'required',            
+            'confirmpassword'         =>'required'
         ];
 
-        
+        $messages = [
+            'firstname.required'        => 'Please enter firstname',
+            'lastname.required'         => 'Please enter lastname',
+            'email.unique'              => 'Job title email',
+            'password.required'         => 'Please enter password',
+            'confirmpassword.required'  => 'Please enter confirmpassword',  
+      ];
 
-        // $validation = Validator::make($inputs, $rules);
-        // if( $validation->fails() ){
-        //     return redirect()->back()->withInput()->with('errors', $validation->errors() );
-        // }
-       
-         if( $validation->fails() ){
-            return $validation->errors();
+        $validation = Validator::make($inputs, $rules , $messages);
+
+        if( $validation->fails() ){
+            return redirect()->back()->withInput()->with('errors', $validation->errors() );
         }
 
-        $password                     = bcrypt($req->password);
 
-        $user_id = DB::table('users')->insertGetId([
+         $user_id = DB::table('users')->insertGetId([
 
             
             'email'                  =>$email,
@@ -72,7 +72,16 @@ class jobController extends Controller
            
         ]);
       
-  
+
+        
+        DB::table('JobseekerRegistration')->insert([
+
+            'firstname'             =>$firstname,
+            'lastname'              =>$lastname,
+            'user_id'               =>$user_id
+            
+           
+        ]);
         DB::table('resume_post')->insert([
 
             'firstname'             =>$firstname,
@@ -83,9 +92,8 @@ class jobController extends Controller
         ]);
 
 
-       return '1';
-        
-        //return redirect()->back()->with('message', 'Thank you for Registration');
+        // return '1';
+        return redirect()->back()->with('message', 'Thank you for Registration');
     }
 
 

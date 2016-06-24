@@ -282,7 +282,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 						
 						<!-- Callout Panel -->
 						<p style="padding:15px; background-color:#474747; margin-bottom: 15px;color:#fff; font-size:20px;">
-							Welcome to Subscribe Newsletter.
+							Welcome to KAMSA-O-BAR Subscriber.
 						</p><!-- /Callout Panel -->
 						
 						<!-- <h3> Thanks <small></small></h3> -->
@@ -306,7 +306,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 																			
 												<h5 class="">Contact Info:</h5>												
 												<p style="color: #000;">Phone: <strong>+91-9738560514</strong><br/>
-                Email: <strong><a href="emailto:info@mecaps.org" style="text-decoration: underline;">info@intactinnovations.com</a></strong></p>
+                Email: <strong><a href="emailto:info@mecaps.org" style="text-decoration: underline;">info@kamsarobar.org</a></strong></p>
                 
 											</td>
 										</tr>

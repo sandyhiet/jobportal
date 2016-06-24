@@ -283,7 +283,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 						
 						<!-- Callout Panel -->
 						<p style="padding:15px; background-color:#474747; margin-bottom: 15px;color:#fff; font-size:20px;">
-							WELCOME TO Job Portal 
+							WELCOME TO KAMSAR-O-BAR 
 						</p><!-- /Callout Panel -->
 						
 						<h3> Thanks <small> for Asking Question </small></h3>
@@ -302,8 +302,8 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 										<tr>
 											<td>				
 												<h5 class="">Contact Info:</h5>												
-												<p style="color: #000;">Phone: <strong>+xx-xxxxxxxxxx</strong><br/>
-                Email: <strong><a href="emailto: info@intactinnovations.com" style="text-decoration: underline;"> info@intactinnovations.com</a></strong></p>
+												<p style="color: #000;">Phone: <strong>+91-9738560514</strong><br/>
+                Email: <strong><a href="emailto: info@kamsarobar.org" style="text-decoration: underline;"> info@kamsarobar.org</a></strong></p>
                 
 											</td>
 										</tr>

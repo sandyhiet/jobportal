@@ -1,51 +1,9 @@
-@extends('layout.master')
+@extends('layouts.master')
 @section('title', 'Home Page')
 @section('content')
 
-		 <!-- ============ NAVBAR START ============ -->
-
-		<div class="fm-container">
-			<!-- Menu -->
-			<div class="menu">
-				<div class="button-close text-right">
-					<a class="fm-button"><i class="fa fa-close fa-2x"></i></a>
-				</div>
-				<ul class="nav">
-					<li class="active"><a href="{{url('/')}}">Home</a></li>
-					<li><a href="{{url('jobs')}}">Jobs</a></li>
-					<li><a href="{{url('post-a-job')}}">Post a job</a></li>
-					<li><a href="{{url('candidates')}}">Candidates</a></li>
-					<li><a href="{{url('post-a-resume')}}">Post a Resume</a></li>
-					<li><a href="#">Read More</a>
-						<ul>
-							<li><a href="{{url('job-details')}}">Job Details</a></li>
-							<li><a href="{{url('resume')}}">Resume</a></li>
-							<li><a href="{{url('company')}}">Company</a></li>
-							<li><a href="{{url('blog')}}">Blog</a></li>
-							<li><a href="{{url('post')}}">Single Post</a></li>
-							<li><a href="{{url('about')}}">About Us</a></li>
-							<li><a href="{{url('testimonials')}}">Testimonials</a></li>
-							<li><a href="{{url('options')}}">Options</a></li>
-						</ul>
-					</li>
-					<li><a href="">Job Seeker</a>
-						<ul>
-							<li><a class="link-register">Register</a></li>
-							<li><a class="link-login">Login</a></li>
-					    </ul>
-					</li>
-					<li><a href="">Job Recruiter</a>
-						<ul>
-							<li><a class="link-recruiter-register">Register</a></li>
-							<li><a class="link-recruiter-login">Login</a></li>
-					    </ul>
-					</li>
-				</ul>		
-			</div>
-			<!-- end Menu -->
-		</div>
-
-		<!-- ============ NAVBAR END ============ -->
+		 
+		 
 		<!-- ============ TITLE START ============ -->
 
 		<section id="title">

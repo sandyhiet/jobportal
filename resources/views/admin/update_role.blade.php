@@ -60,13 +60,15 @@
                 </div><!-- /.box-header -->
                 <div class="box-body pad">
                   @include('layout.error-notification')
-                  <form method="post" action="{{url('admin/update_role')}}">
+                  <form method="post" action="{{url('update_role_category')}}">
                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                      <input type="hidden" value="{{ $all_role_category[0]->id }}" name="id">
+
                     <div class="form-group">
                       <label for="">Skill</label>
-                    
-                      <input name="role_category_name" type="text" value="{{$all_role_category[0]->role_category_name}}" class="form-control" id="" placeholder="Enter Name" maxlength="40">
+                      
+                      <input type="hidden" name="oldCategoryName" value="">
+                      <input type="hidden" value="{{ $all_role_category[0]->id }}" name="category_id">
+                      <input name="role_category_name" type="text" value="{{$role_category_name[0]->role_category_name}}" class="form-control" id="" placeholder="Enter Name" maxlength="40">
                     </div>
                     
                 </div>

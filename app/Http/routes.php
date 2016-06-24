@@ -30,22 +30,51 @@
         $data = array('pagetitle'=>'Homepage Banner');
         $home_slider = DB::table('home_slider')->select('*')->get();
         $admin_profile = DB::table('admin_profile')->select('*')->get();
-        $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+        
+        // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
 
-        return view('admin/homepage_banner', $data)->with('home_slider',$home_slider)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
+        return view('admin/homepage_banner', $data)->with('home_slider',$home_slider)->with('admin_profile', $admin_profile);
      });
 
 // News Start**********************
+Route::get('read_news/{id}', function($newsTitle){
+$news = DB::table('news')->where('newsTitle', '=', '$newsTitle')->get();
+
+return view('read_news')->with('news',$news);
+});
+
+
      Route::get('admin/allnews', function(){
         $data = array('pagetitle'=>'Homepage Banner');
         // $home_slider = DB::table('home_slider')->select('*')->get();
         $admin_profile = DB::table('admin_profile')->select('*')->get();
-        $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+        // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
         $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
 
 
-        return view('admin/allnews', $data)->with('news',$news)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
+        return view('admin/allnews', $data)->with('news',$news)->with('admin_profile', $admin_profile);
      });
+
+     Route::get('admin/addNews', function(){
+        $data = array('pagetitle'=>'Add News Article');
+        // $news_category = DB::table('news_category')->select('*')->get();
+        return view('admin.addNews', $data);
+    });
+     Route::post('saveNews', 'news\newsController@insertNews');
+     Route::post('updateNews', 'news\newsController@updateNews');
+     Route::get('deleteNews/{id}', 'news\newsController@Delete_news');
+
+
+
+      Route::get('admin/edit_news/{id}', function($id){
+                $data = array('pagetitle'=>'job_update');
+                $news = DB::table('news')->select('*')->where('id', '=', $id)->get();
+
+                // $slider = DB::table('home_slider')->select('*')->where('id', '=', $id)->get();
+                // $category = DB::table('tbl_category')->where('category_id', '=', $id)->get();
+                return view('admin/updatenews', $data)->with('news', $news);
+        });
+     // Route::get('admin/edit_news/{id}', 'news\newsController@editNews');
 
 
 // News End**********************
@@ -134,20 +163,81 @@
         return view('admin.admin_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
     });
 
+
+
+
+    // start testimonials/////////////////////
+
+    Route::get('testimonial', function(){
+        $data = array('pagetitle'=>'testimonials');
+        $testimonials  = DB::table('testimonials')->select('*')->get();
+        return view('testimonial', $data)->with('testimonials', $testimonials);
+    });
+
      Route::get('admin/alltestimonials',function(){
          $admin_profile = DB::table('admin_profile')->select('*')->get();
          $testimonials  = DB::table('testimonials')->select('*')->get();
-         $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+         // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
 
         
-         return view('admin.alltestimonials')->with('testimonials', $testimonials)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
+         return view('admin.alltestimonials')->with('testimonials', $testimonials)->with('admin_profile', $admin_profile);
     });
+
+     Route::get('admin/addtestimonials',function(){
+         // $admin_profile = DB::table('admin_profile')->select('*')->get();
+         // $testimonials  = DB::table('testimonials')->select('*')->where('id', '=', $id)->get()
+         // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+
+        
+         return view('admin.addtestimonials');
+    });
+
+      Route::get('admin/editTestimonial/{id}',function($id){
+         $admin_profile = DB::table('admin_profile')->select('*')->get();
+         $testimonials  = DB::table('testimonials')->select('*')->where('id', '=', $id)->get();
+         // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+         return view('admin.updatetestimonials')->with('testimonials', $testimonials)->with('admin_profile', $admin_profile);
+    });
+    Route::post('saveTestimonial', 'testimonial\testimonialController@insertTestimonial');
+   
+    Route::post('updateTestimonials', 'testimonial\testimonialController@updateTestimonials');
+    Route::get('admin/deletetestimonial/{id}', 'testimonial\testimonialController@deletetestimonial');
+
+// testimonials ends///////////////////////
+
 
 
     Route::post('saveAdminProfile', 'aboutUs\aboutusController@saveAdminProfile');
     Route::post('savesubAdminProfile', 'aboutUs\aboutusController@savesubAdminProfile');
     Route::post('updatePassword', 'aboutUs\aboutusController@updatePassword');
-    
+
+
+
+
+     Route::get('admin/clients_happy',function(){
+
+        
+
+        $filter_gallery = DB::table('filter_gallery')->select('*')->get();
+        // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+        return view('admin.clients_happy')->with('filter_gallery', $filter_gallery);
+    });
+
+    Route::post('Gallery_clients', 'client\clientController@Gallery_clients');
+
+    Route::get('delete_clients/{id}', 'client\clientController@delete_clients');
+
+
+      Route::get('admin/update_clients/{id}',function($id){
+         $filter_gallery = DB::table('filter_gallery')->select('*')->where('id', '=', $id)->get();
+         // $testimonials  = DB::table('testimonials')->select('*')->get();
+         // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+         return view('admin.update_clients')->with('filter_gallery', $filter_gallery);
+    });
+      	Route::post('update_images', 'client\clientController@update_images');
+
+
+
 
     /***********ADMIN PROFILE ROUTES END********/
 
@@ -155,14 +245,15 @@
 
 
     Route::get('/', function () {
-        $social_links = DB::table('social_links')->get();
         $results = DB::table('job')->paginate('5');
         $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
         $tbl_package = DB::table('tbl_package')->select('*')->get();
         $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
         $testimonials  = DB::table('testimonials')->select('*')->get();
+        $filter_gallery = DB::table('filter_gallery')->select('*')->get();
 
-     return view('homepage')->with('bodytagid', 'home')->with('banners',$banners)->with('results', $results)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links);
+
+     return view('homepage')->with('bodytagid', 'home')->with('banners',$banners)->with('results', $results)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('filter_gallery', $filter_gallery);
     });
 
 
@@ -194,13 +285,82 @@
         return view('blog');
     });
 
+    Route::get('admin/addblogs', function () {
+        return view('admin.Blog.addblogs');
+    });
+    Route::get('admin/viewall_blogs', function () {
+
+    	$blogs = DB::table('blogs')->select('*')->get();
+		
+	    return view('admin.Blog.viewall_blogs')->with('blogs', $blogs);
+    });
+
+
+    Route::get('admin/Blog/edit_blogs/{id}', function ($id) {
+    	$data = array('pagetitle'=>'blogs');
+    	$blogs = DB::table('blogs')->select('*')->select('*')->where('id', '=', $id)->get();
+
+        return view('admin.Blog.updateblogs', $data)->with('blogs', $blogs);
+    });
+
+    // Route::get('admin/Blog/delete_blogs/{id}', function($id){
+    // 	return 'hjgdh';
+    // 	 DB::table('blogs')->where('id', $id)->delete();
+    // 	return view('admin.Blog.viewall_blogs');
+    // });
+    Route::post('Addblogs', 'Blog\blogController@Addblogs');
+    Route::post('updateblogs', 'Blog\blogController@updateblogs');
+    Route::get('admin/delete_blogs/{id}', 'Blog\blogController@delete_blogs');
+
+
+
+
+
     Route::get('post', function () {
         return view('post');
     });
 
     Route::get('about', function () {
-        return view('about');
+    	$about_us=DB::table('about_us')->select('*')->get();
+    	$OurTeam = DB::table('aboutus_our_team')->select('*')->get();
+    	$testimonials  = DB::table('testimonials')->select('*')->get();
+    	$about_us=DB::table('about_us')->select('*')->get();
+        return view('about')->with('about_us', $about_us)->with('OurTeam', $OurTeam)->with('testimonials', $testimonials)->with('about_us', $about_us);
     });
+     Route::get('admin/about_us', function () {
+    	$about_us=DB::table('about_us')->select('*')->get();
+        return view('admin.aboutus.about_us')->with('about_us', $about_us);
+    });
+    Route::post('about_Content', 'aboutUs\aboutusController@about_Content');
+
+
+Route::get('add_our_team', function(){
+		$data = array('pagetitle'=>'Add Our Team');
+		// $admin_profile = DB::table('admin_profile')->select('*')->get();
+		return view('admin.aboutus.add_our_team', $data);
+	});
+
+Route::get('all_our_team', function(){
+		$data = array('pagetitle'=>'Add Our Team');
+		$OurTeam = DB::table('aboutus_our_team')->select('*')->get();
+		return view('admin.aboutus.all_our_team', $data)->with('OurTeam', $OurTeam);
+	});
+
+	Route::post('saveOurTeam', 'aboutUs\aboutusController@saveOurTeam');
+
+	// Route::get('all_our_team', 'aboutUs\aboutusController@all_ourTeam');
+
+	Route::get('admin/edit_ourTeam/{id}', function($id){
+		$data = array('pagetitle'=>'Edit Our Team');
+		$ourTeam = DB::table('aboutus_our_team')->select('*')->where('id', '=', $id)->get();
+		
+	    return view('admin.aboutus.update_our_team', $data)->with('ourTeam', $ourTeam);
+	});
+
+	Route::post('updateOurTeam', 'aboutUs\aboutusController@updateOurTeam');
+	Route::get('deleteOurTeam/{id}', 'aboutUs\aboutusController@deleteOurTeam');
+
+
 
     Route::get('testimonials', function () {
         return view('testimonials');
@@ -227,10 +387,9 @@ Route::get('date',function(){
     Route::post('jobrecruiter','jobController@jobrecruiter');
 
         
-    Route::post('jobseekerlogin' ,'Auth\AuthAndRoleController@jobseeker_login');
+    Route::post('jobseekerlogin' ,'Auth\AuthAndRoleController@jobseekerlogin');
 
     Route::post('jobseekerRegistartion','jobController@jobseekerRegistartion');
-    // Route::post('jobseekerregistration','jobController@jobseekerregistration');
 
     
     Route::get('countries_json', function(){
@@ -322,7 +481,7 @@ Route::get('date',function(){
 
         Route::get('admin/update_skill/{id}', function($id){
 
-            $data = array('pagetitle'=>'Skill');
+            $data = array('pagetitle'=>'Category');
             $all_keyskills = DB::table('keyskills')
             ->select('*')->where('id', '=', $id)->get();
 
@@ -347,58 +506,31 @@ Route::get('date',function(){
 
         });
         Route::get('admin/all_role_category' , function(){
-            $all_role_category = DB::table('role_category')->select('*')->get();
+
             $data = array('pagetitle' => 'All Role Category');
-            return view('admin.all_role_category' , $data)->with('all_role_category' ,$all_role_category);
+            return view('admin.all_role_category' , $data);
         });
 
-        Route::get('admin/update_role/{id}', function($id){
+        Route::get('update_role/{id}', function($id){
             
             $data = array('pagetitle'=>'Role');
-            $all_role_category  = DB::table('role_category')->select('*')->where('id', '=' ,$id)->get();
-            return view('admin/update_role', $data)->with('all_role_category' ,$all_role_category);
+            // $all_keyskills = DB::table('keyskills')->select('*')->select('*')->where('id', '=', $id)->get();
+            return view('admin/update_role', $data);
             
         });
 
 
-        Route::post('admin/add_role_category', 'ServiceCategory\categoryController@add_role_category');
+         Route::post('admin/add_role_category', 'ServiceCategory\categoryController@add_role_category');
         Route::post('admin/all_role_category', 'ServiceCategory\categoryController@all_role_category');
-        Route::get('admin/deleteRolecategory/{id}', 'ServiceCategory\categoryController@deleteRolecategory');
+        Route::get('deletekeyskill/{id}', 'ServiceCategory\categoryController@deletekeyskill');
 
-        Route::post('admin/update_role',      'ServiceCategory\categoryController@update_role');
-
-
-
-        Route::get('admin/social_links', function(){
-        $data = array('pagetitle'=>'Social links');
-        
-        $social_links_count = DB::table('social_links')->select('*')->count();
-
-        if($social_links_count != 7){
-            //populate with defaults
-            DB::table('social_links')->truncate();
-            DB::table('social_links')->insert([
-                ['social_network' => 'facebook', 'link' => ''],
-                ['social_network' => 'twitter', 'link' => ''],
-                ['social_network' => 'pinterest', 'link' => ''],
-                ['social_network' => 'youtube', 'link' => ''],
-                ['social_network' => 'google_plus', 'link' => ''],
-                ['social_network' => 'flickr', 'link' => ''],
-                ['social_network' => 'dribbble', 'link' => '']
-            ]);
-        }
-
-        $social_links = DB::table('social_links')->select('*')->get();
-
-        return view('admin/social_links', $data)->with('social_links',$social_links);
-       });
-       Route::post('update_social_links', 'homePage\homeSliderController@update_social_links');
+        Route::post('update_role',      'ServiceCategory\categoryController@update_role');
 
         ///////////////////////////////// Admin Relate Work End /////////////////////////////////////////////
 
 
        
-  });
+   });
 
 
 
@@ -408,17 +540,17 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
 
      ////////////////////jobseeker start//////////////////////
 
-        Route::get('frontlogout', 'Auth\AuthAndRoleController@frontlogout');
-        
+    Route::get('frontlogout', 'Auth\AuthAndRoleController@frontlogout');
+    
 
-        Route::get('jobseeker_dashboard',function(){
-            return view('jobseeker_dashboard');
-        });
+    Route::get('jobseeker_dashboard',function(){
+        return view('jobseeker_dashboard');
+    });
 
-        Route::get('jobseeker/post_resume', function(){
-            $data = array('pagetitle'=>'Job Post');
-            return view('jobseeker.post_resume', $data);
-        });
+    Route::get('jobseeker/post_resume', function(){
+        $data = array('pagetitle'=>'Job Post');
+        return view('jobseeker.post_resume', $data);
+    });
 
 
 
@@ -449,7 +581,7 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
 
         Route::get('fileentry', 'FileEntryController@index');
         Route::get('fileentry/get/{filename}', [
-               'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+            'as' => 'getentry', 'uses' => 'FileEntryController@get']);
         Route::post('fileentry/add',[ 
                 'as' => 'addentry', 'uses' => 'FileEntryController@add']);
 
@@ -499,7 +631,7 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
 
         $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
         return view('jobseeker/jobseeker_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile)->with('work_details', $work_details);
-       });
+    });
 
         Route::post('AdminProfile', 'jobseeker\jobseekerController@savesubAdminProfile');
         Route::post('updatePassword', 'jobseeker\jobseekerController@updatePassword');
@@ -561,7 +693,7 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
                 $category = DB::table('tbl_category')->where('category_id', '=', $id)->get();
                 return view('recruiter/job_update', $data)->with('job', $job);
         });
-         Route::get('up_downgrade/{email}', function($email){
+        Route::get('up_downgrade/{email}', function($email){
                 $data = array('pagetitle'=>'job_update');
                 $tbl_package = DB::table('tbl_package')->select('*')->get();
                 // $category = DB::table('tbl_category')->where('category_id', '=', $id)->get();
@@ -573,18 +705,18 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
         $admin_profile = DB::table('admin_profile')->select('*')->get();
         $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
         return view('recruiter/recruiter_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
-       });
+        });
 
-         Route::post('AdminProfile', 'job\jobController@AdminProfile');
+        Route::post('AdminProfile', 'job\jobController@AdminProfile');
         Route::post('updatePassword', 'job\jobController@updatePassword');
 
 
-         Route::post('recruiter_update', 'job\jobController@recruiter_update');
+        Route::post('recruiter_update', 'job\jobController@recruiter_update');
 
-         Route::get('delete_job/{id}', 'job\jobController@job_delete');
+        Route::get('delete_job/{id}', 'job\jobController@job_delete');
 
 
-         Route::get('job_listing', 'job\jobController@jobs');
+        Route::get('job_listing', 'job\jobController@jobs');
 
 
 

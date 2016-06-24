@@ -5,7 +5,7 @@ $lasturl = $req_uri_arr[sizeof($req_uri_arr)-1];
 $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
 ?>
 
- <header class="main-header">
+<header class="main-header">
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -115,47 +115,109 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
           <a href="{{url('admin/dashboard')}}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
+          
         </li>
-         <li class="treeview <?php echo($lasturl ==  'editSliderImage' || $secondlasturl == 'homepage_banner' || $secondlasturl == 'alltestimonials' || $lasturl == 'social_links' || $lasturl == 'work' || $lasturl == 'logo')?'active':'';?>">
-     <!-- HOME PAGES START*********** -->
 
-      <a href="{{url('dashboard')}}">
-        <i class="fa fa-home"></i> <span>Homepage</span><i class="fa fa-angle-left pull-right"></i>
-      </a>
+<!-- HOME PAGES START*********** -->
 
-        <ul class="treeview-menu">
 
-           <li <?php echo($secondlasturl == 'editSliderImage' || $lasturl == 'homepage_banner')?'class="active"':'';?>>
-              <a href="{{url('admin/homepage_banner')}}"><i class="fa fa-circle-o"></i> Banner</a>
-            </li> 
-
-           <li <?php echo($lasturl == 'alltestimonials')?'class="active"':'';?>>
-            <a href="{{url('admin/alltestimonials')}}"><i class="fa fa-circle-o"></i> Testimonials</a>
+        <li class="treeview <?php echo($lasturl == 'alltestimonials' || $lasturl == 'addtestimonials' || $secondlasturl == 'editSliderImage' || $lasturl == 'homepage_banner' || $lasturl == 'clients_happy')?'active':'';?>">
+          <a href="#">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            <span>Homepage</span> <i class="fa fa-angle-left pull-right"></i>
+            <span class="label label-primary pull-right"></span>
+          </a>
+          <ul class="treeview-menu">
+            <li <?php echo($secondlasturl == 'editSliderImage' || $lasturl == 'homepage_banner')?'class="active"':'';?>>
+            <a href="{{url('admin/homepage_banner')}}"><i class="fa fa-circle-o"></i> Banner</a>
           </li> 
-
-          <li <?php echo($lasturl == 'social_links')?'class="active"':'';?>>
-            <a href="{{url('admin/social_links')}}"><i class="fa fa-circle-o"></i>Social Links</a>
-          </li>
+  
          
-          <li <?php echo($lasturl == 'work')?'class="active"':'';?>>
+         <li <?php echo($lasturl == 'alltestimonials')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i>Testimonials<i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'alltestimonials')?'class="active"':'';?>>
+                <a href="{{url('admin/alltestimonials')}}"><i class="fa fa-circle-o"></i> View all</a>
+              </li>
+              <li <?php echo($lasturl == 'addtestimonials')?'class="active"':'';?>>
+              <a href="{{url('admin/addtestimonials')}}"><i class="fa fa-circle-o"></i> Add New</a>
+            </li>
+            </ul> 
+          </li>
+         <li <?php echo($lasturl == 'alltestimonials')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i>Clients<i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'clients_happy')?'class="active"':'';?>>
+                <a href="{{url('admin/clients_happy')}}"><i class="fa fa-circle-o"></i> View all</a>
+              </li>
+             
+            </ul> 
+          </li>
+          <!-- </ul>
+          <ul class="treeview-menu"> -->
+            <li <?php echo($lasturl == 'work')?'class="active"':'';?>>
             <a href="{{url('admin/work')}}"><i class="fa fa-circle-o"></i> Work</a>
           </li> 
+          </ul>
 
-          <li <?php echo($lasturl =='logo')?'class="active"':'';?>>
-            <a href="{{url('admin/logo')}}"><i class="fa fa-circle-o"></i>Logo
-            </a>
-          </li>
+        </li>
+
+ <!-- HOME PAGES START*********** -->
+
+
+
+ <!-- About_us start -->
+
+   <li class="treeview <?php echo($lasturl == 'about_us' || $lasturl == 'addtestimonials' || $secondlasturl == 'editSliderImage' || $lasturl == 'homepage_banner' || $lasturl == 'clients_happy' || $lasturl == 'all_our_team' || $lasturl == 'add_our_team' || $secondlasturl == 'edit_ourTeam')?'active':'';?>">
+          <a href="#">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <span>ABOUT US</span> <i class="fa fa-angle-left pull-right"></i>
+            <span class="label label-primary pull-right"></span>
+          </a>
+          <ul class="treeview-menu">
+             
         
-        </ul>
-      </li>
+           <li <?php echo($lasturl == 'about_us')?'class="active"':'';?>>
+            <a href="{{url('admin/about_us')}}">
+              <i class="fa fa-circle-o"></i>About_us
+            </a>
+            
+          </li>
+
+          <li <?php echo($lasturl == 'all_our_team' || $lasturl == 'add_our_team' || $secondlasturl == 'edit_ourTeam')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i>Our Team<i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'all_our_team')?'class="active"':'';?>>
+                <a href="{{url('all_our_team')}}">
+                  <i class="fa fa-angle-double-right"></i> All Our Team
+                </a>
+              </li>
+              <li <?php echo($lasturl == 'add_our_team')?'class="active"':'';?>>
+                <a href="{{url('add_our_team')}}">
+                  <i class="fa fa-angle-double-right"></i> Add Our Team
+                </a>
+              </li>
+            </ul> 
+          </li>
+          
+          </ul>
+
+        </li>
+ <!-- About_us End -->
 
 
  <!-- News Start -->
 
 
-     <li class="treeview">
+     <li class="treeview <?php echo($secondlasturl == 'allnews' || $secondlasturl == 'addNews')?'active':'';?>">
           <a href="#">
-            <i class="fa fa-home" aria-hidden="true"></i>
+            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
             <span>News</span> <i class="fa fa-angle-left pull-right"></i>
             <span class="label label-primary pull-right"></span>
           </a>
@@ -163,11 +225,34 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
             <li <?php echo($secondlasturl == 'allnews' || $lasturl == 'homepage_banner')?'class="active"':'';?>>
             <a href="{{url('admin/allnews')}}"><i class="fa fa-circle-o"></i> All News</a>
           </li> 
+           <li <?php echo($secondlasturl == 'addNews')?'class="active"':'';?>>
+            <a href="{{url('admin/addNews')}}"><i class="fa fa-circle-o"></i> Add News</a>
+          </li> 
           </ul>
       </li>
+<!-- news end -->
 
 
-     <!-- start jobs  -->
+
+<!-- Blogs -->
+ <li class="treeview <?php echo($secondlasturl == 'viewall_blogs' || $secondlasturl == 'addblogs')?'active':'';?>">
+          <a href="#">
+            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+            <span>Blogs</span> <i class="fa fa-angle-left pull-right"></i>
+            <span class="label label-primary pull-right"></span>
+          </a>
+          <ul class="treeview-menu">
+            <li <?php echo($secondlasturl == 'viewall_blogs')?'class="active"':'';?>>
+            <a href="{{url('admin/viewall_blogs')}}"><i class="fa fa-circle-o"></i> View all</a>
+          </li> 
+           <li <?php echo($secondlasturl == 'addblogs')?'class="active"':'';?>>
+            <a href="{{url('admin/addblogs')}}"><i class="fa fa-circle-o"></i> New add</a>
+          </li> 
+          </ul>
+      </li>
+<!-- end bogs -->
+
+  <!-- start jobs  -->
         
        <li class="treeview <?php echo($secondlasturl == 'edit_Category' || $lasturl == 'add_category' || $lasturl == 'add_sub_category'  || $lasturl == 'all_category' || $lasturl == 'all_keyskills' || $lasturl == 'add_keyskills' || $lasturl == 'all_role_category' || $lasturl == 'add_role_category')?'active':'';?>">
         <a href="#">
@@ -254,6 +339,23 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
         </ul>
       </li>
 
+<!-- End jobs  -->
+<!-- Start Jobs list -->
+       <!--  <li class="treeview">
+          <a href="#">
+          <i class="fa fa-file-text" aria-hidden="true"></i>
+            <span>Jobs list</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i> All list</a></li>
+            
+          </ul>
+        </li> -->
+
+<!-- End Jobs List -->
+
+
   <!-- Recruiter List -->
         <li class="treeview">
           <a href="#">
@@ -267,6 +369,30 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
         </li>
 
   <!-- Recruiter List -->
+
+
+
+<!-- Start Read More -->
+        
+
+       <!--  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-book" aria-hidden="true"></i>
+            <span>ReadMore</span> <i class="fa fa-angle-left pull-right"></i>
+            <span class="label label-primary pull-right"></span>
+          </a>
+          <ul class="treeview-menu">
+            
+            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i>Our Team</a></li>
+            <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i>About_us</a></li>
+            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i>  Blogs</a></li>
+
+            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i>   Testimonials</a></li>
+            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i>  packages</a></li>
+            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i>   Latest News</a></li>
+          </ul>
+        </li> -->
+<!-- End Read More -->
 
         <li class="treeview">
           <a href="{{url('admin/list_membership')}}">
