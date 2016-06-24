@@ -72,7 +72,7 @@
             </div>
             <div class="box-body">
 
-              @include('layout.error-notification')
+              @include('layouts.error-notification')
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>

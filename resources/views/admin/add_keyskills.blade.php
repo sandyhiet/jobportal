@@ -63,7 +63,7 @@
                   <h3 class="box-title">Add Keyskills <!-- <small>you can publish or save as a draft.</small> --></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body pad">
-                  @include('layout.error-notification')
+                  @include('layouts.error-notification')
                   <form method="post" action="{{url('admin/add_keyskills')}}" autocomplete="off">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard</title>
+  <title>{{$pagetitle}}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -15,10 +15,10 @@
   <!-- jvectormap -->
   <link rel="stylesheet" href="{{url('plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}">
+<link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{url('dist/css/skins/_all-skins.min.css')}}">
+<link rel="stylesheet" href="{{url('dist/css/skins/_all-skins.min.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,37 +26,33 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  </head>
-    <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
+      <!-- =============================================== -->
 
-          <!-- Left side column. contains the sidebar -->
-          @include('admin/adminleftsidebar')
+      <!-- Left side column. contains the sidebar -->
+      @include('admin/adminleftsidebar')
 
-          <!-- =============================================== -->
+      <!-- =============================================== -->
 
-         
-<!-- Content Wrapper. Contains page content -->
+      <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            All News
+          All Post Jobs
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
             <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">News Articles</a></li>
-            <li class="active">All News</li>
+            <li><a href="#">Job Center</a></li>
+            <li class="active">Recruiter Job Post</li>
           </ol>
         </section>
 
         <!-- Main content -->
-           
-            @include('layouts.error-notification')
-            <!-- Main content -->
-
         <section class="content">
 
           <!-- Default box -->
@@ -70,93 +66,69 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th style="width: 200px;">News Title</th>
-                    <th data-orderable="false">News</th>
-                    <th style="width: 80px;" data-orderable="false">Status</th>
+                    
+                    <th data-orderable="false">SN.</th>
+                    <th data-orderable="false">Company name</th>
+                    <th data-orderable="false">Job title</th>
+                    <th data-orderable="false">Location</th>
+                    <th data-orderable="false">Job type</th>
+                    <th data-orderable="false">Status</th>
                     <th style="width: 80px;" data-orderable="false">Action</th>
-
                   </tr>
                 </thead>
                 <tbody>
-                  
-                  <?php
-                  
-                  foreach ($news as $key => $New) {
-                  
-                  ?>
+                  <?php 
+
+                      $i=1;
+                      foreach($recruiter_postjob as $key=>$val){
+                      $companyname = ucfirst($recruiter_postjob[$key]->companyname);
+                      $jobtitle = ucfirst($recruiter_postjob[$key]->jobtitle);
+                      $location = ucfirst($recruiter_postjob[$key]->location);
+                      $jobtype = ucfirst($recruiter_postjob[$key]->jobtype);
+                      $status = $recruiter_postjob[$key]->status;
+                   ?>
+
                   <tr>
                     
-                    <td>
-                      
-                      <?php
-                      $newsTitle      = $New->newsTitle;
-                      $newsTitle      = explode('_', $newsTitle);
-                      $newsTitle      = implode($newsTitle, ' ');
-                      echo ucfirst($newsTitle);
-                      ?>
-                    </td>
-                    <td>
-                      <?php
-                      $newsDesc = $New->newsDescription;
-                      $len = strlen($newsDesc);
-                      if($len > 200){
-                        $newsDesc = substr($newsDesc, 0, 200).'...';
-                      } 
-                      echo ucfirst($newsDesc);
-                      ?>
-                      </td>
-                      <td>
+                    <td style="text-transform: capitalize;">{{$i}}</td>
+                    <td style="text-transform: capitalize;">{{$companyname}}</td>
+                    <td style="text-transform: capitalize;">{{$jobtitle}}</td>
+                    <td style="text-transform: capitalize;">{{$location}}</td>
+                    <td style="text-transform: capitalize;">{{$jobtype}}</td>
+                    <td style="text-transform: capitalize;">
+                      <?php 
+                        if ($status == 0) {
+                         echo "<span style='color:red;'>Rejected</span>";
+                        }elseif ($status == 1) {
+                          echo "<span style='color:green;'>Approved</span>";
+                        }else{
+                          echo 'Approval Pending';
 
-                        <?php 
-                        $ancTxt = '';
-
-                        if($New->status == '1'){
-                            $ancTxt = '<span class="text-success">Published</span>';
                         }
 
-                        if($New->status == '0'){
-                            $ancTxt = '<span class="text-danger">Draft</span>';
-                        }
-                        echo $ancTxt;
-                        ?>
-                        
-                      </td>
-                  
-                    <td>
-                      
-                        
-                        <a href="{{ url('admin/edit_news/'.$New->newsTitle) }}">Edit</a>
-                        |
-                         <a href="{{ url('deleteNews/'.$New->newsTitle) }}" class="anchorLikeButton" onclick="return confirm('Are you sure? Delete {{ $New->newsTitle }} ')">Delete</a>
+                      ?>
+                     
+
                     </td>
+                    
+                    <td>
+                       <a href="{{url('admin/recruiterjobdetails/'.$recruiter_postjob[$key]->id)}}">View Detail</a> | <a onclick="return confirm('Delete this Job?')" href="{{url('deleteRecruiterPostjob/'.$recruiter_postjob[$key]->id)}}">Delete</a>
+                    </td>
+                    
                   </tr>
-                  <?php }?>
+                  <?php  $i++; }?>
                   
                   
                 </tbody>
-                    <tfoot>
-                      <tr>
-                        <th style="width: 200px;">News Title</th>
-                        <th data-orderable="false">News</th>
-                        <th data-orderable="false">Status</th>
-                        <th style="width: 100px;" data-orderable="false">Action</th>
-                      </tr>
-                    </tfoot>
+                   
                   </table>
             </div><!-- /.box-body -->
             <div class="box-footer"></div><!-- /.box-footer-->
           </div><!-- /.box -->
 
         </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
 
-
-
-
-
-
-
-  </div>
+       </div>
 </div>
 
 <!-- jQuery 2.2.0 -->

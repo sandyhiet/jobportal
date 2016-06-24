@@ -16,6 +16,7 @@ use Redirect;
 use View;
 use Mail;
 use Image;
+use IitplMailer;
 
 class jobController extends Controller
 {
@@ -248,7 +249,7 @@ class jobController extends Controller
       
 
       
-        DB::table('recruiter_jobdetailspost')->insert([
+       $job_id = DB::table('recruiter_jobdetailspost')->insertGetId([
 
             'user_id'                =>$id,
             'email'                  =>$email,
@@ -310,6 +311,7 @@ class jobController extends Controller
         DB::table('recruiter_companydetailspost')->insert([
             
             'user_id'                 =>$id,
+            'job_id'                  =>$job_id,
             'companyname'             =>$companyname,
             'companytagline'          =>$companytagline,
             'companydescription'      =>$companydescription,
@@ -324,7 +326,21 @@ class jobController extends Controller
            
         ]);
 
-        
+        $mailData = array(
+            'mailmessage' => 'New Job Post.',
+            'name' => ucfirst($companyname),
+            'email'         => $email,
+            'location' => ucfirst($location),
+            'jobtitle' => ucfirst($jobtitle),
+        );
+
+        $subject = 'Recruiter Post New Job';
+        $email   = env('ADMINEMAIL1');
+        $data = array('email' => $email, 'subject' => $subject );
+
+
+        $welcomerecruitermailpage ='layouts.mail.welcometojobpost';
+        IitplMailer::sendemailwithoutname($welcomerecruitermailpage,$mailData,$data);
 
 
         return redirect()->back()->withInput()->with('message', 'Thank you for Job Post.');
@@ -332,7 +348,101 @@ class jobController extends Controller
     
 
 
+    public function deleteRecruiterProfile($user_id){
 
+     DB::table('users')->where('users.id', $user_id)->delete();
+     DB::table('jobrecruiter_profile')->where('jobrecruiter_profile.user_id', $user_id)->delete();
+     return redirect()->back()->with('message', 'One recoard deleted.'); 
+
+    }
+
+    public function approve_recruiterjobpost($id){
+
+     $membership = DB::table('recruiter_jobdetailspost')->where('recruiter_jobdetailspost.id', '=', $id)
+                ->update([
+                    'status'=>'1'
+                ]);
+
+        $recruiterpost_email = DB::table('recruiter_jobdetailspost')->select('*')->where('recruiter_jobdetailspost.id', '=', $id)
+                ->get();
+        $recruiter_companyname= DB::table('recruiter_companydetailspost')->select('*')->where('job_id','=',$recruiterpost_email[0]->id)->get();
+
+        //Trigger email
+        $email = $recruiterpost_email[0]->email;
+        $companyname = $recruiter_companyname[0]->companyname;
+
+    
+        $mailData = array(
+            'mailmessage' => 'Your Job Post is Approved.',
+            'name' => ucfirst($companyname),
+            'email'         => $email,
+        );
+
+        $subject = 'Recruiter Job Post Approval';
+            
+        $data = array('email' => $email, 'subject' => $subject );
+
+
+        $recruitermailpage ='layouts.mail.recruiterjobpostApproved';
+        IitplMailer::sendemailwithoutname($recruitermailpage,$mailData,$data);
+       
+      
+       return redirect('admin/all_recruiterjobpost')->with('message', 'Job Approved');
+
+
+    }
+
+    public function reject_recruiterjobpost($id){
+
+      
+
+        $membership = DB::table('recruiter_jobdetailspost')->where('recruiter_jobdetailspost.id', '=', $id)
+                ->update([
+                    'status'=>'0'
+                ]);
+
+        $recruiterpost_email = DB::table('recruiter_jobdetailspost')->select('*')->where('recruiter_jobdetailspost.id', '=', $id)
+                ->get();
+        $recruiter_companyname= DB::table('recruiter_companydetailspost')->select('*')->where('job_id','=',$recruiterpost_email[0]->id)->get();
+
+        //Trigger email
+        $email = $recruiterpost_email[0]->email;
+        $companyname = $recruiter_companyname[0]->companyname;
+        
+        $mailData = array(
+            'mailmessage' => 'We review your post job but job is rejected for some reason.',
+            'name' => ucfirst($companyname),
+            'email'         => $email,
+        );
+
+        $subject = 'Job Post Reject';
+            
+        $data = array( 'email' => $email, 'subject' => $subject );
+
+        $recruiterrejectedmailpage ='layouts.mail.recruiterjobpostRejected';
+        IitplMailer::sendemailwithoutname($recruiterrejectedmailpage,$mailData,$data);
+       
+       
+        return redirect('admin/all_recruiterjobpost')->with('message', 'Job Post Rejected');
+
+
+    }
+
+
+    public function deleteRecruiterPostjob($id){
+
+    DB::table('recruiter_jobdetailspost')->where('recruiter_jobdetailspost.id', $id)->delete();
+    $getcompanyImage = DB::table('recruiter_companydetailspost')->where('recruiter_companydetailspost.job_id', $id)->get();
+    $companyImage = $getcompanyImage[0]->company_logo;
+    DB::table('recruiter_companydetailspost')->where('recruiter_companydetailspost.job_id', $id)->delete();
+
+     unlink("jobpostimage/".$companyImage);
+     unlink("jobpostimage/thumb220x100/".$companyImage);
+   
+
+     return redirect()->back()->with('message', 'One recoard deleted.'); 
+
+    }
 
 
 
