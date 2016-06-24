@@ -329,7 +329,7 @@ Route::get('date',function(){
 
 
 
-        /*//////////////////////////Role Category///////////////////////////////////////////////////*/
+        /*************   Role Category ***********************/
 
         Route::get('admin/add_role_category', function(){
              $data = array('pagetitle'=>'Add Role Category');
@@ -384,8 +384,64 @@ Route::get('date',function(){
        });
        Route::post('update_social_links', 'homePage\homeSliderController@update_social_links');
 
-        ///////////////////////////////// Admin Relate Work End /////////////////////////////////////////////
+        /************ Admin Relate Work End ***************/
 
+
+        /************ Admin Job center Route start ***************/ 
+
+        Route::get('admin/all_recruiter_profile' , function(){
+           $data = array('pagetitle' => 'All Recruiter Profile');
+           $recruiter_profile = DB::table('users')->where('users.usertype', 'jobrecruiter')->where('users.activeAccount', 1)
+                ->join('jobrecruiter_profile', 'users.id', '=', 'jobrecruiter_profile.user_id')->orderBy('users.id', 'desc')
+                ->get();
+            return view('admin.jobcenter.all_recruiterprofile' , $data)->with('recruiter_profile' ,$recruiter_profile);
+        });
+
+
+        Route::get('deleteRecruiterProfile/{user_id}', 'jobController@deleteRecruiterProfile');
+
+        Route::get('admin/all_recruiterjobpost' , function(){
+           $data = array('pagetitle' => 'All Recruiter Post Job');
+           $recruiter_postjob = DB::table('recruiter_jobdetailspost')
+                ->join('recruiter_companydetailspost', 'recruiter_jobdetailspost.id', '=', 'recruiter_companydetailspost.job_id')->orderBy('recruiter_jobdetailspost.id', 'desc')
+                ->get();
+            return view('admin.jobcenter.all_recruiterpostjobs' , $data)->with('recruiter_postjob' ,$recruiter_postjob);
+        });
+
+        Route::get('admin/recruiterjobdetails/{id}' , function($id){
+           $data = array('pagetitle' => 'Job Detail');
+           $postjobdetail = DB::table('recruiter_jobdetailspost')->select('*')->where('id', $id)->get();
+           $postjobdetail_id =$postjobdetail[0]->id;
+           $postcompanydetail = DB::table('recruiter_companydetailspost')->select('*')->where('id', $postjobdetail_id)->get();
+               
+            return view('admin.jobcenter.recruiterjobdetail' , $data)->with('postjobdetail' ,$postjobdetail)->with('postcompanydetail' ,$postcompanydetail);
+        });
+
+    
+        Route::get('admin/approverecruiterjobpost/{id}', 'jobController@approve_recruiterjobpost');
+        
+        Route::get('admin/rejectrecruiterjobpost/{id}', 'jobController@reject_recruiterjobpost');
+
+
+        Route::get('admin/all_recruiterRejectedjob' , function(){
+           $data = array('pagetitle' => 'All Recruiter Rejected Job');
+           $recruiter_postjob = DB::table('recruiter_jobdetailspost')->where('status', '=', 0)
+                ->join('recruiter_companydetailspost', 'recruiter_jobdetailspost.id', '=', 'recruiter_companydetailspost.job_id')->orderBy('recruiter_jobdetailspost.id', 'desc')
+                ->get();
+            return view('admin.jobcenter.all_rejectedrecruiterpostjobs' , $data)->with('recruiter_postjob' ,$recruiter_postjob);
+        });
+
+        Route::get('admin/all_recruiterApprovedjob' , function(){
+           $data = array('pagetitle' => 'All Recruiter Approved Job');
+           $recruiter_postjob = DB::table('recruiter_jobdetailspost')->where('status', '=', 1)
+                ->join('recruiter_companydetailspost', 'recruiter_jobdetailspost.id', '=', 'recruiter_companydetailspost.job_id')->orderBy('recruiter_jobdetailspost.id', 'desc')
+                ->get();
+            return view('admin.jobcenter.all_approvedrecruiterpostjobs' , $data)->with('recruiter_postjob' ,$recruiter_postjob);
+        });
+
+        Route::get('deleteRecruiterPostjob/{id}', 'jobController@deleteRecruiterPostjob');
+
+         /************ Admin Job center Route end ***************/ 
 
        
   });

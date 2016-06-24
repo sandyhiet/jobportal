@@ -166,10 +166,95 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
           </ul>
       </li>
 
+      <!-- Start job center  -->
+
+      <li class="treeview <?php echo($secondlasturl == 'edit_Category' || $lasturl == 'all_recruiter_profile' || $lasturl == 'all_recruiterjobpost'  || $lasturl == 'all_recruiterApprovedjob' || $lasturl == 'all_recruiterRejectedjob' || $lasturl == 'add_keyskills' || $lasturl == 'all_role_category' || $lasturl == 'add_role_category')?'active':'';?>">
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>Job Center</span>
+          <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+
+          <li <?php echo($lasturl == 'all_recruiter_profile')?'class="active"':'';?>>
+                <a href="{{url('admin/all_recruiter_profile')}}">
+                  <i class="fa fa-angle-double-right"></i> Recruiter Profile
+                </a>
+          </li>
+          
+          
+          <li <?php echo($lasturl == 'all_recruiterjobpost' || $lasturl == 'all_recruiterApprovedjob' || $lasturl == 'all_recruiterRejectedjob' || $secondlasturl == 'edit_Category')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i>Recruiter Job Post<i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'all_recruiterjobpost')?'class="active"':'';?>>
+                <a href="{{url('admin/all_recruiterjobpost')}}">
+                  <i class="fa fa-angle-double-right"></i> All Job Post
+                </a>
+              </li>
+              <li <?php echo($lasturl == 'all_recruiterApprovedjob')?'class="active"':'';?>>
+                <a href="{{url('admin/all_recruiterApprovedjob')}}">
+                  <i class="fa fa-angle-double-right"></i> All Approved Job
+                </a>
+              </li>
+               <li <?php echo($lasturl == 'all_recruiterRejectedjob')?'class="active"':'';?>>
+                <a href="{{url('admin/all_recruiterRejectedjob')}}">
+                  <i class="fa fa-angle-double-right"></i> All Rejected Job
+                </a>
+              </li>
+            </ul> 
+          </li>
+
+
+
+         <!--  <li <?php echo($lasturl == 'all_keyskills' || $lasturl == 'add_keyskills' || $secondlasturl == 'edit_Category')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i>Key<i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'all_keyskills')?'class="active"':'';?>>
+                <a href="{{url('admin/all_keyskills')}}">
+                  <i class="fa fa-angle-double-right"></i> All Keyskills
+                </a>
+              </li>
+              <li <?php echo($lasturl == 'add_keyskills')?'class="active"':'';?>>
+                <a href="{{url('admin/add_keyskills')}}">
+                  <i class="fa fa-angle-double-right"></i> Add keyskill
+                </a>
+              </li>
+            </ul> 
+          </li> -->
+
+
+
+         <!--  <li <?php echo($lasturl == 'all_category' || $lasturl == 'add_category' || $lasturl == 'add_sub_category' || $secondlasturl == 'edit_Category')?'class="active"':'';?>>
+            <a href="#">
+              <i class="fa fa-circle-o"></i>Role<i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php echo($lasturl == 'all_role_category')?'class="active"':'';?>>
+                <a href="{{url('admin/all_role_category')}}">
+                  <i class="fa fa-angle-double-right"></i> All Role Category
+                </a>
+              </li>
+              <li <?php echo($lasturl == 'add_role_category')?'class="active"':'';?>>
+                <a href="{{url('admin/add_role_category')}}">
+                  <i class="fa fa-angle-double-right"></i> Add Role
+                </a>
+              </li>
+            </ul> 
+          </li> -->
+
+        </ul>
+      </li> 
+
+      <!-- End job center  -->
+
 
      <!-- start jobs  -->
         
-       <li class="treeview <?php echo($secondlasturl == 'edit_Category' || $lasturl == 'add_category' || $lasturl == 'add_sub_category'  || $lasturl == 'all_category' || $lasturl == 'all_keyskills' || $lasturl == 'add_keyskills' || $lasturl == 'all_role_category' || $lasturl == 'add_role_category')?'active':'';?>">
+      <li class="treeview <?php echo($secondlasturl == 'edit_Category' || $lasturl == 'add_category' || $lasturl == 'add_sub_category'  || $lasturl == 'all_category' || $lasturl == 'all_keyskills' || $lasturl == 'add_keyskills' || $lasturl == 'all_role_category' || $lasturl == 'add_role_category')?'active':'';?>">
         <a href="#">
           <i class="fa fa-files-o"></i>
           <span>Service Category</span>
