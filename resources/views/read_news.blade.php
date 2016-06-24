@@ -13,7 +13,7 @@
 						<img src="http://placehold.it/140x140.jpg" alt="" class="img-responsive img-circle" />
 					</div>
 					<div class="col-sm-10">
-						<h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
+						<h1><?php echo implode(explode('_', $news[0]->newsTitle), ' '); ?></h1>
 						<div class="meta">
 							<span><i class="fa fa-user"></i>John Doe</span>
 							<span><i class="fa fa-calendar"></i>28/09/2015</span>
@@ -32,21 +32,19 @@
 			<div class="container">
 				<div class="row">
 
-					<div class="col-sm-10">
+					<div class="col-sm-12">
 
 						<!-- POSTS START -->
 
 						<article>
 
-						<?php 
-							
-						foreach($news as $key => $value) {?>
+						
 						<p>
-							 <img class="img-responsive" src="{{url('newsImages/thumb800x530/'.$news[$key]->newsImage)}}"/>
+							<img style="width:700px;" class="img-responsive" src="{{url('newsImages/thumb800x530/'.$news[0]->newsImage)}}"/>
 							</p>
-							 <p style="text-align: justify;"><?PHP echo stripcslashes(substr($news[$key]->newsDescription, 0, 220)); ?>
+							 <p style="text-align: justify;"><?PHP echo stripcslashes(substr($news[0]->newsDescription, 0, 520)); ?>
 
-							<?php }?>
+						
 							<h2>Gallery</h2>
 
 

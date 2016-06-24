@@ -37,8 +37,8 @@
      });
 
 // News Start**********************
-Route::get('read_news/{id}', function($newsTitle){
-$news = DB::table('news')->where('newsTitle', '=', '$newsTitle')->get();
+Route::get('read_news/{newsTitle}', function($newsTitle){
+$news = DB::table('news')->select('*')->where('newsTitle', '=', $newsTitle)->get();
 
 return view('read_news')->with('news',$news);
 });

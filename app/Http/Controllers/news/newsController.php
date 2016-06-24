@@ -24,6 +24,9 @@ class newsController extends Controller
         $newsTitle = str_replace(' ', '_', $newsTitle); // Replaces all spaces with underscore.
         $newsTitle = preg_replace('/_+/', '_', $newsTitle); // Replaces multiple underscore with single one.
         $newsTitle = strtolower($newsTitle);
+        $name = $res->name;
+        $date = $res->date;
+
 
         $newsDescription      = addslashes($res->newsDescription);
         $status      = $res->status;
@@ -37,6 +40,8 @@ class newsController extends Controller
         $inputs = [
 
             'newsTitle'        => $newsTitle,
+            'name'     => $name,
+            'date'     => $date,
             // 'news_category'        => $news_category,
             'newsDescription'     => $newsDescription,
             'newsImage'     => $newsImage,
@@ -47,6 +52,8 @@ class newsController extends Controller
         $rules = [
 
             'newsTitle'        => 'required',
+             'name'         => 'required',
+            'date'         => 'required',
             // 'news_category'     =>'required',
             'newsDescription'  => 'required',
             'newsImage'  => 'required',
@@ -58,6 +65,9 @@ class newsController extends Controller
         $messages = [
 
             'newsTitle.required'               => 'Please enter news title',
+             'name.required'               => 'Please enter news title',
+
+            'date.required'               => 'Please enter news title',
             // 'news_category.required'           => 'Please select news category',
             'newsDescription.required'  => 'Please enter news description',
             'newsImage.required'  => 'Please select news main image',
@@ -126,6 +136,8 @@ class newsController extends Controller
         //return $newsTitle;
         DB::table('news')->insert([
             'newsTitle'       => $newsTitle,
+              'name'       => $name,
+            'date'      => $date,
             'newsDescription'       => $newsDescription,
             'status'          => $status,
             'newsImage'          => $fileName,
@@ -173,7 +185,8 @@ class newsController extends Controller
         $newsTitle = str_replace(' ', '_', $newsTitle); // Replaces all spaces with underscore.
         $newsTitle = preg_replace('/_+/', '_', $newsTitle); // Replaces multiple underscore with single one.
         $newsTitle = strtolower($newsTitle);
-        
+        $name = $res->name;
+        $date = $res->date;
        // $news_category     = $res->news_category;
        $newsDescription   = addslashes($res->newsDescription);
        $id                = $res->id;
@@ -259,6 +272,8 @@ class newsController extends Controller
             ->where('id', $id)
             ->update([
                 'newsTitle'      => $newsTitle,
+                 'name'       => $name,
+                 'date'      => $date,
                 'newsDescription'=> $newsDescription,
                 'status'         => $status,
                 'newsImage'      => $fileName

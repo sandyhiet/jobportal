@@ -77,7 +77,21 @@
                       <p class="help-block pull-right">Special Characters not allowed.</p>
                     </div>
                     
-
+                    <div class="form-group">
+                      <label for="">Name</label>
+                      <input name="name" type="text" value="{{ $news[0]->name }}" class="form-control" id="" placeholder="Maximum 30 characters allowed." maxlength="30">
+                      <p class="help-block pull-right">Special Characters not allowed.</p>
+                    </div>
+                    <div class="form-group">
+                      <label>Date</label>
+                      <div class="input-group">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <input type="date" class="form-control" value="{{ $news[0]->date }}" name="date" placeholder="Enter Timeline Date">
+                      </div>
+                       <span class="pull-right text-danger">*Required</span>
+                    </div>
                     <div class="form-group"  >
                       <label for="">Content</label>
                       <textarea name="newsDescription" id="editor1" style="height:200px;width:100%;">{!! $news[0]->newsDescription !!}</textarea>

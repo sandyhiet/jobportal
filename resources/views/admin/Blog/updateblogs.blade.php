@@ -72,7 +72,7 @@
                       <input name="title" type="text" value="{{ $blogs[0]->title }}" class="form-control" id="" placeholder="Maximum 30 characters allowed." maxlength="30">
                       <p class="help-block pull-right">Special Characters not allowed.</p>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                       <label for="">Name</label>
                       <input name="name" type="text" value="{{ $blogs[0]->name }}" class="form-control" id="" placeholder="Maximum 30 characters allowed." maxlength="30">
                       <p class="help-block pull-right">Special Characters not allowed.</p>
