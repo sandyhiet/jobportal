@@ -263,7 +263,7 @@ class categoryController extends Controller
     }
 
     public function deleteRolecategory($id){
-        
+        // DB::table('users')->where('votes', '<', 100)->delete();
        DB::table('role_category')->where('id', $id)->delete();
         return redirect()->back()->with('message', 'Role Category Deleted.');
 
@@ -272,8 +272,7 @@ class categoryController extends Controller
 
 
     public function update_role(Request $req){
-        $id = $req->id;
-        $role_category_name = $req->role_category_name;
+       
         DB::table('role_category')->where('id', $id)->update([
             'role_category_name'=>$role_category_name
         ]);

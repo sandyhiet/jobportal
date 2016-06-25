@@ -615,13 +615,13 @@ class jobController extends Controller
 
         /*JOB DETAILS*/
         $id                      = $res->jobseeker_id;
-        $firstname                    = $res->firstname;
-        $lastname                    = $res->lastname;
+        $firstname               = $res->firstname;
+        $lastname                = $res->lastname;
         $title                   = addslashes($res->title);
         $video                   = $res->video;
         // $email                   = $res->email;
         $job_category            = $res->job_category;
-        $country                = $res->country;
+        $country                 = $res->country;
         $state                   = $res->state;
 
         $city                    = $res->city;
@@ -720,7 +720,7 @@ class jobController extends Controller
         }
       
 
-       DB::table('resume_post')
+       $resume=DB::table('resume_post')
             ->where('id', $id)
             ->update([
              'id'                => $id,
@@ -757,6 +757,17 @@ class jobController extends Controller
                     
             ]);
 
+ // return $choose_network[0].$choose_network[1];
+            
+     for ($i=0; $i < sizeof($choose_network); $i++) { 
+            DB::table('social_network')->where('id', $id)
+            ->update([
+            
+            'choose_network'     => $choose_network[$i],
+            'url'                => $url[$i],
+            'user_id'                => $user_id
+            ]);
+        }
        
             return redirect('jobseeker/viewdetail')->with('message', 'resume Updated.');
 

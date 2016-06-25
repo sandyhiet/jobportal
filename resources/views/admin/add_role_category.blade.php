@@ -64,7 +64,7 @@
                 </div><!-- /.box-header -->
                 <div class="box-body pad">
                   @include('layout.error-notification')
-                  <form method="post" action="{{url('admin/add_role_category')}}" autocomplete="off">
+                  <form method="post" action="{{url('add_role_category')}}" autocomplete="off">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                       <label for="">Role Category Name</label>

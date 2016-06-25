@@ -24,17 +24,39 @@ class jobController extends Controller
 
     public function jobseekerRegistartion(Request $req){
 
-        //return 'adfert';
+        
     
         $firstname                    = $req->firstname;
         $lastname                     = $req->lastname;
         $email                        = $req->email;
+
+        $password                     = bcrypt($req->password);
+        $confirmpassword              = $req->confirmpassword;
+
         $password                     = $req->password;
         $repassword                   = $req->confirmpassword;
+
         $status                       = $req->status;
 
 
         $inputs = [
+
+
+            'firstname'               => $firstname,
+            'lastname'                => $lastname,
+            'email'                   => $email,
+            'password'                => $password,
+            'confirmpassword'         => $confirmpassword,
+        ];
+
+        $rules = [
+            
+            'firstname'               =>'required',
+            'lastname'                =>'required',
+            'email'                   =>'required',
+            'password'                =>'required',            
+            'confirmpassword'         =>'required'
+
             
             'firstname'           => $firstname,
             'lastname'            => $lastname,
@@ -50,11 +72,23 @@ class jobController extends Controller
             'email'               => 'required|email|unique:users|max:50',
             'password'            => 'required|same:repassword',
            
+
         ];
 
-        
+        $messages = [
+            'firstname.required'        => 'Please enter firstname',
+            'lastname.required'         => 'Please enter lastname',
+            'email.unique'              => 'Job title email',
+            'password.required'         => 'Please enter password',
+            'confirmpassword.required'  => 'Please enter confirmpassword',  
+      ];
+
+
+        $validation = Validator::make($inputs, $rules , $messages);
+
 
         $validation = Validator::make($inputs, $rules);
+
         if( $validation->fails() ){
             return redirect()->back()->withInput()->with('errors', $validation->errors() );
         }
@@ -63,9 +97,8 @@ class jobController extends Controller
         //     return $validation->errors();
         // }
 
-        $password                     = bcrypt($req->password);
 
-        $user_id = DB::table('users')->insertGetId([
+         $user_id = DB::table('users')->insertGetId([
 
             
             'email'                  =>$email,
@@ -75,7 +108,16 @@ class jobController extends Controller
            
         ]);
       
-  
+
+        
+        DB::table('JobseekerRegistration')->insert([
+
+            'firstname'             =>$firstname,
+            'lastname'              =>$lastname,
+            'user_id'               =>$user_id
+            
+           
+        ]);
         DB::table('resume_post')->insert([
 
             'firstname'             =>$firstname,
@@ -86,9 +128,14 @@ class jobController extends Controller
         ]);
 
 
+
+        // return '1';
+        return redirect()->back()->with('message', 'Thank you for Registration');
+
        // return '1';
         
         return redirect()->back()->withInput()->with('message', 'Thank you for Registration');
+
     }
 
     public function saverecruiterRegistration(Request $req){
