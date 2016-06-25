@@ -84,198 +84,93 @@
 						<h2>Recent Jobs</h2>
 
 						<div class="jobs">
-							
-							<!-- Job offer 1 -->
-							<a href="#" class="featured applied">
+						<?php 
+
+							foreach($allpostjobs as $key => $value) {
+
+								$jobtitle =	ucfirst($allpostjobs[$key]->jobtitle);
+								$companyname =	ucfirst($allpostjobs[$key]->companyname);
+								$location =	ucfirst($allpostjobs[$key]->location);
+								$jobtype =	ucfirst($allpostjobs[$key]->jobtype);
+								$jobregion =	ucfirst($allpostjobs[$key]->jobregion);
+								$companytagline =	ucfirst($allpostjobs[$key]->companytagline);
+
+								$feature = $allpostjobs[$key]->featuredjob;
+								$ftru = '';
+								switch ($feature) {
+	                                case 1:
+	                                    $ftru = 'featured applied';
+	                                    break;
+	                                case 0:
+	                                    $ftru = '';
+	                                    break;
+	                                default:
+	                                    $ftru = '';
+	                                    break;
+                               }
+
+							 ?>
+
+							<a href="{{url('company_detail/'.$allpostjobs[$key]->id )}}" class="{{$ftru}}">
 								<div class="row">
 									<div class="col-md-1 hidden-sm hidden-xs">
+										<?php if ($allpostjobs[$key]->company_logo) { ?>
+										<img src="{{url('jobpostimage/thumb60x60/'.$allpostjobs[$key]->company_logo)}}" alt="" class="img-responsive" />
+										<?php }else{?>
 										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
+									    <?php } ?>
+										
 									</div>
 									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Web Designer</h5>
-										<p><strong>Amazon Inc.</strong> Company slogan goes here</p>
+										<h5>{{$jobtitle}}</h5>
+										<p><strong>{{$companyname}}</strong> {{$companytagline}}</p>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>New York City, NY, USA</strong></p>
+										<p><strong>{{$location}}, {{$jobregion}}</strong></p>
 										<p class="hidden-xs">126.3 miles away</p>
 									</div>
+									<?php 
+										$badge = '';
+                                        $jtype = $allpostjobs[$key]->jobtype;
+                                        switch ($jtype) {
+                                            case 'Full Time':
+                                                $badge = 'full-time';
+                                                break;
+                                            case 'Part Time':
+                                                $badge = 'part-time';
+                                                break;
+                                            case 'Internship':
+                                                $badge = 'internship';
+                                                break;
+                                            case 'Freelance':
+                                                $badge = 'freelance';
+                                                break;
+                                            case 'Volunteer':
+                                                $badge = 'volunteer';
+                                                break;    
+                                            default:
+                                                $badge = 'temporary';
+                                                break;
+                                        }
+
+
+									?>
 									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
 										<p class="job-salary"><strong>$128,000</strong></p>
-										<p class="badge full-time">Full time</p>
+										<p class="badge {{$badge}}">{{$jobtype}}</p>
 									</div>
 								</div>
-							</a>
+							</a>		
+
+
+							<?php } ?>
 							
-							<!-- Job offer 2 -->
-							<a href="#" class="featured">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Fron End Developer</h5>
-										<p><strong>Ebay Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Chicago, IL, USA</strong></p>
-										<p class="hidden-xs">792.1 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$142,000</strong></p>
-										<p class="badge part-time">Part time</p>
-									</div>
-								</div>
-							</a>
-							
-							<!-- Job offer 3 -->
-							<a href="#" class="applied">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Back End Developer</h5>
-										<p><strong>Google</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>San Diego, CA, USA</strong></p>
-										<p class="hidden-xs">875.3 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$220,000</strong></p>
-										<p class="badge freelance">Freelance</p>
-									</div>
-								</div>
-							</a>
-							
-							<!-- Job offer 4 -->
-							<a href="#" class="applied">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Project Manager</h5>
-										<p><strong>Dropbox Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Los Angeles, CA, USA</strong></p>
-										<p class="hidden-xs">943.4 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$95,000</strong></p>
-										<p class="badge temporary">Temporary</p>
-									</div>
-								</div>
-							</a>
-							
-							<!-- Job offer 5 -->
-							<a href="#">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Office Assistant</h5>
-										<p><strong>Dell Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Seattle, WA, USA</strong></p>
-										<p class="hidden-xs">1168.7 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$36,000</strong></p>
-										<p class="badge internship">Internship</p>
-									</div>
-								</div>
-							</a>
-							
-							<!-- Job offer 6 -->
-							<a href="#" class="hidden-job">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Web Designer</h5>
-										<p><strong>Amazon Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>New York City, NY, USA</strong></p>
-										<p class="hidden-xs">126.3 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$128,000</strong></p>
-										<p class="badge full-time">Full time</p>
-									</div>
-								</div>
-							</a>
-							
-							<!-- Job offer 7 -->
-							<a href="#" class="hidden-job">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Fron End Developer</h5>
-										<p><strong>Ebay Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Chicago, IL, USA</strong></p>
-										<p class="hidden-xs">792.1 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$142,000</strong></p>
-										<p class="badge part-time">Part time</p>
-									</div>
-								</div>
-							</a>
-							
-							<!-- Job offer 8 -->
-							<a href="#" class="hidden-job">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Back End Developer</h5>
-										<p><strong>Google</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>San Diego, CA, USA</strong></p>
-										<p class="hidden-xs">875.3 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$220,000</strong></p>
-										<p class="badge freelance">Freelance</p>
-									</div>
-								</div>
-							</a>
-							
-							<!-- Job offer 9 -->
-							<a href="#" class="hidden-job">
-								<div class="row">
-									<div class="col-md-1 hidden-sm hidden-xs">
-										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
-									</div>
-									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
-										<h5>Project Manager</h5>
-										<p><strong>Dropbox Inc.</strong> Company slogan goes here</p>
-									</div>
-									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
-										<p><strong>Los Angeles, CA, USA</strong></p>
-										<p class="hidden-xs">943.4 miles away</p>
-									</div>
-									<div class="col-lg-2 col-md-2 hidden-sm hidden-xs job-type text-center">
-										<p class="job-salary"><strong>$95,000</strong></p>
-										<p class="badge temporary">Temporary</p>
-									</div>
-								</div>
-							</a>
+						
+
+						
 							
 							<!-- Job offer 10 -->
-							<a href="#" class="hidden-job">
+							<!-- <a href="#" class="hidden-job">
 								<div class="row">
 									<div class="col-md-1 hidden-sm hidden-xs">
 										<img src="http://placehold.it/60x60.jpg" alt="" class="img-responsive" />
@@ -293,7 +188,7 @@
 										<p class="badge internship">Internship</p>
 									</div>
 								</div>
-							</a>
+							</a> -->
 
 						</div>
 
@@ -305,20 +200,31 @@
 					</div>
 					<div class="col-sm-4">
 						<h2>Featured Jobs</h2>
-						<a href="#">
+						<a href="{{url('company_detail/'.$featuredpostjobs[0]->id )}}">
+							<?php if ($featuredpostjobs[0]->company_logo) { ?>
+								<img src="{{url('jobpostimage/thumb400x265/'.$featuredpostjobs[0]->company_logo)}}" alt="Featured Job" class="img-responsive" width="400" height="265" />
+							<?php }else{?>
 							<img src="http://placehold.it/400x265.jpg" alt="Featured Job" class="img-responsive" />
+							<?php } ?>
+							
 							<div class="featured-job">
-								<img src="http://placehold.it/60x60.jpg" alt="" class="img-circle" />
+								<?php if ($featuredpostjobs[0]->company_logo) { ?>
+								<img src="{{url('jobpostimage/thumb60x60/'.$featuredpostjobs[0]->company_logo)}}" alt="" class="img-circle" />
+								<?php }else{?>
+								<img src="http://placehold.it/60x60.jpg" alt="Featured Job" class="img-responsive" />
+							    <?php } ?>
 								<div class="title">
-									<h5>Web Designer</h5>
-									<p>Amazon</p>
+									<h5>{{ ucfirst($featuredpostjobs[0]->jobtitle) }}</h5>
+									<p>{{ ucfirst($featuredpostjobs[0]->companyname) }}</p>
 								</div>
 								<div class="data">
-									<span class="city"><i class="fa fa-map-marker"></i>New York City</span>
-									<span class="type full-time"><i class="fa fa-clock-o"></i>Full Time</span>
+									<span class="city"><i class="fa fa-map-marker"></i>{{ucfirst($featuredpostjobs[0]->location) }}, {{ucfirst($featuredpostjobs[0]->jobregion) }}</span>
+									<span class="type full-time"><i class="fa fa-clock-o"></i>{{ ucfirst($featuredpostjobs[0]->jobtype) }}</span>
 									<span class="sallary"><i class="fa fa-dollar"></i>45,000</span>
 								</div>
-								<div class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tristique euismod lorem, a consequat orci consequat a. Donec ullamcorper tincidunt nunc, ut aliquam est pellentesque porta. In neque erat, malesuada sit amet orci ac, laoreet laoreet mauris.</div>
+								<div class="description">
+									<?php echo substr($featuredpostjobs[0]->companydescription, 0, 200); ?>
+								</div>
 							</div>
 						</a>
 					</div>

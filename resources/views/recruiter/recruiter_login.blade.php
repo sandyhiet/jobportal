@@ -34,7 +34,7 @@
 				                  @endif
 							</div>
 							<div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}" id="job-location-group">
-								<label for="job-location">Re-enter Password</label>
+								<label for="job-location">Password</label>
 								<input type="password" class="form-control" id="password" name="password" placeholder="Enter password" maxlength="15">
 								  @if ($errors->has('password'))
 					                  <span class="help-block">

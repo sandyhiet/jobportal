@@ -15,6 +15,7 @@ use View;
 use Hash;
 use DB;
 use Mail;
+use IitplMailer;
 
 
 //use App\Role;
@@ -244,7 +245,7 @@ class AuthAndRoleController extends Controller
                 ->with('singleerrors', 'Either email or password is wrong.');
                         
                 }else{
-                     return redirect('recruiter_dashboard');
+                     return redirect('recruiter_jobspost');
                 }
  
  
@@ -354,7 +355,7 @@ class AuthAndRoleController extends Controller
 
         $user_id = DB::table('users')->select('*')->where('email','=',$email)->where('usertype', 'jobrecruiter')->where('activeAccount', 1)->get();
         $id = $user_id[0]->id;
-        $hashvalue = rand(1,999999);
+        $hashvalue = md5(999999);
         // insert hash value in forget_password table
         DB::table('resetrequest_id')->insert([
               'req_id' => $hashvalue,
@@ -364,21 +365,86 @@ class AuthAndRoleController extends Controller
 
         //Recruiter Reset Password mail
         $mailmessage    = env('SITEURL').'recruiterresetpassword/'.$id.'/'.$hashvalue;
-        $subject         = 'Forget Password';
+        $mailmessage1    =  'Please click the following link for reset password';
+        $subject         = 'Reset Your Password';
 
-        $mailData       = array('mailmessage'=>$mailmessage);
-        $data           = array( 'email' => stripslashes($email),'subject' => $subject );       
-        Mail::send('layouts.mail.recruiter_forget_password', $mailData, function ($message) use ($data) {
-            //return $CandidateEmail;
-            $message->from(env('EMAILFROM'), env('EMAILNAME'));
-            //$message->to($CandidateEmail)->cc('bar@example.com');
-            $message->to($data['email']);
-            $message->cc('gupta.sandhya@intactinnovations.com');
-            //$message->bcc($address, $name = null);
-            //$message->replyTo($address, $name = null);
-            $message->subject($data['subject']); 
-        });
+        $mailData       = array('mailmessage'=>$mailmessage, 'mailmessage1'=>$mailmessage1);
+        $data           = array('email' => stripslashes($email),'subject' => $subject ); 
+
+        $recruiterforgetpasswordmail ='layouts.mail.recruiter_forget_password';
+        IitplMailer::sendemailwithoutname($recruiterforgetpasswordmail,$mailData,$data);
+
+       
         return redirect()->back()->withInput()->with('message','Reset password link is send to your email.');
+    }
+
+    public function recruiterchangepassword(Request $req){
+
+        //return "xcvc";
+        $recruiter_id            = $req->recruiter_id;
+
+        $oldpassword             = $req->oldpassword;
+        $newpassword             = $req->newpassword;
+        $confmpassword           = $req->confmpassword;
+
+        $inputs = [
+
+            'oldpassword'        => $oldpassword,
+            'newpassword'        => $newpassword,
+            'confmpassword'      => $confmpassword
+            
+        ];
+
+        $rules = [
+
+            'oldpassword'                  => 'required|max:15',
+            'newpassword'                  => 'required|same:confmpassword|max:15',
+           
+            
+        ];
+
+        $messages = [
+
+            'oldpassword.required'          => 'Enter your old password.',
+            'newpassword.required'          => 'Enter your new password.',
+           
+            
+        ];
+
+        $validation = Validator::make($inputs, $rules, $messages);
+
+        if( $validation->fails() ){
+            return redirect()->back()->withInput()->with('errors', $validation->errors() );
+        }
+
+        if($newpassword != $confmpassword){
+            return redirect()->back()->withInput()->with('singleerrors', 'Password do not match.' );
+        }
+
+
+        //check old password
+        $hashedPassword = DB::table('users')->where('id','=', $recruiter_id)->where('usertype', 'jobrecruiter')->get();
+        $hashedPassword = $hashedPassword[0]->password;
+
+        
+        $hashedNewPassword = bcrypt($req->newpassword);
+        if (Hash::check($oldpassword, $hashedPassword)) {
+            // The passwords match...
+            DB::table('users')->where('id', $recruiter_id)->where('usertype', 'jobrecruiter')->update([
+
+                'password'   => $hashedNewPassword
+            
+            ]);
+
+        } else {
+            return redirect()->back()->withInput()->with('singleerrors', 'Wrong old password.' );
+        }
+        
+
+
+        
+        return redirect()->back()->withInput()->with('message', 'Password updated.');
+
     }
 
 

@@ -29,9 +29,9 @@
 			                       <p style="color: green;">{{ Session::get('message') }}</p>
 			                     </div>
 			                  @endif
-			                  @if( Session::has('singleerror') )
+			                  @if( Session::has('error') )
 			                    <div class="alert alert-danger" style="padding: 11px;">
-			                       <p style="color: red;">{{ Session::get('singleerror') }}</p>
+			                       <p style="color: red;">{{ Session::get('error') }}</p>
 			                     </div>
 			                  @endif
 							@endif
@@ -48,7 +48,7 @@
 							</div>
 							<div class="form-group {{ $errors->has('jobtitle') ? ' has-error' : '' }}" id="job-title-group">
 								<label for="job-title">Title</label>
-								<input type="text" class="form-control" name="jobtitle" placeholder="e.g. Web Designer" maxlength="50" value="{{ old('jobtitle') }}">
+								<input type="text" class="form-control" name="jobtitle" placeholder="e.g. Web Designer" maxlength="25" value="{{ old('jobtitle') }}">
 								 @if ($errors->has('jobtitle'))
 					                  <span class="help-block">
 					                   <strong>{{ $errors->first('jobtitle') }}</strong>
@@ -56,8 +56,8 @@
 				                 @endif
 							</div>
 							<div class="form-group {{ $errors->has('location') ? ' has-error' : '' }}" id="job-location-group">
-								<label for="job-location">Location (Optional)</label>
-								<input type="text" class="form-control" name="location" placeholder="e.g. New York" maxlength="50" value="{{ old('location') }}">
+								<label for="job-location">Location</label>
+								<input type="text" class="form-control" name="location" placeholder="e.g. New York" maxlength="20" value="{{ old('location') }}">
 								 @if ($errors->has('location'))
 					                  <span class="help-block">
 					                   <strong>{{ $errors->first('location') }}</strong>
@@ -66,8 +66,9 @@
 							</div>
 							<div class="form-group {{ $errors->has('jobregion') ? ' has-error' : '' }}" id="job-region-group">
 								<label for="job-region">Region</label>
-								<select  class="form-control" name="jobregion" value="{{ old('jobregion') }}">
+								<select  class="form-control" name="jobregion">
 									<option>Choose a region</option>
+									<option>India</option>
 									<option>New York</option>
 									<option>Los Angeles</option>
 									<option>Chicago</option>
@@ -82,7 +83,7 @@
 							</div>
 							<div class="form-group {{ $errors->has('jobtype') ? ' has-error' : '' }}" id="job-type-group">
 								<label for="job-type">Job Type</label>
-								<select  class="form-control" name="jobtype" value="{{ old('jobtype') }}">
+								<select  class="form-control" name="jobtype">
 									<option>Choose a job type</option>
 									<option>Freelance</option>
 									<option>Part Time</option>
@@ -98,7 +99,7 @@
 							</div>
 							<div class="form-group {{ $errors->has('jobcategory') ? ' has-error' : '' }}" id="job-category-group">
 								<label for="job-category">Job Category</label>
-								<select  class="form-control" name="jobcategory" value="{{ old('jobcategory') }}">
+								<select  class="form-control" name="jobcategory">
 									<option>Choose a job category</option>
 									<option>Internet Services</option>
 									<option>Banking</option>
@@ -130,6 +131,12 @@
 					                  </span>
 				                 @endif
 							</div>
+							<div class="form-group" id="job-url-group">
+								<label for="job-url">if you want to featured this Job</label>
+								<div class="checkbox">
+								  <label><input type="checkbox" name="featuredjob" value="1">Featured Jobs</label>
+								</div>
+							</div>
 						</div>
 						<div class="col-sm-6">
 							<h2>Company Details</h2>
@@ -144,7 +151,7 @@
 							</div>
 							<div class="form-group" id="company-tagline-group">
 								<label for="company-tagline">Tagline (Optional)</label>
-								<input type="text" class="form-control" name="companytagline" placeholder="Brief description" maxlength="200"  value="{{ old('companytagline') }}">
+								<input type="text" class="form-control" name="companytagline" placeholder="Brief description" maxlength="25"  value="{{ old('companytagline') }}">
 							</div>
 							<div class="form-group" id="company-description-group">
 								<label for="company-description">Description (Optional)</label>
