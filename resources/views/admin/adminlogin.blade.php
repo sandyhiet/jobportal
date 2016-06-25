@@ -57,23 +57,18 @@ margin-top:30px;
           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
           @if (count($errors) > 0)
                     
-              <div class="alert alert-danger <?php echo(count($errors) > 0)?'display-show':'display-hide';?>">
-                  <button class="close" data-close="alert"></button>
-                  @foreach ($errors->all() as $error)
-                  <span> {{ $error }} </span>
-                  @endforeach
-              </div>
+            <div class="alert alert-danger <?php echo(count($errors) > 0)?'display-show':'display-hide';?>">
+              <button class="close" data-close="alert"></button>
+              @foreach ($errors->all() as $error)
+              <span> {{ $error }} </span>
+              @endforeach
+            </div>
           @endif
-
-
           @if ( Session::has('flash_message') )
-
-              
-              <div class="alert alert-danger <?php echo(Session::has('flash_message'))?'display-show':'display-hide';?>">
-                  <button class="close" data-close="alert"></button>
-                  <span> {{ Session::get('flash_message') }} </span>
-              </div>
-
+            <div class="alert alert-danger <?php echo(Session::has('flash_message'))?'display-show':'display-hide';?>">
+                <button class="close" data-close="alert"></button>
+                <span> {{ Session::get('flash_message') }} </span>
+            </div>
           @endif
           <div class="form-group has-feedback">
             <input type="email" class="form-control" name="email" type="text" value="{{ old('email') }}" placeholder="Email">
@@ -99,7 +94,7 @@ margin-top:30px;
 
         
 
-        <a href="#">I forgot my password</a><br>
+        <a href="{{{'admin_forgotpassword'}}}">I forgot my password</a><br>
         
 
       </div><!-- /.login-box-body -->
@@ -125,8 +120,6 @@ margin-top:30px;
 <script src="{{url('dist/js/pages/dashboard2.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('dist/js/demo.js')}}"></script>
-</body>
-</html>
 
     <!-- jQuery 2.1.4 -->
     <script src="{{url('plugins/jQuery/jQuery-2.1.4.min.js')}}"></script>

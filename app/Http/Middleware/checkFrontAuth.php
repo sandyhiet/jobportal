@@ -20,7 +20,7 @@ class checkFrontAuth
         //if some condition true
         
         if(!Auth::check()){
-            return redirect('/')->with('sdf', 'sdf');
+            return redirect('admin')->with('sdf', 'sdf');
         }
         
         // if(Auth::check()){

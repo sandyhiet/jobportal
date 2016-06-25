@@ -19,7 +19,7 @@
         $data = array('pagetitle'=>'Welcome Admin');
         return view('admin/adminlogin', $data);
     });
-
+    
     Route::post('admin/postLogin', 'Auth\AuthAndRoleController@postLogin');
     
     Route::post('saveFeedback', 'cms\cmsController@saveFeedback');
@@ -232,7 +232,27 @@
 
    Route::group(['middleware' => 'checkAdminAuth'],function(){
 
-     Route::get('logout', 'Auth\AuthController@userLogout');
+    // //////////admin forgot password start/////////
+
+    Route::get('admin_forgotpassword',function(){
+        return view('admin_forgotpassword');
+    });
+
+     Route::post('admin_reset_password' ,'Auth\AuthAndRoleController@admin_reset_password');
+
+     Route::get('admin_reset_password/{id}/{hashvalue}', function ($id) {
+       
+        $userprofile = DB::table('users')->select('*')->where('id','=',$id)->get();
+
+        return view('admin/admin_reset_password')->with('userprofile',$userprofile);
+      });
+
+    Route::post('admin_update_resetpassword', 'Auth\AuthAndRoleController@update_password');
+
+    // //////////admin forgot password end/////////
+
+    Route::get('logout', 'Auth\AuthController@userLogout');
+    Route::post('admin/postLogin', 'Auth\AuthAndRoleController@postLogin');
 
      Route::get('admin/dashboard', function () {
             $data = array('pagetitle'=>'Dashboard');
@@ -575,7 +595,7 @@
              return view('admin.addtestimonials');
         });
 
-        Route::get('admin/editTestimonial/{id}',function($id){
+         Route::get('admin/editTestimonial/{id}',function($id){
          $admin_profile = DB::table('admin_profile')->select('*')->get();
          $testimonials  = DB::table('testimonials')->select('*')->where('id', '=', $id)->get();
          // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
@@ -588,7 +608,7 @@
 
         /*//////////////happy clients//////////////////////////*/
 
-          Route::get('admin/clients_happy',function(){
+        Route::get('admin/clients_happy',function(){
 
             
 

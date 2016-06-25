@@ -75,7 +75,7 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
                   <a href="{{url('admin/admin_profile')}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{url('logout')}}" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{url('admin')}}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

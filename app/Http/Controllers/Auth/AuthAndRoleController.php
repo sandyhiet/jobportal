@@ -258,6 +258,136 @@ class AuthAndRoleController extends Controller
  
     }
 
+      /*admin forgot password start*/
+
+        public function update_password(Request $req){
+       
+        $id = $req->id;
+        $password = $req->password;
+        $repassword = $req->repassword;
+        $inputs = [
+
+            'password'                  => $password,
+            'repassword'                => $repassword,
+            
+        ];
+
+        $rules = [
+
+            'password'                  => 'required',
+            'repassword'                => 'required',
+        ];
+
+        $messages = [
+
+            'password.required'             => 'Enter password .',
+            'repassword.required'           => 'Re-enter password.',
+
+        ];
+
+        $validator = Validator::make($inputs, $rules , $messages);
+        if($validator->fails()){
+            return redirect()->back()->withInput()->with('errors', $validator->errors() );
+        }else {
+            $userdata = array(
+                'password' => $req->password,
+                'repassword' => $req->repassword
+            );
+            if($userdata['password']!=$userdata['repassword']){
+             Session::flash('flash_message', 'Password not match.'); 
+             return redirect()->back()->withInput()->with('flash_message', 'Password not match.');  
+         }else{
+            $hashpassword = Hash::make($userdata['password']);
+            DB::table('resetrequest_id')->where('user_id', '=', $id)->delete();
+            DB::table('users')
+            ->where('id', $id)
+            ->update(['password' => $hashpassword]);
+           
+            return redirect('adminlogin');
+         }
+        }    
+    }
+    public function admin_reset_password(Request $req){
+       
+        $email = $req->email;
+      
+        $inputs = [
+
+            'email'                  => $email,
+            
+            
+        ];
+
+        $rules = [
+
+            'email'                  => 'required|email|max:50',
+            
+        ];
+
+        $messages = [
+
+            'email.required'             => 'Enter registered email .',
+            'email.email'                => 'Enter valid email.',
+
+        ];
+
+        
+
+        $validator = Validator::make($inputs, $rules, $messages);
+        if($validator->fails()){
+            return redirect()->back()->withInput()->with('errors', $validator->errors() );
+        }
+
+
+        $vaildEmail = DB::table('users')->select('email')->where('usertype', 'superadmin')->where('activeAccount', 1)->get();
+          //return $vaildEmail;
+          foreach ($vaildEmail as $key => $value) {
+             $allemail= $vaildEmail[$key]->email;
+              if($allemail != $email){
+
+                    $ExistHeading = DB::table('users')->where('email', '=', $email)->where('usertype', 'superadmin')->where('activeAccount', 1)->count();
+                    if($ExistHeading == 0){
+                        return redirect()->back()->withInput()->with('singleerror', 'Please Enter Registered Email-Id.' );
+                    }
+                }
+               
+           } 
+
+
+
+        $user_id = DB::table('users')->select('*')->where('email','=',$email)->where('usertype', 'superadmin')->where('activeAccount', 1)->get();
+        $id = $user_id[0]->id;
+        $hashvalue = rand(1,999999);
+        // insert hash value in forget_password table
+        DB::table('resetrequest_id')->insert([
+              'req_id' => $hashvalue,
+              'user_id' => $id
+                
+        ]);
+
+        //Recruiter Reset Password mail
+        $mailmessage    = env('SITEURL').'admin_reset_password/'.$id.'/'.$hashvalue;
+        $subject         = 'Forget Password';
+
+        $mailData       = array('mailmessage'=>$mailmessage);
+        $data           = array( 'email' => stripslashes($email),'subject' => $subject );       
+        Mail::send('layouts.mail.recruiter_forget_password', $mailData, function ($message) use ($data) {
+            //return $CandidateEmail;
+            $message->from(env('EMAILFROM'), env('EMAILNAME'));
+            //$message->to($CandidateEmail)->cc('bar@example.com');
+            $message->to($data['email']);
+            $message->cc('gupta.sandhya@intactinnovations.com');
+            //$message->bcc($address, $name = null);
+            //$message->replyTo($address, $name = null);
+            $message->subject($data['subject']); 
+        });
+        return redirect()->back()->withInput()->with('message','Reset password link is send to your email.');
+    }
+
+
+
+
+
     public function update_resetpassword(Request $req){
        
         $id = $req->id;
