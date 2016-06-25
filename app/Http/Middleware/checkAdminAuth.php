@@ -47,12 +47,10 @@ class checkAdminAuth
                         
                     
 
-                        //return print_r($RouteNameArr);
+                        // return print_r($RouteNameArr);
 
                         if(in_array($path, $RouteNameArr) || in_array('all', $RouteNameArr) || $path=='admin/dashboard'){
-                        //if(in_array($perRoute, $RouteNameArr) || in_array('all', $RouteNameArr) || ($path=='admin/dashboard')){
-
-                            
+                        
                             
                             return $next($request);
 
@@ -70,5 +68,4 @@ class checkAdminAuth
 
     }
 
-    
 }

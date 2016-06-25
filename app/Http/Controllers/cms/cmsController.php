@@ -999,7 +999,6 @@ class cmsController extends Controller
 
       public function  saveFeedback(Request $req){
 
-       
          $name         = $req->name;
          $email        = $req->email;
          $subject      = $req->subject;
@@ -1022,21 +1021,22 @@ class cmsController extends Controller
             'feedback'         => 'required',
         ];
 
-        $messages = [
+        // $messages = [
 
-            'name.required'  => 'Please Enter Name',
-            'email.required'  => 'Please Enter Email',
-            'subject.required'  => 'Please Enter Subject',
-            'feedback.required'  => 'Please Write Message',
-        ];
+        //     'name.required'  => 'Please Enter Name',
+        //     'email.required'  => 'Please Enter Email',
+        //     'subject.required'  => 'Please Enter Subject',
+        //     'feedback.required'  => 'Please Write Message',
+        // ];
 
-        $validation = Validator::make($inputs, $rules, $messages);
+        $validation = Validator::make($inputs, $rules);
 
         if( $validation->fails() ){
             return redirect()->back()->withInput()->with('errors', $validation->errors() );
         }
 
         DB::table('contactus_queries')->insert([
+
             'name'      => $name,
             'email'     => $email,
             'subject'   => $subject,

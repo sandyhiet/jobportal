@@ -17,8 +17,8 @@ use DB;
 use Mail;
 
 
-//use App\Role;
-//use App\Permission;
+use App\Role;
+use App\Permission;
 
 
 class AuthAndRoleController extends Controller
@@ -43,6 +43,7 @@ class AuthAndRoleController extends Controller
         return Redirect::to('admin');
 
     }
+
 
     public function frontlogout(){
 

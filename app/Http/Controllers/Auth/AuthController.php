@@ -23,11 +23,11 @@ class AuthController extends Controller
     |
     */
 
-     public function userLogout(){
+      public function userLogout(){
 
         Auth::logout();
         //return View::make('logout');
-        return Redirect::to('/');
+        return Redirect::to('admin');
 
     }
 

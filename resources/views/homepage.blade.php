@@ -3,21 +3,14 @@
 @section('content')
 
 
-<<<<<<< HEAD
-     <!-- ============ NAVBAR START ============ -->
-
-		
-
-		<!-- ============ NAVBAR END ============ -->
-
-		<!-- ============ HEADER END ============ -->
 <!-- ============ SLIDES START ============ -->
+<div id="slider" class="sl-slider-wrapper">
 
-	<div id="slider" class="sl-slider-wrapper">
-		<?php 
-		$i=0;
-		foreach ($banners as $key => $value) {
-		?>
+			<?php 
+		
+			$i=0;
+			foreach ($banners as $key => $value) {
+			?>
 			<div class="sl-slider">
           <?php if($i == 0){?>
 			<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
@@ -37,70 +30,15 @@
 				<div class="slide-content">
 				<h2>{{$banners[$key]->sliderh1}}</h2>
 				<h3>{{$banners[$key]->sliderh2}}</h3>
-				<p><a href="{{url('jobs')}}" class="btn btn-lg btn-default">Find a job</a></p>
-=======
-<!-- ============ SLIDES START ============ -->
-
-		<div id="slider" class="sl-slider-wrapper">
-
-			<div class="sl-slider">
-			
-				<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
-					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-1"></div>
-						<div class="tint"></div>
-						<div class="slide-content">
-							<h2>Looking for a job?</h2>
-							<h3>There’s no better place to start</h3>
-							<p><a href="jobs.html" class="btn btn-lg btn-default">Find a job</a></p>
-						</div>
-					</div>
+				<p><a href="{{url('job')}}" class="btn btn-lg btn-default">Find a job</a></p>
 				</div>
-			
-				<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
-					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-2"></div>
-						<div class="tint"></div>
-						<div class="slide-content">
-							<h2>Need an employee?</h2>
-							<h3>We've got perfect candidates</h3>
-							<p><a href="candidates.html" class="btn btn-lg btn-default">Post a job</a></p>
-						</div>
-					</div>
->>>>>>> refs/remotes/origin/master
 				</div>
-			
-				<div class="sl-slide" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-3"></div>
-						<div class="tint"></div>
-						<div class="slide-content">
-							<h2>Evolving your career?</h2>
-							<h3>Find new opportunities here</h3>
-							<p><a href="jobs.html" class="btn btn-lg btn-default">Find a job</a></p>
-						</div>
-					</div>
-				</div>
-			
-				<div class="sl-slide" data-orientation="vertical" data-slice1-rotation="-5" data-slice2-rotation="25" data-slice1-scale="2" data-slice2-scale="1">
-					<div class="sl-slide-inner">
-						<div class="bg-img bg-img-4"></div>
-						<div class="tint"></div>
-						<div class="slide-content">
-							<h2>Extending your team?</h2>
-							<h3>Find a perfect match</h3>
-							<p><a href="candidates.html" class="btn btn-lg btn-default">Find a cadidate</a></p>
-						</div>
-					</div>
-				</div>
-
 			</div>
-<<<<<<< HEAD
             </div>
-	
-=======
-
->>>>>>> refs/remotes/origin/master
+		<?php
+		 $i++;
+		}
+		?>
 			<nav id="nav-arrows" class="nav-arrows">
 				<span class="nav-arrow-prev">Previous</span>
 				<span class="nav-arrow-next">Next</span>
@@ -112,10 +50,7 @@
 				<span></span>
 				<span></span>
 			</nav>
-				<?php
-		 $i++;
-		}
-		?>
+
 		</div>
 
 
@@ -201,7 +136,7 @@
 									</div>
 									<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 job-title">
 										<h5>Project Manager</h5>
-										<p><strong>Dropbox Inc.</strong> Company slogan goes here</p>
+										<p><strong>obox Inc.</strong> Company slogan goes here</p>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 job-location">
 										<p><strong>Los Angeles, CA, USA</strong></p>
@@ -505,6 +440,7 @@
 
 		<!-- ============ HOW DOES IT WORK START ============ -->
 
+	
 		<section id="how">
 			<div class="container">
 				<?php 
@@ -513,13 +449,14 @@
 				?>
 				<div class="row">
 					<div class="col-sm-12">
-						<h2>{{$work_details[$key]->title}}</h2>
+
+						<h2><?php echo ucfirst(implode(explode('_', $work_details[$key]->title), ' ')); ?></h2>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<p>{{$work_details[$key]->content}}</p>
-						<p><a href="{{url('work_details/'.$work_details[$key]->title)}}" class="btn btn-primary">Learn More</a></p>
+						<p><?php echo substr(strip_tags($work_details[$key]->content), 0, 1000);?></p></p>
+						<p><a href="{{url('readmore_work_details/'.$work_details[$key]->title)}}" class="btn btn-primary">Learn More</a></p>
 					</div>
 					<div class="col-sm-6">
 						<div class="video-wrapper">
@@ -531,15 +468,12 @@
 			</div>
 		</section>
 
+
 		<!-- ============ HOW DOES IT WORK END ============ -->
 
 		<!-- ============ MOBILE APP START ============ -->
 
-<<<<<<< HEAD
-		<!-- <section id="app" class="color2">
-=======
 		<section id="app" class="color2">
->>>>>>> refs/remotes/origin/master
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-5">
@@ -558,11 +492,7 @@
 				</div>
 			</div>
 		</section>
-<<<<<<< HEAD
- -->
-=======
 
->>>>>>> refs/remotes/origin/master
 		<!-- ============ MOBILE APP END ============ -->
 
 
@@ -595,8 +525,6 @@
 							<li>No featured jobs</li>
 							<li>Displayed for 30 days</li>
 							<li><a href="post-a-job.html" class="btn btn-primary">Choose</a></li>
-<<<<<<< HEAD
-=======
 						</ul>
 					</div>
 					<div class="col-sm-3">
@@ -607,24 +535,10 @@
 							<li>No featured jobs</li>
 							<li>Displayed for 60 days</li>
 							<li><a href="post-a-job.html" class="btn btn-primary">Choose</a></li>
->>>>>>> refs/remotes/origin/master
 						</ul>
 					</div>
 					<div class="col-sm-3">
 						<ul>
-<<<<<<< HEAD
-							<li class="title">Company</li>
-							<li class="price">$29</li>
-							<li>3 job postings</li>
-							<li>No featured jobs</li>
-							<li>Displayed for 60 days</li>
-							<li><a href="post-a-job.html" class="btn btn-primary">Choose</a></li>
-						</ul>
-					</div>
-					<div class="col-sm-3">
-						<ul>
-=======
->>>>>>> refs/remotes/origin/master
 							<li class="title">Enterprise</li>
 							<li class="price">$39</li>
 							<li>5 job postings</li>
@@ -639,7 +553,7 @@
 
 		<!-- ============ PRICING END ============ -->
 
-			<!-- ============ TESTIMONIALS START ============ -->
+		<!-- ============ TESTIMONIALS START ============ -->
 
 		<section id="testimonials" class="parallax text-center">
 			<div class="tint"></div>
@@ -653,8 +567,7 @@
 							<!-- Testimonial 1 -->
 							<div>
 								<div class="col-sm-3 col-md-2">
-								<img class="img-circle img-responsive" src="{{ url('testimonialsImages') }}/{{ $testimonials[$keys]->clientImage }}"/>
-									
+									<img src="http://placehold.it/140x140.jpg" class="img-circle img-responsive" alt="testimonial" />
 								</div>
 								<div class="col-sm-9 col-md-10">
 									<blockquote>
@@ -742,12 +655,6 @@
 
 							<!-- Blog post 1 -->
 							<div>
-<<<<<<< HEAD
-							
-					       <img class="img-responsive" src="{{url('newsImages/thumb800x530/'.$news[$key]->newsImage)}}"/>
-
-								
-=======
 								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
 								<h4>Lorem ipsum dolor sit amet</h4>
 								<h5>
@@ -781,7 +688,6 @@
 								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
 								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
 							</div>
->>>>>>> refs/remotes/origin/master
 
 							<!-- Blog post 4 -->
 							<div>
@@ -795,13 +701,6 @@
 								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
 							</div>
 
-<<<<<<< HEAD
-								<h4><?php echo implode(explode('_', $news[$key]->newsTitle), ' '); ?></h4>
-								
-                   
-                               <p style="text-align: justify;"><?PHP echo stripcslashes(substr($news[$key]->newsDescription, 0, 220)); ?>...</p>
-								<p><a href="#" class="btn btn-primary">Read more</a></p>
-=======
 							<!-- Blog post 5 -->
 							<div>
 								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
@@ -812,7 +711,6 @@
 								</h5>
 								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
 								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
->>>>>>> refs/remotes/origin/master
 							</div>
 
 						</div>
@@ -834,31 +732,46 @@
 					<div class="col-sm-12">
 						<h1>Happy Clients</h1>
 						<h4>Some of the many companies we’ve helped</h4>
-
-
-						  
-
 						<div class="owl-carousel">
-							<?php 
-							$i=1;
-							foreach($filter_gallery as $key => $value) {?>
+							
 							<!-- Logo 1 -->
 							<div>
-								<img class="img-responsive pad" src="{{url('gallery/filterGallery/thumb133x69/'.$filter_gallery[$key]->image)}}" alt="">
+								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
 							</div>
 							
-				     <?php $i++; }?>
-
+							<!-- Logo 2 -->
+							<div>
+								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
+							</div>
+							
+							<!-- Logo 3 -->
+							<div>
+								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
+							</div>
+							
+							<!-- Logo 4 -->
+							<div>
+								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
+							</div>
+							
+							<!-- Logo 5 -->
+							<div>
+								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
+							</div>
+							
+							<!-- Logo 6 -->
+							<div>
+								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
+							</div>
 
 						</div>
-
-
 					</div>
 				</div>
 			</div>
 		</section>
 
 		<!-- ============ CLIENTS END ============ -->
+
 @endsection
 
 		

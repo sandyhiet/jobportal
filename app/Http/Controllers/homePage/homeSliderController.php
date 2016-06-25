@@ -248,7 +248,7 @@ class homeSliderController extends Controller
 
         public function updatework(Request $req){
 
-
+            $id                  = $req->id;
             $title               = addslashes($req->title);
             $content             = addslashes($req->content);
             $video_link          = addslashes($req->video_link);
@@ -284,7 +284,7 @@ class homeSliderController extends Controller
             }
         
             DB::table('work_details')->where('id', $id)->update([
-
+            'id'              => $id,
             'title'           => $title,
             'content'         => $content,
             'video_link'      => $video_link,

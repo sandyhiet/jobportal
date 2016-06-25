@@ -12,36 +12,9 @@
 		<link rel="shortcut icon" href="images/favicon.png">
 
 		<!-- Main Stylesheet -->
-<<<<<<< HEAD
-		<link href="css/style.css" rel="stylesheet">
-
-
-
-  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-  
-  <link href="runnable.css" rel="stylesheet" />
-  <!-- Load jQuery and the validate plugin -->
-  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-
-	
-
-		<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		<script src="js/html5shiv.js"></script>
-		<script src="js/respond.min.js"></script>
-		<![endif]-->
-
-	</head>
-	
-	<body id="home">
-=======
 		<link href="{{url('css/style.css')}}" rel="stylesheet">
 	   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-	   <link href="{{url('runnable.css')}}" rel="stylesheet" />
-	   <!-- Load jQuery and the validate plugin -->
-	   <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-	   <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+	  
 
 	</head>
 	<?php
@@ -51,7 +24,6 @@
 	?>
 	
 	<body id="{{$bodytagid}}">
->>>>>>> refs/remotes/origin/master
 
 		<!-- ============ PAGE LOADER START ============ -->
 
@@ -94,15 +66,10 @@
 					</li>
 					<li><a href="#">Job Recruiter</a>
 						<ul>
-<<<<<<< HEAD
-							<li><a class="link-recruiter-register">Register</a></li>
-							<li><a class="link-recruiter-login">Login</a></li>
-=======
 							<li><a href="{{url('recruiter_registration')}}">Register</a></li>
 							<li><a href="{{url('recruiter_login')}}">Login</a></li>
 							<li><a href="{{url('recruiter_logout')}}">Logout</a></li>
 							<li><a href="{{url('recruiter_jobspost')}}">Job Post</a></li>
->>>>>>> refs/remotes/origin/master
 					    </ul>
 					</li>
 				</ul>		
@@ -149,63 +116,29 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<h2>Drop us a line</h2>
-<<<<<<< HEAD
-
-						 @if(old('contactForm'))
-
-                        @if( Session::has('errors') )
-
-                          <div class="alert alert-danger">
-                             @foreach($errors->all() as $error)
-                             <p style="color: red;">{{$error}}</p>
-                             @endforeach
-                           </div>
-                         
-                        @endif
-
-                        @if( Session::has('message') )
-                        
-                           <div class="alert alert-success" style="">
-                            <p>{{ Session::get('message') }}</p>
-                             </div>
-                     
-                        @endif
-
-                    @endif
-
-						<form  action="{{url('saveFeedback')}}" method="post">
-						  <form method="post"  onsubmit="return submit_contactus_query_form();" id="contactus_query_form" >
+	                   @include('layout.error-notification')
+						<form  action="{{url('saveFeedback')}}" method="post" id="register_form9">
 							<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-							 <input type="hidden" name="contactForm" value="3">
-							<input name="siteurl" id="siteurl" type="hidden" value="{{env('SITEURL')}}">
-							<div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}" id="contact-name-group">
+							<input type="hidden" name="contact_form" value="3">
+							<!-- <input name="siteurl" id="siteurl" type="hidden" value="{{env('SITEURL')}}"> -->
+							<div id="contact-name-group" class="form-group">
 								<label for="contact-name" class="sr-only">Name</label>
-								<input type="text" class="form-control" id="name" name="name" placeholder="Name">
-								@if ($errors->has('name'))
-			                  <span class="help-block">
-			                   <strong>{{ $errors->first('name') }}</strong>
-			                  </span>
-			                  @endif
-=======
-						<form role="form" name="contact-form" id="contact-form" action="process.php">
-							<div class="form-group" id="contact-name-group">
-								<label for="contact-name" class="sr-only">Name</label>
-								<input type="text" class="form-control" id="contact-name" placeholder="Name">
->>>>>>> refs/remotes/origin/master
+								<input type="text" class="form-control" id="name" name="name" placeholder="Name">	
 							</div>
-							<div class="form-group" id="contact-email-group">
+							<div id="contact-email-group" class="form-group">
 								<label for="contact-email" class="sr-only">Email</label>
-								<input type="email" class="form-control" id="contact-email" placeholder="Email">
+								<input type="email" class="form-control" id="email" name="email" placeholder="Email">	
 							</div>
-							<div class="form-group" id="contact-subject-group">
-								<label for="contact-subject" class="sr-only">Subject</label>
-								<input type="text" class="form-control" id="contact-subject" placeholder="Subject">
+							<div  id="contact-subject-group" class="form-group">
+							<label for="contact-subject" class="sr-only">Subject</label>
+							<input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">	
 							</div>
-							<div class="form-group" id="contact-message-group">
+							<div  id="contact-message-group" class="form-group" >
 								<label for="contact-message" class="sr-only">Message</label>
-								<textarea class="form-control" rows="3" id="contact-message"></textarea>
+								<textarea class="form-control" rows="3" id="feedback" name="feedback"></textarea>
 							</div>
-							<button type="submit" class="btn btn-default">Submit</button>
+							<button  class="btn btn-default" id="contact_us_send_now">Submit</button>
+							 <span class="output_message"></span>
 						</form>
 					</div>
 					<div class="col-sm-6">
@@ -214,10 +147,11 @@
 							<div class="col-sm-6">
 								<?php 
 								foreach ($contact_usa as $key => $value) {
-									
 								?>
 								<h5>New York</h5>
-								<p>{{$contact_usa[$key]->Location}}</p>
+								<p>{{$contact_usa[0]->Location}}<br>
+								New York, NY 10016<br>
+								USA</p>
 								<p><i class="fa fa-phone"></i>{{$contact_usa[$key]->PhoneNumber1}}<br>
 								<i class="fa fa-fax"></i>{{$contact_usa[$key]->PhoneNumber2}}<br>
 								<i class="fa fa-envelope"></i><a href="mailto:ny@jobseek.com">{{$contact_usa[$key]->Email}}</a></p>
@@ -227,9 +161,6 @@
 								<?php } ?>
 							</div>
 							<div class="col-sm-6">
-								<?php 
-								foreach ($contact_uk as $key => $value) {
-								?>
 								<h5>Los Angeles</h5>
 								<p>{{$contact_uk[$key]->Location}}</p>
 								<p><i class="fa fa-phone"></i>{{$contact_uk[$key]->PhoneNumber1}}<br>
@@ -238,7 +169,6 @@
 								<p><i class="fa fa-clock-o"></i>Mon-Fri 9am - 5pm<br>
 								<i class="fa fa-clock-o"></i>Sat 10am - 2pm<br>
 								<i class="fa fa-clock-o"></i>Sun Closed</p>
-								<?php } ?>
 							</div>
 						</div>
 					</div>
@@ -247,10 +177,6 @@
 		</section>
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/master
 		<!-- ============ CONTACT END ============ -->
 
 		<!-- ============ FOOTER START ============ -->
@@ -260,91 +186,90 @@
 					<div class="row">
 						<div class="col-sm-6" id="newsletter">
 							<h2>Newsletter</h2>
-<<<<<<< HEAD
-							 <!-- @include('layout.error-notification') -->
-							<form  onsubmit=" return newsletter_form('#newsletter_form', '#newsletter_submit_btn', 'subscribenewsletter')" class="form-inline" id="newsletter_form" method="POST" action="{{url('subscribenewsletter')}}">
-								 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-								 <input type="hidden" name="footerSubs" value="1">
+						   @if(old('newsletter'))
+		                  @if( Session::has('errors') )
+		                  <li>
+		                    <div class="alert alert-danger">
+		                      @foreach($errors->all() as $error)
+		                      <p style="float: none;color: red;padding: 0;margin: 0;">{{$error}}</p>
+		                      @endforeach
+		                    </div>
+		                  </li>
 
-								 <div class="form-group" id="newsletter_formgroup">
-									<label class="sr-only" for="newsletter-email">Email address</label>
-									<input type="email" class="form-control" placeholder="Email address" name="SubscriberEmail" id="newsletter_formcontrol"
-									<?php echo ($errors->has('SubscriberEmail'))?'':'';?> >
+		                  @endif
 
-=======
-							<form class="form-inline">
+		                  @if( Session::has('message') )
+
+		                  <li>
+		                    <div class="alert alert-success">
+		                      
+		                      <p style="float: none;color: green;padding: 0;margin: 0;">{{ Session::get('message') }}</p>
+		                      
+		                    </div>
+		                  </li>
+
+		                  @endif
+
+		                  @endif
+							<form class="form-inline" method="POST" action="{{url('subscribenewsletter')}}" id="newsletter_form">
+								<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+							      <input name="siteurl" id="siteurl" type="hidden" value="{{env('SITEURL')}}">
+								 <input type="hidden" name="newsletter" value="7">
 								<div class="form-group">
 									<label class="sr-only" for="newsletter-email">Email address</label>
-									<input type="email" class="form-control" id="newsletter-email" placeholder="Email address">
->>>>>>> refs/remotes/origin/master
+									<input type="email" class="form-control" id="newsletter-email" placeholder="Email address"  name="SubscriberEmail">
 								</div>
-								<button  type="submit" class="btn btn-primary" id=="newsletter_submit_btn">Sign up</button>
-								@if ($errors->has('SubscriberEmail'))
-								<div class="text-danger">{{ $errors->first('SubscriberEmail') }}</div>
-								@endif
+								<button type="submit" class="btn btn-primary">Sign up</button>
 							</form>
-					         
-						</div>
 
-						<div class="col-sm-6" id="social-networks">
-<<<<<<< HEAD
+						</div>
+					<div class="col-sm-6" id="social-networks">
+
 						<h2>Get in touch</h2>
 						 <?php if(sizeof($social_links)>0){ ?>
                
-                      <?php 
-                      $so_cl_icon = '';
-                      foreach($social_links as $key=>$val){
-                          switch ($social_links[$key]->social_network) {
-                              case 'dribbble':
-                                  $so_cl_icon = '<i class="fa fa-2x fa-dribbble-square"></i>';
-                                  break;
-                              case 'twitter':
-                                  $so_cl_icon = '<i class="fa fa-2x fa-twitter-square"></i>';
-                                  break;
-                              case 'google_plus':
-                                  $so_cl_icon = '<i class="fa fa-2x fa-google-plus-square"></i>';
-                                  break;
-                              case 'pinterest':
-                                  $so_cl_icon = '<i class="fa fa-2x fa-pinterest-square"></i>';
-                                  break;
-                              case 'youtube':
-                                  $so_cl_icon = '<i class="fa fa-2x fa-youtube-square"></i></a>';
-                                  break;
-                              case 'flickr':
-                                  $so_cl_icon = '<i class="fa fa-flickr"></i>';
-                                  break;
-                              default:
-                                  $so_cl_icon = '<i class="fa fa-2x fa-facebook-square"></i>';
-                                  break;
-                          }
-                      ?>
-                      @if($social_links[$key]->link)
-                     <a target="_blank" href="{{$social_links[$key]->link}}">{!!$so_cl_icon!!}</a>
-                      @endif
-                      <?php }?>
-                
-                  <?php }?>
-							<!-- <a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-=======
-							<h2>Get in touch</h2>
-							<a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
->>>>>>> refs/remotes/origin/master
-							<a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-							<a href="#"><i class="fa fa-2x fa-google-plus-square"></i></a>
-							<a href="#"><i class="fa fa-2x fa-youtube-square"></i></a>
-							<a href="#"><i class="fa fa-2x fa-vimeo-square"></i></a>
-							<a href="#"><i class="fa fa-2x fa-pinterest-square"></i></a>
-							<a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-						</div>
-					</div>
-				</div>
+	                  <?php 
+	                  $so_cl_icon = '';
+	                  foreach($social_links as $key=>$val){
+	                      switch ($social_links[$key]->social_network) {
+	                          case 'dribbble':
+	                              $so_cl_icon = '<i class="fa fa-2x fa-dribbble-square"></i>';
+	                              break;
+	                          case 'twitter':
+	                              $so_cl_icon = '<i class="fa fa-2x fa-twitter-square"></i>';
+	                              break;
+	                          case 'google_plus':
+	                              $so_cl_icon = '<i class="fa fa-2x fa-google-plus-square"></i>';
+	                              break;
+	                          case 'pinterest':
+	                              $so_cl_icon = '<i class="fa fa-2x fa-pinterest-square"></i>';
+	                              break;
+	                          case 'youtube':
+	                              $so_cl_icon = '<i class="fa fa-2x fa-youtube-square"></i></a>';
+	                              break;
+	                          case 'flickr':
+	                              $so_cl_icon = '<i class="fa fa-flickr"></i>';
+	                              break;
+	                          default:
+	                              $so_cl_icon = '<i class="fa fa-2x fa-facebook-square"></i>';
+	                              break;
+	                      }
+	                  ?>
+	                  @if($social_links[$key]->link)
+	                 <a target="_blank" href="{{$social_links[$key]->link}}">{!!$so_cl_icon!!}</a>
+	                  @endif
+	                  <?php }?>
+	                   <?php }?>
+			        </div>
+				  </div>
+			   </div>
 			</div>
-			<div id="credits">
+		<div id="credits">
 				<div class="container text-center">
 					<div class="row">
 						<div class="col-sm-12">
-							&copy; 2015 Jobseek - Responsive Job Board HTML Template<br>
-							Designed &amp; Developed by <a href="http://themeforest.net/user/Coffeecream" target="_blank">Coffeecream Themes</a>
+							&copy; <?php echo date("Y");?> Job Portal<br>
+							Designed &amp; Developed by <a href="http://intactinnovations.com/" target="_blank">Intact Innovations Technologies Pvt Ltd</a>
 						</div>
 					</div>
 				</div>
@@ -575,60 +500,153 @@
 
 		<!-- jQuery Settings -->
 		<script src="{{url('js/settings.js')}}"></script>
-<<<<<<< HEAD
+
+		<script type="text/javascript">
+			var submit_contactus_query_form = function(){
+	
+				var extension = $(".selected-dial-code").html();
+				
+				$('#extention').val(extension);
+
+				$('#contactus_query_frm-feedback').html('').hide();
+				$('#contactus_query_frm-subject').html('').hide();
+				$('#contactus_query_frm-email').html('').hide();
+				$('#contactus_query_frm-name').html('').hide();
+
+				var prevhtml = $('#contactus_query_form_btn_submit').html();
+				$('#contactus_query_form_btn_submit').attr('disabled', 'disabled');
+				$('#contactus_query_form_btn_submit').html('<img src="images/ui-anim_basic_16x16.gif">');
+
+
+				var data = $('#contactus_query_form').serializeArray();
+				alert(data);
+				$.ajax({
+					url:baseurl+'/post_contactus_query_from',
+					type:'post',
+					data:data,
+					success:function(res){
+						//alert(res);
+						console.log(res);
+						$('#contactus_query_form_btn_submit').removeAttr('disabled');
+						$('#contactus_query_form_btn_submit').html(prevhtml);
+						if(res == '1'){
+							document.getElementById('contactus_query_form').reset();
+							$('#contactus_query_frm-message').html('Thank you for your query.').show();
+						} else {
+							if(res.email[0]){
+								$('#contactus_query_frm-email').html(res.email[0]).show();
+							} 
+							if(res.feedback[0]){
+								$('#contactus_query_frm-feedback').html(res.feedback[0]).show();
+							} 
+							if(res.name[0]){
+								$('#contactus_query_frm-name').html(res.name[0]).show();
+							}
+						}
+						return false;
+					},
+					error:function(xhr,status,error){
+						alert("Status: " + status);
+			            alert("Error: " + error);
+			            alert("xhr: " + xhr.readyState);
+			            $('#contactus_query_form_btn_submit').removeAttr('disabled');
+						$('#contactus_query_form_btn_submit').html(prevhtml);
+			            document.getElementById('contactus_query_form').reset();
+			            return false;
+					}
+				});
+			
+				return false;
+			}
+			/*contact us forn validation*/
+			  $(function() {
+			  
+			    // Setup form validation on the #register-form element
+			    $("#register_form9").validate({
+			    
+			     
+			        rules: {
+			            name: "required",
+			            email: "required",
+			            subject:"required",
+			            feedback:"required",
+			          
+			            
+			        },
+			        
+			        // Specify the validation error messages
+			        messages: {
+			            name: "<font color='red'>Please enter your Name</font>",
+			            email: "<font color='red'>Please enter your Email</font>",
+			             subject: "<font color='red'>Please Enter Subject</font>",
+			            feedback: "<font color='red'>Please Write Feedback</font>",
+			        
+			        },
+			        
+			        submitHandler: function(form) {
+			            form.submit();
+			        }
+			    });
+
+			  });
+		  
+
+		</script>
 
 		<script type="text/javascript">
 
 
-	/*//////////newsletter/////////////////*/
+		  /*contact us forn validation*/
+			  $(function() {
+			  
+			    // Setup form validation on the #register-form element
+			    $("#newsletter_form").validate({
+			    
+			        rules: {
+			            
+			            email: "required",
+			                
+			        },
+			        
+			        // Specify the validation error messages
+			        messages: {
+			            email: "<font color='red'>Please enter your Email</font>",
+			            
+			        },
+			        
+			        submitHandler: function(form) {
+			            form.submit();
+			        }
+			    });
 
+			  });
+		</script>
 
-	  var newsletter_form = function(formid, submitbtnid, url){
-		var submitbtnhtml = $(submitbtnid).html();
-		$(submitbtnid).html('<img src="images/ui-anim_basic_16x16.gif">');
-		$(submitbtnid).attr('disabled', 'disabled');
-		$('#newsletter_formgroup').removeClass();
-		$('#newsletter_formcontrol').html('');
-
-
-		var data = $(formid).serializeArray();
-		// alert(data);
-		// alert("Not a valid e-mail address");
-		$.ajax({
-			type:'post',
-			data:data,
-			url:url,
-			success:function(result){
-				// alert(result);
-				
-				$(submitbtnid).removeAttr('disabled');
-				$(submitbtnid).html(submitbtnhtml);
-				if(result == '0'){
-					alert('Register successfully');
-					location.reload();
-				} else {
-					if(result.SubscriberEmail[0]){
-
-						$('#newsletter_formgroup').addClass('has-error');
-						$('#newsletter_formcontrol').html(result.SubscriberEmail[0]);
-					}  
-					
-					
-			  }
-			}
-		});
-		return false;
-	  }
-
-
-			</script>
-=======
->>>>>>> refs/remotes/origin/master
-
+		<link href="runnable.css" rel="stylesheet" />
+		<!-- Load jQuery and the validate plugin -->
+		<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 		
+		 <?php if(old('contact_form')){?>
+    
+    <script type="text/javascript">
+    $(function(){
+      $("html, body").animate({ scrollTop: 2500 }, 1800);
+    });
+    </script>
+    <?php }?>
 
-		@yield('pagescript')
 
-  
-	</body>
-</html>
+    <?php if(old('newsletter')){?>
+    <script type="text/javascript">
+    $(function(){
+      $("html, body").animate({ scrollTop: 2500 }, 1800);
+    });
+    </script>
+    <?php }?>
+
+
+	  @yield('pagescript')
+
+	 </body>
+  </html>

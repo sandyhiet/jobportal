@@ -27,7 +27,7 @@ class SubscroberController extends Controller
         
      
         $SubscriberEmail    = $request->SubscriberEmail;
-        // $footerSubs         = $request->footerSubs;
+        $newsletter         = $request->newsletter;
 
 
         $inputs = [
@@ -39,10 +39,10 @@ class SubscroberController extends Controller
             'SubscriberEmail'        => 'required|email|unique:subscriber,SubscriberEmail',
         ];
 
-        $messages = [
+        // $messages = [
 
-            'SubscriberEmail.unique'  => 'Already Subscribed!',
-        ];
+        //     'SubscriberEmail.unique'  => 'Already Subscribed!',
+        // ];
 
         $validation = Validator::make($inputs, $rules);
 

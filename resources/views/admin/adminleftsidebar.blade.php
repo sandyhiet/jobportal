@@ -72,7 +72,7 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
              
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{url('admin_profile')}}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{url('admin/admin_profile')}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{url('logout')}}" class="btn btn-default btn-flat">Sign out</a>

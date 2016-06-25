@@ -14,11 +14,11 @@
     // Route::get('day',function(){
     //     return date('d/m/Y', strtotime('+3 days'));
     // });
-    Route::get('admin', function () {
+   
+   Route::get('admin', function () {
         $data = array('pagetitle'=>'Welcome Admin');
         return view('admin/adminlogin', $data);
     });
-
 
     Route::post('admin/postLogin', 'Auth\AuthAndRoleController@postLogin');
     
@@ -98,7 +98,7 @@
 
 
 
-    Route::get('admin_profile', function(){
+    Route::get('admin/admin_profile', function(){
         $data = array('pagetitle'=>'Admin Profile');
         $admin_profile = DB::table('admin_profile')->select('*')->get();
         $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
@@ -131,7 +131,7 @@
         $social_links = DB::table('social_links')->get();
         $results = DB::table('job')->paginate('5');
         $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
-        $work_details =DB::table('work_details')->select('*')->where('status', '=', 1)->take(1)->get();
+        $work_details =DB::table('work_details')->select('*')->get();
         $tbl_package = DB::table('tbl_package')->select('*')->get();
         $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
         $testimonials  = DB::table('testimonials')->select('*')->get();
@@ -142,45 +142,57 @@
     });
 
 
-    Route::get('readmore_work_details' ,function(){
+    Route::get('readmore_work_details/{title}' ,function($title){
+        $contact_usa = DB::table('contact_usa')->select('*')->get();
+        $contact_uk = DB::table('contact_uk')->select('*')->get();
+          $social_links = DB::table('social_links')->get();
+        $work_details = DB::table('work_details')->select('*')->where('title', '=', $title)->get();
 
-            return view('readmore_work_details');
-    });
+            return view('readmore_work_details')->with('work_details',$work_details)->with('contact_usa',$contact_usa)->with('contact_uk' ,$contact_uk)->with('social_links' ,$social_links);
+     });
 
     Route::post('post_contactus_query_from', 'aboutUs\aboutusController@post_contactus_query_from');
 
 
-    Route::get('jobs', function () {
-        return view('jobs');
+
+    Route::get('company', function () {
+        $contact_usa = DB::table('contact_usa')->select('*')->get();
+        $contact_uk = DB::table('contact_uk')->select('*')->get();
+        $social_links = DB::table('social_links')->get();
+        $results = DB::table('job')->paginate('5');
+        $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
+        $work_details =DB::table('work_details')->select('*')->where('status', '=', 1)->get();
+        $tbl_package = DB::table('tbl_package')->select('*')->get();
+        $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
+        $testimonials  = DB::table('testimonials')->select('*')->get();
+        return view('company')->with('banners',$banners)->with('results', $results)->with('work_details', $work_details)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links)->with('contact_usa',$contact_usa)->with('contact_uk' ,$contact_uk);;
+    });
+    
+    Route::get('candidate' , function(){
+        $contact_usa = DB::table('contact_usa')->select('*')->get();
+        $contact_uk = DB::table('contact_uk')->select('*')->get();
+        $social_links = DB::table('social_links')->get();
+        $results = DB::table('job')->paginate('5');
+        $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
+        $work_details =DB::table('work_details')->select('*')->where('status', '=', 1)->get();
+        $tbl_package = DB::table('tbl_package')->select('*')->get();
+        $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
+        $testimonials  = DB::table('testimonials')->select('*')->get();
+        return view('candidate')->with('banners',$banners)->with('results', $results)->with('work_details', $work_details)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links)->with('contact_usa',$contact_usa)->with('contact_uk' ,$contact_uk);;
     });
 
-    Route::get('candidates', function () {
-        return view('candidates');
+     Route::get('job' , function(){
+        $contact_usa = DB::table('contact_usa')->select('*')->get();
+        $contact_uk = DB::table('contact_uk')->select('*')->get();
+        $social_links = DB::table('social_links')->get();
+        $results = DB::table('job')->paginate('5');
+        $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
+        $work_details =DB::table('work_details')->select('*')->where('status', '=', 1)->get();
+        $tbl_package = DB::table('tbl_package')->select('*')->get();
+        $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
+        $testimonials  = DB::table('testimonials')->select('*')->get();
+        return view('job')->with('banners',$banners)->with('results', $results)->with('work_details', $work_details)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links)->with('contact_usa',$contact_usa)->with('contact_uk' ,$contact_uk);;
     });
-
-
-    Route::get('job-details', function () {
-        return view('job-details');
-    });
-    Route::get('post-a-resume', function () {
-        return view('post-a-resume');
-    });
-    Route::get('resume', function () {
-        return view('resume');
-    });
-
-    // Route::get('company', function () {
-    //      $contact_usa = DB::table('contact_usa')->select('*')->get();
-    //     $contact_uk = DB::table('contact_uk')->select('*')->get();
-    //     $social_links = DB::table('social_links')->get();
-    //     $results = DB::table('job')->paginate('5');
-    //     $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
-    //     $work_details =DB::table('work_details')->select('*')->where('status', '=', 1)->get();
-    //     $tbl_package = DB::table('tbl_package')->select('*')->get();
-    //     $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
-    //     $testimonials  = DB::table('testimonials')->select('*')->get();
-    //     return view('company')->with('banners',$banners)->with('results', $results)->with('work_details', $work_details)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('social_links',$social_links)->with('contact_usa',$contact_usa)->with('contact_uk' ,$contact_uk);;
-    // });
 
     Route::get('blog', function () {
         return view('blog');
@@ -202,13 +214,6 @@
         return view('options');
     });
 
-    Route::get('ajaxData' ,function(){
-        return view('ajaxData');
-    });
-
-    Route::get('date',function(){
-        return view('date');
-    });
     /////////////////////OUT  OF MIDDLEWARE START/////////////////////////////////
 
    
@@ -227,13 +232,11 @@
 
    Route::group(['middleware' => 'checkAdminAuth'],function(){
 
-
      Route::get('logout', 'Auth\AuthController@userLogout');
 
      Route::get('admin/dashboard', function () {
             $data = array('pagetitle'=>'Dashboard');
             $volunteer_count = DB::table('users')->where('status', '=', '0')->where('usertype', '=', 'superadmin')->count();
-
             $admin_profile = DB::table('admin_profile')->select('*')->get();
             $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
             return view('admin/dashboard', $data)->with('volunteer_count', $volunteer_count)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
@@ -519,7 +522,7 @@
 
 
 
-         Route::get('admin/work/{id}', function(){
+         Route::get('admin/work', function(){
             $data = array('pagetitle'=>'Work Details');
             $work_details = DB::table('work_details')->select('*')->get();
             $admin_profile = DB::table('admin_profile')->select('*')->get();
@@ -572,11 +575,11 @@
              return view('admin.addtestimonials');
         });
 
-          Route::get('admin/editTestimonial/{id}',function($id){
-             $admin_profile = DB::table('admin_profile')->select('*')->get();
-             $testimonials  = DB::table('testimonials')->select('*')->where('id', '=', $id)->get();
-             // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
-             return view('admin.updatetestimonials')->with('testimonials', $testimonials)->with('admin_profile', $admin_profile);
+        Route::get('admin/editTestimonial/{id}',function($id){
+         $admin_profile = DB::table('admin_profile')->select('*')->get();
+         $testimonials  = DB::table('testimonials')->select('*')->where('id', '=', $id)->get();
+         // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+         return view('admin.updatetestimonials')->with('testimonials', $testimonials)->with('admin_profile', $admin_profile);
         });
         Route::post('saveTestimonial', 'testimonial\testimonialController@insertTestimonial');
        
@@ -599,13 +602,16 @@
         Route::get('delete_clients/{id}', 'client\clientController@delete_clients');
 
 
-          Route::get('admin/update_clients/{id}',function($id){
-             $filter_gallery = DB::table('filter_gallery')->select('*')->where('id', '=', $id)->get();
-             // $testimonials  = DB::table('testimonials')->select('*')->get();
-             // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
-             return view('admin.update_clients')->with('filter_gallery', $filter_gallery);
+       Route::get('admin/update_clients/{id}',function($id){
+         $filter_gallery = DB::table('filter_gallery')->select('*')->where('id', '=', $id)->get();
+         // $testimonials  = DB::table('testimonials')->select('*')->get();
+         // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+         return view('admin.update_clients')->with('filter_gallery', $filter_gallery);
         });
-            Route::post('update_images', 'client\clientController@update_images');
+
+        Route::post('update_images', 'client\clientController@update_images');
+
+        
 
         ///////////////////////////////// Admin Relate Work End /////////////////////////////////////////////
 
@@ -805,79 +811,79 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
          });
 
 
-});
+      });
 
 
-/********Start Recruiter Route ******/
+        /********Start Recruiter Route ******/
 
 
-Route::get('recruiter_login', function() {
-    return view('recruiter/recruiter_login');
-});
+        Route::get('recruiter_login', function() {
+            return view('recruiter/recruiter_login');
+        });
 
-Route::get('recruiter_registration', function() {
-    return view('recruiter/recruiter_registration');
-});
+        Route::get('recruiter_registration', function() {
+            return view('recruiter/recruiter_registration');
+        });
 
-Route::post('saverecruiterRegistration', 'jobController@saverecruiterRegistration');
+        Route::post('saverecruiterRegistration', 'jobController@saverecruiterRegistration');
 
 
-Route::get('recruiterregistration/{id}/{hashvalue}', function ($id) {
+        Route::get('recruiterregistration/{id}/{hashvalue}', function ($id) {
 
-    DB::table('users')->where('id','=',$id)->update([
+            DB::table('users')->where('id','=',$id)->update([
+                    
+                    'activeAccount' =>1
+                ]);
+            return view('recruiter.recruiter_login');
+        });
+
+        Route::post('saverecruiterLogin' ,'Auth\AuthAndRoleController@saverecruiterLogin');
+
+        Route::get('recruiter_forgotpassword', function() {
+            return view('recruiter/recruiterforgotpassword');
+        });
+
+        Route::post('recruiterresetpassword' ,'Auth\AuthAndRoleController@recruiterresetpassword');
+
+        Route::get('recruiterresetpassword/{id}/{hashvalue}', function ($id) {
+           
+            $userprofile = DB::table('users')->select('*')->where('id','=',$id)->get();
+
+            return view('recruiter/recruiter_reset_password')->with('userprofile',$userprofile);
+        });
+
+        Route::post('recruiter_update_resetpassword', 'Auth\AuthAndRoleController@update_resetpassword');
+
+        Route::get('recruiter_logout', 'Auth\AuthAndRoleController@recruiter_logout');
+
+
+        Route::get('recruiter_jobspost', function() {
+            return view('recruiter/recruiter_job_post');
+        });
+
+        Route::post('saverecruiterjobpost', 'jobController@recruiterjobpost');
+
+
+
+        /********End Recruiter Route ******/
+
+
+
+
+
+
+         Route::post('saveJobs', 'job\jobController@insertJobs');
+
             
-            'activeAccount' =>1
-        ]);
-    return view('recruiter.recruiter_login');
-});
+            Route::post('recruiterlogin' ,'Auth\AuthAndRoleController@recruiterlogin');
 
-Route::post('saverecruiterLogin' ,'Auth\AuthAndRoleController@saverecruiterLogin');
+            Route::post('jobrecruiter','jobController@jobrecruiter');
 
-Route::get('recruiter_forgotpassword', function() {
-    return view('recruiter/recruiterforgotpassword');
-});
+                
+            Route::post('jobseekerlogin' ,'Auth\AuthAndRoleController@jobseeker_login');
 
-Route::post('recruiterresetpassword' ,'Auth\AuthAndRoleController@recruiterresetpassword');
-
-Route::get('recruiterresetpassword/{id}/{hashvalue}', function ($id) {
-   
-    $userprofile = DB::table('users')->select('*')->where('id','=',$id)->get();
-
-    return view('recruiter/recruiter_reset_password')->with('userprofile',$userprofile);
-});
-
-Route::post('recruiter_update_resetpassword', 'Auth\AuthAndRoleController@update_resetpassword');
-
-Route::get('recruiter_logout', 'Auth\AuthAndRoleController@recruiter_logout');
-
-
-Route::get('recruiter_jobspost', function() {
-    return view('recruiter/recruiter_job_post');
-});
-
-Route::post('saverecruiterjobpost', 'jobController@recruiterjobpost');
+            Route::post('jobseekerRegistartion','jobController@jobseekerRegistartion');
 
 
 
-/********End Recruiter Route ******/
-
-
-
-
-
-
- Route::post('saveJobs', 'job\jobController@insertJobs');
-
-    
-    Route::post('recruiterlogin' ,'Auth\AuthAndRoleController@recruiterlogin');
-
-    Route::post('jobrecruiter','jobController@jobrecruiter');
-
-        
-    Route::post('jobseekerlogin' ,'Auth\AuthAndRoleController@jobseeker_login');
-
-    Route::post('jobseekerRegistartion','jobController@jobseekerRegistartion');
-
-
-
-/*****************JOB PORTAL FRONT ROUTE END****************/
+        /*****************JOB PORTAL FRONT ROUTE END****************/

@@ -55,7 +55,7 @@ margin-top:30px;
         <p class="login-box-msg">Sign in to start your session</p>
          <form id="" action="{{url('admin/postLogin')}}" method="post">
           <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-         <!--  @if (count($errors) > 0)
+          @if (count($errors) > 0)
                     
               <div class="alert alert-danger <?php echo(count($errors) > 0)?'display-show':'display-hide';?>">
                   <button class="close" data-close="alert"></button>
@@ -63,7 +63,7 @@ margin-top:30px;
                   <span> {{ $error }} </span>
                   @endforeach
               </div>
-          @endif -->
+          @endif
 
 
           @if ( Session::has('flash_message') )

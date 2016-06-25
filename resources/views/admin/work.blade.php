@@ -58,20 +58,25 @@
         </section>
 
         <!-- Main content -->
+          <?php
+            $id                = $work_details[0]->id;
+            $title             = addslashes($work_details[0]->title);
+            $title             = preg_replace('/[^A-Za-z0-9 ]/', '', $title); // Removes special chars single space allowed.
+            $title             = str_replace(' ', '_', $title); // Replaces all spaces with underscore.
+            $title             = preg_replace('/_+/', '_', $title); // Replaces multiple underscore with single one.
+            $title             = strtolower($title);
+            $content           = $work_details[0]->content;
+            $video_link        = $work_details[0]->video_link;
+          ?>
         <section class="content">
-
-          
-
           <div class="row">
             <div class="col-md-12">
-
               <div class="box box-widget">
                 <div class='box-header with-border'>
                   Update Work
                 </div><!-- /.box-header -->
-                
-               
                  <form id="" action="{{url('admin/work')}}" method="post" enctype="multipart/form-data">
+                  <input type="hidden" value="{{$id}}" name="id">
                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                   <div class='box-body'>
 
@@ -86,7 +91,7 @@
                       <div class="row">
                         <div class="form-group">
                           <label>Title</label>
-                          <input type="text" name="title" value="{{old('title')}}" class="form-control">
+                          <input type="text" name="title" value="{{$title}}" class="form-control">
                         </div>
                       </div>
                     </div>
@@ -94,7 +99,7 @@
                       <div class="row">
                         <div class="form-group">
                           <label>Content</label>
-                          <textarea name="content" id="content" class="form-control" style="height:200px" placeholder="Overview">{{ old('content') }}</textarea>
+                          <textarea name="content" id="content" class="form-control" value="{{$content}}" style="height:200px" placeholder="Overview"></textarea>
                          
                         </div>
                       </div>
@@ -103,7 +108,7 @@
                       <div class="row">
                         <div class="form-group">
                           <label>Video Link</label>
-                          <input type="text" name="video_link" style="width:100%">
+                          <input type="text" name="video_link" value="{{$video_link}}" style="width:100%">
                         </div>
                       </div>
                     </div>
@@ -143,8 +148,8 @@
 
     
 <!-- fghfghhf -->
-    <script src="{{url('//code.jquery.com/jquery-1.10.2.js')}}"></script>
-  <script src="{{url('//code.jquery.com/ui/1.11.4/jquery-ui.js')}}"></script>
+<script src="{{url('//code.jquery.com/jquery-1.10.2.js')}}"></script>
+<script src="{{url('//code.jquery.com/ui/1.11.4/jquery-ui.js')}}"></script>
   <!-- gfhfghfgh -->
     <!-- jQuery 2.2.0 -->
 <script src="{{url('plugins/jQuery/jQuery-2.2.0.min.js')}}"></script>
