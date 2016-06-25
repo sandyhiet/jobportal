@@ -241,195 +241,12 @@ return view('read_news')->with('news',$news);
 
     /***********ADMIN PROFILE ROUTES END********/
 
-/************ADMIN MIDDLEWARE SATART ***************/
-
-<<<<<<< HEAD
-
-
-    Route::get('/', function () {
-        $results = DB::table('job')->paginate('5');
-        $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
-        $tbl_package = DB::table('tbl_package')->select('*')->get();
-        $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
-        $testimonials  = DB::table('testimonials')->select('*')->get();
-        $filter_gallery = DB::table('filter_gallery')->select('*')->get();
-
-
-     return view('homepage')->with('bodytagid', 'home')->with('banners',$banners)->with('results', $results)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('filter_gallery', $filter_gallery);
-    });
 
 
 
-    Route::get('jobs', function () {
-        return view('jobs');
-    });
+/************Admin  middleware start ***************/
 
-    Route::get('candidates', function () {
-        return view('candidates');
-    });
-
-
-    Route::get('job-details', function () {
-        return view('job-details');
-    });
-    Route::get('post-a-resume', function () {
-        return view('post-a-resume');
-    });
-    Route::get('resume', function () {
-        return view('resume');
-    });
-
-    Route::get('company', function () {
-        return view('company');
-    });
-
-   Route::get('blog', function () {
-        $blogs = DB::table('blogs')->select('*')->get();
-        return view('blog')->with('blogs', $blogs);
-    });
-    
-    Route::get('blogs_details/{title}', function($title){
-    $blogs = DB::table('blogs')->select('*')->where('title', '=', $title)->get();
-    $filter_gallery = DB::table('filter_gallery')->select('*')->get();
-
-    return view('blogs_details')->with('blogs',$blogs)->with('filter_gallery',$filter_gallery);
-    });
-
-    Route::get('admin/addblogs', function () {
-        return view('admin.Blog.addblogs');
-    });
-    Route::get('admin/viewall_blogs', function () {
-
-    	$blogs = DB::table('blogs')->select('*')->get();
-		
-	    return view('admin.Blog.viewall_blogs')->with('blogs', $blogs);
-    });
-
-
-    Route::get('admin/Blog/edit_blogs/{id}', function ($id) {
-    	$data = array('pagetitle'=>'blogs');
-    	$blogs = DB::table('blogs')->select('*')->select('*')->where('id', '=', $id)->get();
-
-        return view('admin.Blog.updateblogs', $data)->with('blogs', $blogs);
-    });
-
-    // Route::get('admin/Blog/delete_blogs/{id}', function($id){
-    // 	return 'hjgdh';
-    // 	 DB::table('blogs')->where('id', $id)->delete();
-    // 	return view('admin.Blog.viewall_blogs');
-    // });
-    Route::post('Addblogs', 'Blog\blogController@Addblogs');
-    Route::post('updateblogs', 'Blog\blogController@updateblogs');
-    Route::get('admin/delete_blogs/{id}', 'Blog\blogController@delete_blogs');
-
-
-
-
-
-    Route::get('post', function () {
-        return view('post');
-    });
-
-    Route::get('about', function () {
-    	$about_us=DB::table('about_us')->select('*')->get();
-    	$OurTeam = DB::table('aboutus_our_team')->select('*')->get();
-    	$testimonials  = DB::table('testimonials')->select('*')->get();
-    	$about_us=DB::table('about_us')->select('*')->get();
-        return view('about')->with('about_us', $about_us)->with('OurTeam', $OurTeam)->with('testimonials', $testimonials)->with('about_us', $about_us);
-    });
-     Route::get('admin/about_us', function () {
-    	$about_us=DB::table('about_us')->select('*')->get();
-        return view('admin.aboutus.about_us')->with('about_us', $about_us);
-    });
-    Route::post('about_Content', 'aboutUs\aboutusController@about_Content');
-
-
-Route::get('add_our_team', function(){
-		$data = array('pagetitle'=>'Add Our Team');
-		// $admin_profile = DB::table('admin_profile')->select('*')->get();
-		return view('admin.aboutus.add_our_team', $data);
-	});
-
-Route::get('all_our_team', function(){
-		$data = array('pagetitle'=>'Add Our Team');
-		$OurTeam = DB::table('aboutus_our_team')->select('*')->get();
-		return view('admin.aboutus.all_our_team', $data)->with('OurTeam', $OurTeam);
-	});
-
-	Route::post('saveOurTeam', 'aboutUs\aboutusController@saveOurTeam');
-
-	// Route::get('all_our_team', 'aboutUs\aboutusController@all_ourTeam');
-
-	Route::get('admin/edit_ourTeam/{id}', function($id){
-		$data = array('pagetitle'=>'Edit Our Team');
-		$ourTeam = DB::table('aboutus_our_team')->select('*')->where('id', '=', $id)->get();
-		
-	    return view('admin.aboutus.update_our_team', $data)->with('ourTeam', $ourTeam);
-	});
-
-	Route::post('updateOurTeam', 'aboutUs\aboutusController@updateOurTeam');
-	Route::get('deleteOurTeam/{id}', 'aboutUs\aboutusController@deleteOurTeam');
-
-
-
-    Route::get('testimonials', function () {
-        return view('testimonials');
-    });
-
-    Route::get('options', function () {
-        return view('options');
-    });
-
-    Route::get('ajaxData' ,function(){
-        return view('ajaxData');
-    });
-
-Route::get('date',function(){
-    return view('date');
-});
-    /////////////////////OUT  OF MIDDLEWARE START/////////////////////////////////
-
-    Route::post('saveJobs', 'job\jobController@insertJobs');
-
-    
-    Route::post('recruiterlogin' ,'Auth\AuthAndRoleController@recruiterlogin');
-
-    Route::post('jobrecruiter','jobController@jobrecruiter');
-
-        
-    Route::post('jobseekerlogin' ,'Auth\AuthAndRoleController@jobseekerlogin');
-
-    Route::post('jobseekerRegistartion','jobController@jobseekerRegistartion');
-
-    // Route::post('jobseekerregistration','jobController@jobseekerregistration');
-
-
-    
-    Route::get('countries_json', function(){
-    return DB::table('tbl_country')->select('country_name')->get();
-    });
-    Route::get('state_json', function(){
-    return DB::table('tbl_state')->select('state_name', 'state_id')->get();
-    });
-    Route::get('district_json/{state_name}', function($state_name){
-    $tbl_state = DB::table('tbl_state')->select('state_id')->where('state_name', '=', $state_name)->get();
-    return $tbl_city= DB::table('tbl_city')->select('city_name', 'id')->where('state_id', '=', $tbl_city[0]->state_id)->get();
-    });
-
-      /////////////////////OUT  OF MIDDLEWARE END/////////////////////////////////
-
-
-
-
-
-
-     //AUTH PROCTED ROUTE & Admin Related WorK//////////////////
-
-   Route::group(['middleware' => 'checkAdminAuth'],function(){
-=======
 Route::group(['middleware' => 'checkAdminAuth'],function(){
->>>>>>> refs/remotes/origin/master
-
 
      Route::get('logout', 'Auth\AuthController@userLogout');
 
@@ -536,21 +353,17 @@ Route::group(['middleware' => 'checkAdminAuth'],function(){
         });
 
 
-         Route::post('admin/add_role_category', 'ServiceCategory\categoryController@add_role_category');
+        Route::post('admin/add_role_category', 'ServiceCategory\categoryController@add_role_category');
         Route::post('admin/all_role_category', 'ServiceCategory\categoryController@all_role_category');
         Route::get('deletekeyskill/{id}', 'ServiceCategory\categoryController@deletekeyskill');
 
         Route::post('update_role',      'ServiceCategory\categoryController@update_role');
 
-        /************ Admin Relate Work End ***************/
+    
 
 
-<<<<<<< HEAD
-       
-   });
-=======
         /************ Admin Job center Route start ***************/ 
->>>>>>> refs/remotes/origin/master
+
 
         Route::get('admin/all_recruiter_profile' , function(){
            $data = array('pagetitle' => 'All Recruiter Profile');
@@ -580,20 +393,6 @@ Route::group(['middleware' => 'checkAdminAuth'],function(){
             return view('admin.jobcenter.recruiterjobdetail' , $data)->with('postjobdetail' ,$postjobdetail)->with('postcompanydetail' ,$postcompanydetail);
         });
 
-<<<<<<< HEAD
-    Route::get('frontlogout', 'Auth\AuthAndRoleController@frontlogout');
-    
-
-    Route::get('jobseeker_dashboard',function(){
-        return view('jobseeker_dashboard');
-    });
-
-    Route::get('jobseeker/post_resume', function(){
-        $data = array('pagetitle'=>'Job Post');
-        return view('jobseeker.post_resume', $data);
-    });
-=======
-    
         Route::get('admin/approverecruiterjobpost/{id}', 'jobController@approve_recruiterjobpost');
         
         Route::get('admin/rejectrecruiterjobpost/{id}', 'jobController@reject_recruiterjobpost');
@@ -614,7 +413,7 @@ Route::group(['middleware' => 'checkAdminAuth'],function(){
                 ->get();
             return view('admin.jobcenter.all_approvedrecruiterpostjobs' , $data)->with('recruiter_postjob' ,$recruiter_postjob);
         });
->>>>>>> refs/remotes/origin/master
+
 
         Route::get('deleteRecruiterPostjob/{id}', 'jobController@deleteRecruiterPostjob');
 
@@ -623,7 +422,7 @@ Route::group(['middleware' => 'checkAdminAuth'],function(){
        
 });
 
-/************ADMIN MIDDLEWARE END ***************/
+/************Admin  middleware End ***************/
 
 
 
@@ -641,20 +440,6 @@ Route::group(['middleware' => 'checkAdminAuth'],function(){
 
      
 
-
-
-
-
-<<<<<<< HEAD
-        Route::get('fileentry', 'FileEntryController@index');
-        Route::get('fileentry/get/{filename}', [
-            'as' => 'getentry', 'uses' => 'FileEntryController@get']);
-        Route::post('fileentry/add',[ 
-                'as' => 'addentry', 'uses' => 'FileEntryController@add']);
-=======
->>>>>>> refs/remotes/origin/master
-
-    
 
 
 /*****************JOB PORTAL FRONT ROUTE START****************/
@@ -679,14 +464,10 @@ Route::get('/', function () {
 
 Route::get('company_detail/{id}', function ($id) {
 
-<<<<<<< HEAD
-        $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
-        return view('jobseeker/jobseeker_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile)->with('work_details', $work_details);
-    });
-=======
+
      $company_details = DB::table('recruiter_companydetailspost')->select('*')->where('job_id', '=', $id)->get();
      $job_details = DB::table('recruiter_jobdetailspost')->select('*')->where('id', '=', $id)->get();
->>>>>>> refs/remotes/origin/master
+
 
     return view('recruiter/companydetails')->with('company_details', $company_details)->with('job_details', $job_details);
 });
@@ -872,41 +653,7 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
     $data = array('pagetitle'=>'Job Post');
      return view('recruiter.post_job', $data);
         });
-<<<<<<< HEAD
-        Route::get('up_downgrade/{email}', function($email){
-                $data = array('pagetitle'=>'job_update');
-                $tbl_package = DB::table('tbl_package')->select('*')->get();
-                // $category = DB::table('tbl_category')->where('category_id', '=', $id)->get();
-                return view('recruiter/up_downgrade', $data)->with('job', $job);
-        });
 
-        Route::get('recruiter/recruiter_profile', function(){
-        $data = array('pagetitle'=>'Admin Profile');
-        $admin_profile = DB::table('admin_profile')->select('*')->get();
-        $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
-        return view('recruiter/recruiter_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
-        });
-=======
-
-    Route::get('recruiter/package', function(){
-        $data = array('pagetitle' => 'Plan');
-        return view('recruiter.package' ,$data);
-    });
-
-    Route::get('recruiter/viewdetail_job/{id}', function($id){
-            $data = array('pagetitle'=>'viewdetail');
-            $job = DB::table('job_post')->select('*')->where('id', '=', $id)->get();
-            return view('recruiter.viewdetail_job', $data)->with('job', $job);
-    });
-
-
-    Route::get('recruiter/allpost', function(){
-    $data = array('pagetitle'=>'all Post');
-    $job = DB::table('job_post')->select('*')->get();
-    return view('recruiter.allpost', $data)->with('job',$job);
-        });
-
->>>>>>> refs/remotes/origin/master
 
     Route::get('recruiter/job_update/{id}', function($id){
             $data = array('pagetitle'=>'job_update');
@@ -931,23 +678,7 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
     Route::post('AdminProfile', 'job\jobController@AdminProfile');
     Route::post('updatePassword', 'job\jobController@updatePassword');
 
-<<<<<<< HEAD
-        Route::post('recruiter_update', 'job\jobController@recruiter_update');
 
-        Route::get('delete_job/{id}', 'job\jobController@job_delete');
-=======
-
-     Route::post('recruiter_update', 'job\jobController@recruiter_update');
->>>>>>> refs/remotes/origin/master
-
-     Route::get('delete_job/{id}', 'job\jobController@job_delete');
-
-<<<<<<< HEAD
-        Route::get('job_listing', 'job\jobController@jobs');
-=======
-
-     Route::get('job_listing', 'job\jobController@jobs');
->>>>>>> refs/remotes/origin/master
 
 
 
@@ -1036,3 +767,116 @@ Route::post('recruiterchangepassword', 'Auth\AuthAndRoleController@recruiterchan
 
 
 /*****************JOB PORTAL FRONT ROUTE END****************/
+
+
+/************************* Start Rahul front route ***********************/
+
+  Route::get('blog', function () {
+        $blogs = DB::table('blogs')->select('*')->get();
+        return view('blog')->with('blogs', $blogs);
+    });
+    
+    Route::get('blogs_details/{title}', function($title){
+    $blogs = DB::table('blogs')->select('*')->where('title', '=', $title)->get();
+    $filter_gallery = DB::table('filter_gallery')->select('*')->get();
+
+    return view('blogs_details')->with('blogs',$blogs)->with('filter_gallery',$filter_gallery);
+    });
+
+    Route::get('admin/addblogs', function () {
+        return view('admin.Blog.addblogs');
+    });
+    Route::get('admin/viewall_blogs', function () {
+
+        $blogs = DB::table('blogs')->select('*')->get();
+        
+        return view('admin.Blog.viewall_blogs')->with('blogs', $blogs);
+    });
+
+
+    Route::get('admin/Blog/edit_blogs/{id}', function ($id) {
+        $data = array('pagetitle'=>'blogs');
+        $blogs = DB::table('blogs')->select('*')->select('*')->where('id', '=', $id)->get();
+
+        return view('admin.Blog.updateblogs', $data)->with('blogs', $blogs);
+    });
+
+    // Route::get('admin/Blog/delete_blogs/{id}', function($id){
+    //  return 'hjgdh';
+    //   DB::table('blogs')->where('id', $id)->delete();
+    //  return view('admin.Blog.viewall_blogs');
+    // });
+    Route::post('Addblogs', 'Blog\blogController@Addblogs');
+    Route::post('updateblogs', 'Blog\blogController@updateblogs');
+    Route::get('admin/delete_blogs/{id}', 'Blog\blogController@delete_blogs');
+
+
+
+
+
+    Route::get('post', function () {
+        return view('post');
+    });
+
+    Route::get('about', function () {
+        $about_us=DB::table('about_us')->select('*')->get();
+        $OurTeam = DB::table('aboutus_our_team')->select('*')->get();
+        $testimonials  = DB::table('testimonials')->select('*')->get();
+        $about_us=DB::table('about_us')->select('*')->get();
+        return view('about')->with('about_us', $about_us)->with('OurTeam', $OurTeam)->with('testimonials', $testimonials)->with('about_us', $about_us);
+    });
+     Route::get('admin/about_us', function () {
+        $about_us=DB::table('about_us')->select('*')->get();
+        return view('admin.aboutus.about_us')->with('about_us', $about_us);
+    });
+    Route::post('about_Content', 'aboutUs\aboutusController@about_Content');
+
+
+Route::get('add_our_team', function(){
+        $data = array('pagetitle'=>'Add Our Team');
+        // $admin_profile = DB::table('admin_profile')->select('*')->get();
+        return view('admin.aboutus.add_our_team', $data);
+    });
+
+Route::get('all_our_team', function(){
+        $data = array('pagetitle'=>'Add Our Team');
+        $OurTeam = DB::table('aboutus_our_team')->select('*')->get();
+        return view('admin.aboutus.all_our_team', $data)->with('OurTeam', $OurTeam);
+    });
+
+    Route::post('saveOurTeam', 'aboutUs\aboutusController@saveOurTeam');
+
+    // Route::get('all_our_team', 'aboutUs\aboutusController@all_ourTeam');
+
+    Route::get('admin/edit_ourTeam/{id}', function($id){
+        $data = array('pagetitle'=>'Edit Our Team');
+        $ourTeam = DB::table('aboutus_our_team')->select('*')->where('id', '=', $id)->get();
+        
+        return view('admin.aboutus.update_our_team', $data)->with('ourTeam', $ourTeam);
+    });
+
+    Route::post('updateOurTeam', 'aboutUs\aboutusController@updateOurTeam');
+    Route::get('deleteOurTeam/{id}', 'aboutUs\aboutusController@deleteOurTeam');
+
+
+
+    Route::get('testimonials', function () {
+        return view('testimonials');
+    });
+
+    Route::get('options', function () {
+        return view('options');
+    });
+
+    Route::get('ajaxData' ,function(){
+        return view('ajaxData');
+    });
+
+Route::get('date',function(){
+    return view('date');
+});
+   
+
+
+
+/*************** End Rahul front route ******************/
