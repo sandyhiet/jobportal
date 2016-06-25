@@ -181,14 +181,7 @@ class aboutusController extends Controller
     }
 
    
-
-   
-
-   
-
-    
-
-    public function saveOurTeam(Request $req){
+public function saveOurTeam(Request $req){
        
         $name                = addslashes($req->name);
         $designation         = addslashes($req->designation);
@@ -391,16 +384,24 @@ class aboutusController extends Controller
 
     }
 
+            public function deleteOurTeam($id){
+            $teamImage = DB::table('aboutus_our_team')->where('id', $id)->get();
+            $Image = $teamImage[0]->image;
 
+            DB::table('aboutus_our_team')->where('id', $id)->delete();
+            unlink("ourTeamImage/".$Image);
+            unlink("ourTeamImage/thumb360X407/".$Image);
+            // unlink("testimonialsImages/thumb50/".$Image);
+            return redirect()->back()->with('message', 'One recoard deleted');
 
-     public function deleteOurTeam($id){
+     // public function deleteOurTeam($id){
 
-                DB::table('aboutus_our_team')->where('id', $id)->delete([
+     //            DB::table('aboutus_our_team')->where('id', $id)->delete([
 
-                      'id'   => $id,
-                ]);
+     //                  'id'   => $id,
+     //            ]);
 
-        return redirect()->back()->with('message', ' deleted');
+     //    return redirect()->back()->with('message', ' deleted');
 
      
 

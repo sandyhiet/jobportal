@@ -49,7 +49,7 @@ return view('read_news')->with('news',$news);
         // $home_slider = DB::table('home_slider')->select('*')->get();
         $admin_profile = DB::table('admin_profile')->select('*')->get();
         // $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
-        $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
+        $news = DB::table('news')->select('*')->get();
 
 
         return view('admin/allnews', $data)->with('news',$news)->with('admin_profile', $admin_profile);
@@ -281,8 +281,16 @@ return view('read_news')->with('news',$news);
         return view('company');
     });
 
-    Route::get('blog', function () {
-        return view('blog');
+   Route::get('blog', function () {
+        $blogs = DB::table('blogs')->select('*')->get();
+        return view('blog')->with('blogs', $blogs);
+    });
+    
+    Route::get('blogs_details/{title}', function($title){
+    $blogs = DB::table('blogs')->select('*')->where('title', '=', $title)->get();
+    $filter_gallery = DB::table('filter_gallery')->select('*')->get();
+
+    return view('blogs_details')->with('blogs',$blogs)->with('filter_gallery',$filter_gallery);
     });
 
     Route::get('admin/addblogs', function () {

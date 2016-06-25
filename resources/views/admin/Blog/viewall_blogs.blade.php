@@ -45,8 +45,8 @@
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">Blogs Articles</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#">Blogs</a></li>
             <li class="active">All Blogs</li>
           </ol>
         </section>
@@ -62,18 +62,19 @@
             <div class="box-body">
 
               @include('layout.error-notification')
-              <table id="example1" class="table table-bordered table-striped">
+
+              <table  class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                  <th style="width: 100px;">s.no.</th>
-                    <th style="width: 100px;">Title</th>
-                    <th style="width: 100px;">Name</th>
-                     <th style="width: 100px;">Date</th>
-                    <th data-orderable="false">Content</th>
-                     <th style="width: 100px;">image</th>
-                    <th data-orderable="false">image</th>
-                    <th style="width: 80px;" data-orderable="false">Status</th>
-                    <th style="width: 80px;" data-orderable="false">Action</th>
+                   <th>S.No.</th>
+                    <th>Title</th>
+                    <th>Name</th>
+<!--                      <th style="width: 100px;">Date</th>
+ -->                 <th data-orderable="false">Content</th>
+                     <th>image</th>
+<!--                     <th data-orderable="false">image</th>
+ -->                  <th data-orderable="false">Status</th>
+                    <th data-orderable="false">Action</th></li>
 
                   </tr>
                 </thead>
@@ -83,33 +84,20 @@
                   $i=1;
                   foreach ($blogs as $key => $value) {
                     $title = $blogs[$key]->title;
+                    $status = $blogs[$key]->status;
+
                   
                   ?>
                   <tr>
                     <td>{{$i}}</td>
                     <td>{{$title}}</td>
                      <td>{{$blogs[$key]->name}}</td>
-                      <td>{{$blogs[$key]->date}}</td>
-                    <td>{{$blogs[$key]->content}}</td>
+                    <td><?PHP echo stripcslashes(substr($blogs[$key]->content, 0, 149)); ?>..</td>
                     <td><img src="{{url('blogImages/thumb750x395/'. $blogs[$key]->blogImage)}}" style="height:45px;width:45px;"> </td>
-                    <td><img src="{{url('blogImages/thumb358x300/'. $blogs[$key]->blogThumbImage)}}" style="height:45px;width:45px;"> </td>
+                    
 
-                      <td>
-
-                        <?php 
-                        $ancTxt = '';
-
-                        if($value->status == '1'){
-                            $ancTxt = '<span class="text-success">Published</span>';
-                        }
-
-                        if($value->status == '0'){
-                            $ancTxt = '<span class="text-danger">Draft</span>';
-                        }
-                        echo $ancTxt;
-                        ?>
-                        
-                      </td>
+                     
+                       <td>{{$status}}</td>
                   
                     <td>
                       

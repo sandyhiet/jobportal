@@ -41,13 +41,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Gallery Image
-            <small>Filter Gallery</small>
+            Clients Image
+            <small>Clients Image</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="#">Homepage</a></li>
-            <li class="active">Update Filter Gallery</li>
+            <li class="active">Update Clients Image</li>
           </ol>
         </section>
 
@@ -61,7 +61,7 @@
 
               <div class="box box-widget">
                 <div class='box-header with-border'>
-                  Update Image
+                  Update Clients Image
                 </div><!-- /.box-header -->
                  <form action="{{url('update_images')}}" method="post" enctype="multipart/form-data">
                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
@@ -85,7 +85,7 @@
                     
                   </div><!-- /.box-body -->
                   <div class='box-footer box-comments'>
-                    Upload 700 X 586 pixels png or jpg image.
+                    Upload 133 X 69 pixels png or jpg image.
                   </div><!-- /.box-footer -->
                   <div class="box-footer">
                     <button type="submit" class='btn btn-primary btn-xs'>Update</button>

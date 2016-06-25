@@ -43,7 +43,7 @@
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="#">Testimonials</a></li>
             <li class="active">Update Testimonial</li>
           </ol>
@@ -79,7 +79,7 @@
                       <span class="pull-right text-danger">*Required</span>
                     </div> -->
                      <div class="form-group">
-                      <label for="">Testimonial</label>
+                      <label for="">Content</label>
                        <textarea class="form-control" name="testiMonial" style="height:150px">{{ $testimonials[0] -> testiMonial }}</textarea>
                       <span class="pull-right text-danger">*Required</span>
                     </div> 
@@ -88,7 +88,8 @@
                       <label for="">Client Image</label>
                       <input type="file" name="clientImage" class="form-control" id="" placeholder="Upload jpg or png image">
                         <input type="hidden" name="clientImage" value="{{ $testimonials[0] -> clientImage }}">
-                      
+                       <p class="help-block">Upload 128X50 Pixels jpg or png image.</p>
+
                     </div>
                     <?php
                if($testimonials[0]->clientImage){

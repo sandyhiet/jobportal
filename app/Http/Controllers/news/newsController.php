@@ -40,38 +40,32 @@ class newsController extends Controller
         $inputs = [
 
             'newsTitle'        => $newsTitle,
-            'name'     => $name,
-            'date'     => $date,
-            // 'news_category'        => $news_category,
-            'newsDescription'     => $newsDescription,
-            'newsImage'     => $newsImage,
-            // 'newsThumbImage'     => $newsThumbImage,
+            'name'             => $name,
+            'date'             => $date,
+            'newsDescription'  => $newsDescription,
+            'newsImage'        => $newsImage,
             
         ];
 
         $rules = [
 
             'newsTitle'        => 'required',
-             'name'         => 'required',
-            'date'         => 'required',
-            // 'news_category'     =>'required',
+            'name'             => 'required',
+            'date'             => 'required',
             'newsDescription'  => 'required',
-            'newsImage'  => 'required',
-            // 'newsThumbImage'  => 'required',
+            'newsImage'        => 'required',
             
             
         ];
 
         $messages = [
 
-            'newsTitle.required'               => 'Please enter news title',
-             'name.required'               => 'Please enter news title',
+            'newsTitle.required'           => 'Please enter news newsTitle',
+            'name.required'                => 'Please enter news name',
 
-            'date.required'               => 'Please enter news title',
-            // 'news_category.required'           => 'Please select news category',
-            'newsDescription.required'  => 'Please enter news description',
-            'newsImage.required'  => 'Please select news main image',
-            // 'newsThumbImage.required'  => 'Please select news thumbnail image',
+            'date.required'                => 'Please enter news date',
+            'newsDescription.required'     => 'Please enter news description',
+            'newsImage.required'           => 'Please select news main image',
            
         ];
 
@@ -150,26 +144,20 @@ class newsController extends Controller
         return redirect()->back()->with('message', 'News Added.');
 
 
-    }
-
-
-
-
-   
+    } 
+    
 
         public function Delete_news($id){
+        $getnewsImage = DB::table('news')->where('id', $id)->get();
+        $newsImage = $getnewsImage[0]->newsImage;
 
-                DB::table('news')->where('id', $id)->delete([
+        DB::table('news')->where('id', $id)->delete();
+        unlink("newsImages/".$newsImage);
+        unlink("newsImages/thumb800x530/".$newsImage);
+        // unlink("gallery/filterGallery/thumb133x69".$clientImage);
+        return redirect()->back()->with('message', 'One recoard deleted');
 
-                      'id'   => $id,
-                ]);
-
-        return redirect()->back()->with('message', 'news delete');
-
-     
-
-
-      }
+        }
     
   
 
@@ -178,9 +166,6 @@ class newsController extends Controller
 
        $newsTitle         = addslashes($res->newsTitle);
        $oldnewsTitle      = $res->oldnewsTitle;
-
-       
-
         $newsTitle = preg_replace('/[^A-Za-z0-9 ]/', '', $newsTitle); // Removes special chars single space allowed.
         $newsTitle = str_replace(' ', '_', $newsTitle); // Replaces all spaces with underscore.
         $newsTitle = preg_replace('/_+/', '_', $newsTitle); // Replaces multiple underscore with single one.
@@ -188,11 +173,13 @@ class newsController extends Controller
         $name = $res->name;
         $date = $res->date;
        // $news_category     = $res->news_category;
-       $newsDescription   = addslashes($res->newsDescription);
-       $id                = $res->id;
-       $status            = $res->status;       
-       $newsImage         = $res->file('newsImage');
+        $newsDescription   = addslashes($res->newsDescription);
+        $id                = $res->id;
+        $status            = $res->status;       
+        $newsImage         = $res->file('newsImage');
         $oldnewsImage      = $res->oldnewsImage;
+
+        
 
 
        $inputs = [
@@ -223,12 +210,12 @@ class newsController extends Controller
             return redirect()->back()->withInput()->with('errors', $validation->errors() );
         }
 
-        if($newsTitle != $oldnewsTitle){
-            $newsExist = DB::table('news')->select('*')->where('newsTitle', '=', $newsTitle)->count();
-            if($newsExist > 0){
-                return redirect()->back()->withInput()->with('singleerror', 'Duplicate news title.' );
-            }
-        }
+        // if($newsTitle != $oldnewsTitle){
+        //     $newsExist = DB::table('news')->select('*')->where('newsTitle', '=', $newsTitle)->count();
+        //     if($newsExist > 0){
+        //         return redirect()->back()->withInput()->with('singleerror', 'Duplicate news title.' );
+        //     }
+        // }
 
 
         // Page image 
@@ -284,15 +271,4 @@ class newsController extends Controller
 
     }
 
-   
-
-   
-
-
-     
-
-
-    
-
-
-}
+ }

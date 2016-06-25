@@ -10,8 +10,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-2">
-						<img src="http://placehold.it/140x140.jpg" alt="" class="img-responsive img-circle" />
-					</div>
+					<img class="img-responsive img-circle" src="{{url('newsImages/thumb800x530/'.$news[0]->newsImage)}}"/>
+<!-- 						<img src="http://placehold.it/140x140.jpg" alt="" />
+ -->					</div>
 					<div class="col-sm-10">
 						<h1><?php echo implode(explode('_', $news[0]->newsTitle), ' '); ?></h1>
 						<div class="meta">
@@ -40,9 +41,9 @@
 
 						
 						<p>
-							<img style="width:700px;" class="img-responsive" src="{{url('newsImages/thumb800x530/'.$news[0]->newsImage)}}"/>
+							<img style="height:450px;width:1130px;" class="img-responsive" src="{{url('newsImages/thumb800x530/'.$news[0]->newsImage)}}"/>
 							</p>
-							 <p style="text-align: justify;"><?PHP echo stripcslashes(substr($news[0]->newsDescription, 0, 520)); ?>
+							 <p style="text-align: justify;">{!!$news[0]->newsDescription!!}</p>
 
 						
 							<h2>Gallery</h2>

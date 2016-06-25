@@ -175,7 +175,7 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
    <li class="treeview <?php echo($lasturl == 'about_us' || $lasturl == 'addtestimonials' || $secondlasturl == 'editSliderImage' || $lasturl == 'homepage_banner' || $lasturl == 'clients_happy' || $lasturl == 'all_our_team' || $lasturl == 'add_our_team' || $secondlasturl == 'edit_ourTeam')?'active':'';?>">
           <a href="#">
             <i class="fa fa-user" aria-hidden="true"></i>
-            <span>ABOUT US</span> <i class="fa fa-angle-left pull-right"></i>
+            <span>About us</span> <i class="fa fa-angle-left pull-right"></i>
             <span class="label label-primary pull-right"></span>
           </a>
           <ul class="treeview-menu">
@@ -183,7 +183,7 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
         
            <li <?php echo($lasturl == 'about_us')?'class="active"':'';?>>
             <a href="{{url('admin/about_us')}}">
-              <i class="fa fa-circle-o"></i>About_us
+              <i class="fa fa-circle-o"></i>About us
             </a>
             
           </li>
@@ -215,18 +215,18 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
  <!-- News Start -->
 
 
-     <li class="treeview <?php echo($secondlasturl == 'allnews' || $secondlasturl == 'addNews')?'active':'';?>">
+     <li class="treeview <?php echo($lasturl == 'allnews' || $lasturl == 'addNews' || $secondlasturl == 'edit_news')?'active':'';?>">
           <a href="#">
             <i class="fa fa-newspaper-o" aria-hidden="true"></i>
             <span>News</span> <i class="fa fa-angle-left pull-right"></i>
             <span class="label label-primary pull-right"></span>
           </a>
           <ul class="treeview-menu">
-            <li <?php echo($secondlasturl == 'allnews' || $lasturl == 'homepage_banner')?'class="active"':'';?>>
-            <a href="{{url('admin/allnews')}}"><i class="fa fa-circle-o"></i> All News</a>
+            <li <?php echo($lasturl == 'allnews')?'class="active"':'';?>>
+            <a href="{{url('admin/allnews')}}"><i class="fa fa-circle-o"></i> View all</a>
           </li> 
-           <li <?php echo($secondlasturl == 'addNews')?'class="active"':'';?>>
-            <a href="{{url('admin/addNews')}}"><i class="fa fa-circle-o"></i> Add News</a>
+           <li <?php echo($lasturl == 'addNews')?'class="active"':'';?>>
+            <a href="{{url('admin/addNews')}}"><i class="fa fa-circle-o"></i> Add New</a>
           </li> 
           </ul>
       </li>
@@ -235,22 +235,23 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
 
 
 <!-- Blogs -->
- <li class="treeview <?php echo($secondlasturl == 'viewall_blogs' || $secondlasturl == 'addblogs')?'active':'';?>">
+ <li class="treeview <?php echo($lasturl == 'viewall_blogs' || $lasturl == 'addblogs' || $secondlasturl == 'edit_blogs')?'active':'';?>">
           <a href="#">
-            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+            <i class="fa fa-rss-square" aria-hidden="true"></i>
             <span>Blogs</span> <i class="fa fa-angle-left pull-right"></i>
             <span class="label label-primary pull-right"></span>
           </a>
           <ul class="treeview-menu">
-            <li <?php echo($secondlasturl == 'viewall_blogs')?'class="active"':'';?>>
+            <li <?php echo($lasturl == 'viewall_blogs')?'class="active"':'';?>>
             <a href="{{url('admin/viewall_blogs')}}"><i class="fa fa-circle-o"></i> View all</a>
           </li> 
-           <li <?php echo($secondlasturl == 'addblogs')?'class="active"':'';?>>
-            <a href="{{url('admin/addblogs')}}"><i class="fa fa-circle-o"></i> New add</a>
+           <li <?php echo($lasturl == 'addblogs')?'class="active"':'';?>>
+            <a href="{{url('admin/addblogs')}}"><i class="fa fa-circle-o"></i> Add New</a>
           </li> 
           </ul>
       </li>
 <!-- end bogs -->
+
 
   <!-- start jobs  -->
         
@@ -262,16 +263,7 @@ $secondlasturl = $req_uri_arr[sizeof($req_uri_arr)-2];
         </a>
         <ul class="treeview-menu">
 
-          <!-- <li <?php echo($lasturl == 'all_event')?'class="active"':'';?>>
-                <a href="{{url('admin/all_event')}}">
-                  <i class="fa fa-angle-double-right"></i> All Event
-                </a>
-          </li>
-           <li <?php echo($lasturl == 'add_event')?'class="active"':'';?>>
-                <a href="{{url('admin/add_event')}}">
-                  <i class="fa fa-angle-double-right"></i> Add Event
-                </a>
-          </li> -->
+          
           
           <li <?php echo($lasturl == 'all_category' || $lasturl == 'add_category' || $lasturl == 'add_sub_category' || $secondlasturl == 'edit_Category')?'class="active"':'';?>>
             <a href="#">

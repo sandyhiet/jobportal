@@ -44,8 +44,8 @@
             Update Our Team
           </h1>
           <ol class="breadcrumb">
-            <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#">Our Team</a></li>
             <li class="active">Update Our Team</li>
           </ol>
         </section>

@@ -45,8 +45,8 @@
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">News Articles</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#">Update News</a></li>
             <li class="active">Update News</li>
           </ol>
         </section>
@@ -92,10 +92,15 @@
                       </div>
                        <span class="pull-right text-danger">*Required</span>
                     </div>
-                    <div class="form-group"  >
+                     <div class="form-group">
                       <label for="">Content</label>
-                      <textarea name="newsDescription" id="editor1" style="height:200px;width:100%;">{!! $news[0]->newsDescription !!}</textarea>
+                      <textarea class="form-control" style="height:300px;" name="newsDescription">{{$news[0]->newsDescription}}</textarea>
                     </div>
+
+                    <!-- <div class="form-group"  >
+                      <label for="">Content</label>
+                      <textarea name="newsDescription" id="editor1" style="height:200px;width:100%;">{{$news[0]->newsDescription}}</textarea>
+                    </div> -->
                     <?php if($news[0]->newsImage){?>
                     <img style="width:150px;" src="{{url('newsImages/'.$news[0]->newsImage)}}">
                     <?php }?>
@@ -103,7 +108,7 @@
                       <label for="">Main Image</label>
                       <input type="hidden" name="oldnewsImage" value="{{$news[0]->newsImage}}">
                       <input type="file" name="newsImage" class="form-control" id="" placeholder="upload jpg or png image">
-                      <p class="help-block">Upload 750X395 Pixels jpg or png image.</p>
+                      <p class="help-block">Upload 800X530 Pixels jpg or png image.</p>
                     </div>
                    
                     <label class="radio-inline">

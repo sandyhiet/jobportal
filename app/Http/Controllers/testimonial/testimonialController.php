@@ -27,20 +27,16 @@ class testimonialController extends Controller
      $inputs = [
 
             'clientName'        => $clientName,
-            // 'news_category'        => $news_category,
             'clientCompany'     => $clientCompany,
             'testiMonial'     => $testiMonial,
-            // 'newsThumbImage'     => $newsThumbImage,
             
         ];
 
         $rules = [
 
             'clientName'        => 'required',
-            // 'news_category'     =>'required',
             'clientCompany'  => 'required',
             'testiMonial'  => 'required',
-            // 'newsThumbImage'  => 'required',
             
             
         ];
@@ -48,10 +44,8 @@ class testimonialController extends Controller
         $messages = [
 
             'clientName.required'               => 'Please enter news title',
-            // 'news_category.required'           => 'Please select news category',
             'clientCompany.required'  => 'Please enter news description',
             'testiMonial.required'  => 'Please select news main image',
-            // 'newsThumbImage.required'  => 'Please select news thumbnail image',
            
         ];
 
@@ -187,28 +181,20 @@ class testimonialController extends Controller
      
 
     }
+            
 
 
+            public function deletetestimonial($id){
+            $gettestimonialsImage = DB::table('testimonials')->where('id', $id)->get();
+            $testimonialsImage = $gettestimonialsImage[0]->clientImage;
 
-             public function deletetestimonial($id){
-
-                DB::table('testimonials')->where('id', $id)->delete([
-
-                      'id'   => $id,
-                ]);
-
-        return redirect()->back()->with('message', 'testimonial delete');
-
-     
+            DB::table('testimonials')->where('id', $id)->delete();
+            unlink("testimonialsImages/".$testimonialsImage);
+            unlink("testimonialsImages/thumb128/".$testimonialsImage);
+            unlink("testimonialsImages/thumb50/".$testimonialsImage);
+            return redirect()->back()->with('message', 'One recoard deleted');
 
 
       }
-
-
-                     
-   
-
-   
-
 
 }

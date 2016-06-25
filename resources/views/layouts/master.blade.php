@@ -85,10 +85,10 @@
 							<li><a href="{{url('about')}}">About Us</a></li>
 							<li><a href="{{url('testimonial')}}">Testimonials</a></li>
 
-							<li><a href="{{url('#')}}">Blog</a></li>
+							<!-- <li><a href="{{url('#')}}">Blog</a></li>
 							<li><a href="{{url('#')}}">Single Post</a></li>
 							<li><a href="{{url('#')}}">About Us</a></li>
-							<li><a href="{{url('#')}}">Testimonials</a></li>
+							<li><a href="{{url('#')}}">Testimonials</a></li> -->
 
 							<li><a href="{{url('#')}}">Options</a></li>
 						</ul>

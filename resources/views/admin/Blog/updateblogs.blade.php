@@ -45,8 +45,8 @@
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">Blogs Articles</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#">Blogs</a></li>
             <li class="active">Update Blogs</li>
           </ol>
         </section>

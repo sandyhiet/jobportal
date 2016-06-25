@@ -68,7 +68,9 @@ class clientController extends Controller
             
 
             $destinationPath    = 'gallery/filterGallery'; 
-            $thumb322x270       = 'gallery/filterGallery/thumb322x270';
+            $thumb550x300       = 'gallery/filterGallery/thumb550x300';
+            $thumb600x300       = 'gallery/filterGallery/thumb600x300';
+           
             $thumb133x69       = 'gallery/filterGallery/thumb133x69';
             $extension = $image->getClientOriginalExtension(); // getting image extension
             $originalName = $image->getClientOriginalName();
@@ -84,10 +86,15 @@ class clientController extends Controller
                     'crop' => true
                 ))->save($thumb133x69.'/'.$fileName);
                 Image::make($image,array(
-                    'width' => 322,
-                    'height' => 270,
+                    'width' => 550,
+                    'height' => 300,
                     'crop' => true
-                ))->save($thumb322x270.'/'.$fileName);
+                ))->save($thumb550x300.'/'.$fileName);
+                Image::make($image,array(
+                    'width' => 600,
+                    'height' => 300,
+                    'crop' => true
+                ))->save($thumb600x300.'/'.$fileName);
                 //save original
                 Image::make($image)->save($destinationPath.'/'.$fileName);
                 
@@ -139,7 +146,9 @@ class clientController extends Controller
             
 
             $destinationPath    = 'gallery/filterGallery'; 
-            $thumb322x270       = 'gallery/filterGallery/thumb322x270';
+            $thumb550x300       = 'gallery/filterGallery/thumb550x300';
+            $thumb600x300       = 'gallery/filterGallery/thumb600x300';
+
             $thumb133x69       = 'gallery/filterGallery/thumb133x69';
             $extension = $image->getClientOriginalExtension(); // getting image extension
             $originalName = $image->getClientOriginalName();
@@ -155,10 +164,15 @@ class clientController extends Controller
                     'crop' => true
                 ))->save($thumb133x69.'/'.$fileName);
                 Image::make($image,array(
-                    'width' => 322,
-                    'height' => 270,
+                    'width' => 550,
+                    'height' => 300,
                     'crop' => true
-                ))->save($thumb322x270.'/'.$fileName);
+                ))->save($thumb550x300.'/'.$fileName);
+                Image::make($image,array(
+                    'width' => 600,
+                    'height' => 300,
+                    'crop' => true
+                ))->save($thumb600x300.'/'.$fileName);
                 //save original
                 Image::make($image)->save($destinationPath.'/'.$fileName);
                 
@@ -188,22 +202,15 @@ class clientController extends Controller
 
 
 public function delete_clients($id){
+$getclientImage = DB::table('filter_gallery')->where('id', $id)->get();
+$clientImage = $getclientImage[0]->image;
 
-DB::table('filter_gallery')->where('id', $id)->delete([
+DB::table('filter_gallery')->where('id', $id)->delete();
+unlink("gallery/filterGallery/".$clientImage);
+// unlink("gallery/filterGallery/thumb550x300".$clientImage);
+// unlink("gallery/filterGallery/thumb133x69".$clientImage);
+return redirect()->back()->with('message', 'One recoard deleted');
 
-                 'id'   => $id,
-]);
-
-return redirect()->back()->with('message', ' deleted');
-
-     
-
-
-    }
-
-
-
-
-
-
+}
+  
 }

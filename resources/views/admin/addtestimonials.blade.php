@@ -43,7 +43,7 @@
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="#">Testimonials</a></li>
             <li class="active">Add Testimonial</li>
           </ol>
@@ -61,20 +61,19 @@
                   @include('layout.error-notification')
                   <form id="" action="{{url('saveTestimonial')}}" method="post" enctype="multipart/form-data">
                    <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-                  <div class='box-body'>
-
-                    @include('layout.error-notification')
-                      <label for="">Client Name</label>
+                    
+                  <div class="form-group">
+                     <label for="">Client Name</label>
                       <input name="clientName" type="text" value="{{ old('clientName') }}" class="form-control" id="" placeholder="Enter Client Name" maxlength="50">
                       <span class="pull-right text-danger">*Required</span>
-                    </div>
+                  </div>
                     <div class="form-group">
                       <label for="">Company Name</label>
                       <input name="clientCompany" type="text" value="{{ old('clientCompany') }}" class="form-control" id="" placeholder="Enter Company Name" maxlength="60">
                       <span class="pull-right text-danger">*Required</span>
                     </div>
                     <div class="form-group">
-                      <label for="">Designation</label>
+                      <label for="">Content</label>
                       <textarea class="form-control" value="{{ old('testiMonial') }}" name="testiMonial" placeholder="Enter Testimonial" style="height:150px"></textarea>
                       <span class="pull-right text-danger">*Required</span>
                     </div>
@@ -89,12 +88,12 @@
                       <input type="file" name="clientImage" class="form-control" id="" placeholder="Upload jpg or png image">
                     </div>
                   
-                </div>
+                
                 <div class="box-footer">
                   <button type="submit" class="btn btn-primary">Save</button>
                 </div>
                 </form>
-
+              </div>
               </div><!-- /.box -->
 
               

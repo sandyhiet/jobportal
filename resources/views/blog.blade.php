@@ -29,85 +29,33 @@
 
 					<div class="col-sm-8">
 						<article>
-
+                <?php 
+                $i=1;
+				foreach($blogs as $keys => $value)
+				{
+				?>
 							<div class="post row">
 								<div class="col-sm-2">
-									<img src="http://placehold.it/140x140.jpg" alt="" class="img-responsive img-circle" />
+								<img src="{{url('blogImages/thumb358x300/'. $blogs[$keys]->blogThumbImage)}}" class="img-responsive img-circle">
+								
 								</div>
 								<div class="col-sm-10">
-									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
+									<h2><?php echo implode(explode('_', $blogs[$keys]->title), ' '); ?></h2>
 									<div class="meta">
-										<span><i class="fa fa-user"></i>John Doe</span>
-										<span><i class="fa fa-calendar"></i>28/09/2015</span>
-										<span><i class="fa fa-comment"></i>24</span>
+										<span><i class="fa fa-user"></i>{{$blogs[$keys]->name}}</span>
+										<span><i class="fa fa-calendar"></i>{{$blogs[$keys]->date}}</span>
 									</div>
-									<p><img src="http://placehold.it/800x530.jpg" alt="" class="img-responsive" /></p>
-									<p>Proin eu erat tincidunt, scelerisque ipsum non, fringilla dolor. Quisque interdum congue tellus. Aliquam vel odio sit amet ex laoreet finibus. Etiam commodo purus tortor, sed interdum justo faucibus vitae. Praesent ac elit a felis luctus facilisis. Aenean et magna elit. Morbi eget nulla volutpat, egestas ex vel, blandit enim.</p>
-									<a href="post.html" class="btn btn-primary">Read more &nbsp; <i class="fa fa-arrow-right"></i></a>
+									<p><img src="{{url('blogImages/thumb750x395/'. $blogs[$keys]->blogImage)}}" class="img-responsive">
+									</p>
+									<p><?PHP echo stripcslashes(substr($blogs[0]->content, 0, 520)); ?></p>
+									<a href="{{url('blogs_details/'.$blogs[$keys]->title)}}" class="btn btn-primary">Read more &nbsp; <i class="fa fa-arrow-right"></i></a>
 								</div>
 							</div>
 
 							<hr>
+				<?php $i++; } ?>
 
-							<div class="post row">
-								<div class="col-sm-2">
-									<img src="http://placehold.it/140x140.jpg" alt="" class="img-responsive img-circle" />
-								</div>
-								<div class="col-sm-10">
-									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
-									<div class="meta">
-										<span><i class="fa fa-user"></i>John Doe</span>
-										<span><i class="fa fa-calendar"></i>24/09/2015</span>
-										<span><i class="fa fa-comment"></i>18</span>
-									</div>
-									<p><img src="http://placehold.it/800x530.jpg" alt="" class="img-responsive" /></p>
-									<p>Proin eu erat tincidunt, scelerisque ipsum non, fringilla dolor. Quisque interdum congue tellus. Aliquam vel odio sit amet ex laoreet finibus. Etiam commodo purus tortor, sed interdum justo faucibus vitae. Praesent ac elit a felis luctus facilisis. Aenean et magna elit. Morbi eget nulla volutpat, egestas ex vel, blandit enim.</p>
-									<a href="post.html" class="btn btn-primary">Read more &nbsp; <i class="fa fa-arrow-right"></i></a>
-								</div>
-							</div>
-
-							<hr>
-
-							<div class="post row">
-								<div class="col-sm-2">
-									<img src="http://placehold.it/140x140.jpg" alt="" class="img-responsive img-circle" />
-								</div>
-								<div class="col-sm-10">
-									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
-									<div class="meta">
-										<span><i class="fa fa-user"></i>John Doe</span>
-										<span><i class="fa fa-calendar"></i>21/09/2015</span>
-										<span><i class="fa fa-comment"></i>8</span>
-									</div>
-									<p><img src="http://placehold.it/800x530.jpg" alt="" class="img-responsive" /></p>
-									<p>Proin eu erat tincidunt, scelerisque ipsum non, fringilla dolor. Quisque interdum congue tellus. Aliquam vel odio sit amet ex laoreet finibus. Etiam commodo purus tortor, sed interdum justo faucibus vitae. Praesent ac elit a felis luctus facilisis. Aenean et magna elit. Morbi eget nulla volutpat, egestas ex vel, blandit enim.</p>
-									<a href="post.html" class="btn btn-primary">Read more &nbsp; <i class="fa fa-arrow-right"></i></a>
-								</div>
-							</div>
-
-							<hr>
-
-							<div class="post row">
-								<div class="col-sm-2">
-									<img src="http://placehold.it/140x140.jpg" alt="" class="img-responsive img-circle" />
-								</div>
-								<div class="col-sm-10">
-									<h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h2>
-									<div class="meta">
-										<span><i class="fa fa-user"></i>John Doe</span>
-										<span><i class="fa fa-calendar"></i>17/09/2015</span>
-										<span><i class="fa fa-comment"></i>9</span>
-									</div>
-									<p><img src="http://placehold.it/800x530.jpg" alt="" class="img-responsive" /></p>
-									<p>Proin eu erat tincidunt, scelerisque ipsum non, fringilla dolor. Quisque interdum congue tellus. Aliquam vel odio sit amet ex laoreet finibus. Etiam commodo purus tortor, sed interdum justo faucibus vitae. Praesent ac elit a felis luctus facilisis. Aenean et magna elit. Morbi eget nulla volutpat, egestas ex vel, blandit enim.</p>
-									<a href="post.html" class="btn btn-primary">Read more &nbsp; <i class="fa fa-arrow-right"></i></a>
-								</div>
-							</div>
-
-							<hr>
-
-						<!-- PAGINATION START -->
-						<ul class="pagination" data-scroll-reveal>
+							<ul class="pagination" data-scroll-reveal>
 							<li class="active"><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
 							<li><a href="#">3</a></li>
@@ -118,79 +66,7 @@
 						</article>
 					</div>
 
-					<!-- POSTS END -->
-
-					<!-- SIDEBAR START -->
-
-					<div class="col-sm-4" id="sidebar">
-
-						<div class="sidebar-links" id="categories">
-							<h5>
-								<span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-folder fa-stack-1x fa-inverse"></i>
-								</span>
-								Categories
-							</h5>
-							<ul>
-								<li><a href="#">Companies</a></li>
-								<li><a href="#">Jobs</a></li>
-								<li><a href="#">Resumes</a></li>
-								<li><a href="#">Market</a></li>
-							</ul>
-						</div>
-
-						<div class="sidebar-links" id="archives">
-							<h5>
-								<span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-archive fa-stack-1x fa-inverse"></i>
-								</span>
-								Archives
-							</h5>
-							<ul>
-								<li><a href="#">April 2015</a></li>
-								<li><a href="#">March 2015</a></li>
-								<li><a href="#">February 2015</a></li>
-								<li><a href="#">January 2015</a></li>
-							</ul>
-						</div>
-
-						<div class="sidebar-links" id="recent-posts">
-							<h5>
-								<span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-								</span>
-								Recent Posts
-							</h5>
-							<ul>
-								<li><a href="#"><span class="meta">28/04/2015 by Susie Johnson</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-								<li><a href="#"><span class="meta">26/04/2015 by Matt Berry</span>Proin eu erat tincidunt, scelerisque ipsum non, fringilla dolor.</a></li>
-								<li><a href="#"><span class="meta">24/04/2015 by Spencer Conner</span>Quisque interdum congue tellus. Aliquam vel odio sit amet ex laoreet finibus.</a></li>
-								<li><a href="#"><span class="meta">22/04/2015 by Nadine Carlson</span>Etiam commodo purus tortor, sed interdum justo faucibus vitae.</a></li>
-							</ul>
-						</div>
-
-						<div class="sidebar-links" id="recent-comments">
-							<h5>
-								<span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-								</span>
-								Recent Comments
-							</h5>
-							<ul>
-								<li><a href="#"><span class="meta">Susie Johnson on</span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-								<li><a href="#"><span class="meta">Matt Berry on</span>Proin eu erat tincidunt, scelerisque ipsum non, fringilla dolor.</a></li>
-								<li><a href="#"><span class="meta">Spencer Conner on</span>Quisque interdum congue tellus. Aliquam vel odio sit amet ex laoreet finibus.</a></li>
-								<li><a href="#"><span class="meta">Nadine Carlson on</span>Etiam commodo purus tortor, sed interdum justo faucibus vitae.</a></li>
-							</ul>
-						</div>
-
-					</div>
-
-					<!-- SIDEBAR END -->
+					
 
 				</div>
 			</div>

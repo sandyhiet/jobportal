@@ -30,48 +30,48 @@ class blogController extends Controller
         $content      = addslashes($res->content);
         $status      = $res->status;
        
-       $blogImage      = $res->file('blogImage');
-       $blogThumbImage = $res->file('blogThumbImage');
+        $blogImage      = $res->file('blogImage');
+        $blogThumbImage = $res->file('blogThumbImage');
       
 
 
 
         $inputs = [
 
-            'title'        => $title,
-            'name'     => $name,
-            'date'     => $date,
+            'title'           => $title,
+            'name'            => $name,
+            'date'            => $date,
             // 'news_category'        => $news_category,
-            'content'     => $content,
-            'blogImage'     => $blogImage,
-            'blogThumbImage'     => $blogThumbImage,
+            'content'         => $content,
+            'blogImage'       => $blogImage,
+            'blogThumbImage'  => $blogThumbImage,
             
         ];
 
         $rules = [
 
-            'title'        => 'required',
-            'name'         => 'required',
-            'date'         => 'required',
+            'title'          => 'required',
+            'name'           => 'required',
+            'date'           => 'required',
             // 'news_category'     =>'required',
-            'content'  => 'required',
-            'blogImage'  => 'required',
-            'blogThumbImage'  => 'required',
+            'content'        => 'required',
+            'blogImage'      => 'required',
+            'blogThumbImage' => 'required',
             
             
         ];
 
         $messages = [
 
-            'title.required'               => 'Please enter news title',
-            'name.required'               => 'Please enter news title',
+            'title.required'               => 'Please enter title',
+            'name.required'                => 'Please enter name',
 
-            'date.required'               => 'Please enter news title',
+            'date.required'                => 'Please enter date',
 
             // 'news_category.required'           => 'Please select news category',
-            'content.required'  => 'Please enter news description',
-            'blogImage.required'  => 'Please select news main image',
-            'blogThumbImage.required'  => 'Please select news thumbnail image',
+            'content.required'             => 'Please enter content',
+            'blogImage.required'           => 'Please select blogImage',
+            'blogThumbImage.required'      => 'Please select thumbnail image',
            
         ];
 
@@ -199,63 +199,22 @@ class blogController extends Controller
         $date = $res->date;
 
         $content      = addslashes($res->content);
-        $status      = $res->status;
+        $status       = $res->status;
+        // $projectImage            = $res->file('projectImage');
+        // $oldprojectImage         = $res->oldprojectImage;
+      
+        // $projectBannerImage       = $res->file('projectBannerImage');
+        // $oldprojectBannerImage    = $res->oldprojectBannerImage;
        
-       $blogImage      = $res->file('blogImage');
-       $blogThumbImage = $res->file('blogThumbImage');
+        $blogImage                = $res->file('blogImage');
+        $oldblogImage             = $res->oldblogImage;
+        $blogThumbImage           = $res->file('blogThumbImage');
+        $oldblogThumbImage        = $res->oldblogThumbImage;
       
 
 
 
-        // $inputs = [
-
-        //     'title'        => $title,
-        //     // 'news_category'        => $news_category,
-        //     'content'     => $content,
-        //     'blogImage'     => $blogImage,
-        //     'blogThumbImage'     => $blogThumbImage,
-            
-        // ];
-
-        // $rules = [
-
-        //     'title'        => 'required',
-        //     // 'news_category'     =>'required',
-        //     'content'  => 'required',
-        //     'blogImage'  => 'required',
-        //     'blogThumbImage'  => 'required',
-            
-            
-        // ];
-
-        // $messages = [
-
-        //     'title.required'               => 'Please enter news title',
-        //     // 'news_category.required'           => 'Please select news category',
-        //     'content.required'  => 'Please enter news description',
-        //     'blogImage.required'  => 'Please select news main image',
-        //     'blogThumbImage.required'  => 'Please select news thumbnail image',
-           
-        // ];
-
-        // $validation = Validator::make($inputs, $rules, $messages);
-
-        // if( $validation->fails() ){
-        //     return redirect()->back()->withInput()->with('errors', $validation->errors() );
-        // }
-
-
-        // $newsExist = DB::table('news')->select('*')->where('newsTitle', '=', $newsTitle)->count();
-        // if($newsExist > 0){
-        //     return redirect()->back()->withInput()->with('singleerror', 'Duplicate news title.' );
-        // }
-
-        $fileName = '';
         
-
-        // Page image 
-
-
         if($blogImage){
             
 
@@ -266,7 +225,7 @@ class blogController extends Controller
             $extension      = $blogImage->getClientOriginalExtension(); // getting image extension
             $originalName   = $blogImage->getClientOriginalName();
             $size           = $blogImage->getSize();
-            $fileName      = time().$originalName; // renameing image
+            $fileName1      = time().$originalName; // renameing image
 
             // condition to check type of file and size of file..
             if((($extension=='jpg') || ($extension=='png') || ($extension=='jpeg') || ($extension=='JPEG') || ($extension=='JPG') || ($extension=='PNG'))&&($size<5000000)){
@@ -276,9 +235,9 @@ class blogController extends Controller
                     'width' => 750,
                     'height' => 395,
                     'crop' => true
-                ))->save($thumb750x395.'/'.$fileName);
+                ))->save($thumb750x395.'/'.$fileName1);
                 //save original
-                Image::make($blogImage)->save($destinationPath.'/'.$fileName);
+                Image::make($blogImage)->save($destinationPath.'/'.$fileName1);
 
 
                 
@@ -287,7 +246,7 @@ class blogController extends Controller
                 return redirect()->back()->withInput()->with('error', 'Only maximum 5MB jpg or png image is allowed.' );
             }
         } else {
-            $fileName1 = '';
+            $fileName1 = $oldblogImage;
         }
 
 
@@ -325,7 +284,7 @@ class blogController extends Controller
                 return redirect()->back()->withInput()->with('error', 'Only maximum 5MB jpg or png image is allowed.' );
             }
         } else {
-            $thumbnailfileName = '';
+            $thumbnailfileName = $oldblogThumbImage;
         }
 
         //return $newsTitle;
@@ -335,7 +294,7 @@ class blogController extends Controller
             'date'      => $date,
             'content'       => $content,
             'status'          => $status,
-            'blogImage'          => $fileName, 
+            'blogImage'          => $fileName1, 
             'blogThumbImage'  => $thumbnailfileName
             // 'news_category_id' => $news_category
 
@@ -348,19 +307,23 @@ class blogController extends Controller
     }
 
 
+        public function delete_blogs($id){
+        $getblogsImage = DB::table('blogs')->where('id', $id)->get();
+        $blogsImage = $getblogsImage[0]->blogImage;
+        $blogsImages = $getblogsImage[0]->blogThumbImage;
 
+        DB::table('blogs')->where('id', $id)->delete();
+        unlink("blogImages/".$blogsImages);
+        unlink("blogImages/".$blogsImage);
+        unlink("blogImages/thumb358x300/".$blogsImages);
+        unlink("blogImages/thumb750x395/".$blogsImage);
+        // unlink("gallery/filterGallery/thumb133x69".$clientImage);
+        return redirect()->back()->with('message', 'One recoard deleted');
 
-     public function delete_blogs($id)
-     {
+        }
 
-                DB::table('blogs')->where('id', $id)->delete();
-
-        return redirect()->back()->with('message', ' deleted');
 
      
-
-
-      }
 
 
 }

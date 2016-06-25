@@ -41,13 +41,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Featured Content
+            About Us
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="#">About Us</a></li>
-            <li class="active">Featured Content</li>
+            <li class="active">About Us</li>
           </ol>
         </section>
 
@@ -61,7 +61,7 @@
             <div class="col-md-12">
               <div class="box box-info">
                 <div class="box-header">
-                  <h3 class="box-title">Featured Content  <!-- <small>you can publish or save as a draft.</small> --></h3>
+                  <h3 class="box-title">About Us  <!-- <small>you can publish or save as a draft.</small> --></h3>
                 </div><!-- /.box-header -->
                 <div class="box-body pad">
                   @include('layout.error-notification')
@@ -71,7 +71,8 @@
                     <input type="hidden" name="id" value="{{ $about_us[0]->id }}">
                     <div class="form-group">
                       <label for="">Title</label>
-                      <input name="title" type="text" value="{{ $about_us[0] -> title }}" class="form-control" id="" placeholder="Enter Content Title" maxlength="50">
+                     
+                      <input name="title" type="text" value="<?php echo implode(explode('_', $about_us[0] -> title), ' '); ?>" class="form-control" id="" placeholder="Enter Content Title" maxlength="50">
                       <span class="pull-right text-danger">*Required</span>
                     </div>
 

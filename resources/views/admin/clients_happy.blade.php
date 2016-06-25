@@ -41,8 +41,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Gallery Image
-            <small>Filter Gallery</small>
+            Clients Images
+            <small>Clients Images</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -106,7 +106,7 @@
                     
                   </div><!-- /.box-body -->
                   <div class='box-footer box-comments'>
-                    Upload 700 X 586 pixels png or jpg image.
+                    Upload 133 X 69 pixels png or jpg image.
                   </div><!-- /.box-footer -->
                   <div class="box-footer">
                     <button type="submit" class='btn btn-primary btn-xs'>Add Image</button>
@@ -119,7 +119,7 @@
             if(sizeof($filter_gallery)>0){
             foreach($filter_gallery as $key=>$val){
             ?>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <!-- Box Comment -->
               <div class="box box-widget">
                 <div class='box-header with-border'>

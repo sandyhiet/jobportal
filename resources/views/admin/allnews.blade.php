@@ -46,8 +46,8 @@
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">News Articles</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#">All News</a></li>
             <li class="active">All News</li>
           </ol>
         </section>
@@ -70,52 +70,39 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th style="width: 200px;">News Title</th>
-                    <th data-orderable="false">News</th>
+                    <th>S.No.</th>
+                    <th data-orderable="false" style="width:150px;">News Title</th>
+                    <th data-orderable="false" style="width:450px;">News Content</th>
                     <th data-orderable="false">Image</th>
-                    <th style="width: 80px;" data-orderable="false">Status</th>
-                    <th style="width: 80px;" data-orderable="false">Action</th>
+                    <th data-orderable="false">Status</th>
+                    <th data-orderable="false">Action</th>
 
                   </tr>
                 </thead>
                 <tbody>
                   
                   <?php
-                  
+                  $i=1;
                   foreach ($news as $key => $New) {
                   $newsTitle      = $news[$key]->newsTitle;
                   $newsTitle      = explode('_', $newsTitle);
                   $newsTitle      = implode($newsTitle, ' ');
                   $newsDesc       = $news[$key]->newsDescription;
-                  $newsDesc        = substr($newsDesc, 0, 200).'...';
-                  $newsImage      = $news[$key]->newsImage
+                  $newsDesc        = substr($newsDesc, 0, 100).'...';
+                  // $newsImage      = $news[$key]->newsImage
+                  $status =        $news[$key]->status;
                    ?>
                   <tr>
                     
 
-
+                  <td>{{$i}}</td>
                   <td>{{$newsTitle}}</td>
                   <td>{!!$newsDesc!!}</td>
                   <td> <img class="thumbnail" src="{{ url('newsImages') }}/{{ $news[$key]->newsImage }}" width="45" height="45" /></td>
 
                    
+                   <td>{{$status}}</td>
 
-                <td>
-
-                  <?php 
-                  $ancTxt = '';
-
-                  if($New->status == '1'){
-                      $ancTxt = '<span class="text-success">Published</span>';
-                  }
-
-                  if($New->status == '0'){
-                      $ancTxt = '<span class="text-danger">Draft</span>';
-                  }
-                  echo $ancTxt;
-                  ?>
-                  
-                </td>
              <td>
                       
                         
@@ -124,7 +111,8 @@
                     </td>
                     
                   </tr>
-                  <?php }?>
+                  <?php $i++;
+                  }?>
                   
                   
                 </tbody>

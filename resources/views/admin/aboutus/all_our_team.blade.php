@@ -46,8 +46,8 @@
             <!-- <small>Featured Post Content</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#">Our Team</a></li>
             <li class="active">All Our Team</li>
           </ol>
         </section>
@@ -65,11 +65,11 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th style="width: 30px;">SN.</th>
-                    <th style="width: 120px;">Name</th>
-                    <th style="width: 200px;">Designation</th>
-                    <th data-orderable="false" style="width: 200px;">Image</th>
-                    <th style="width: 70px;" data-orderable="false">Action</th>
+                    <th>S.No.</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th data-orderable="false">Image</th>
+                    <th data-orderable="false">Action</th>
                   </tr>
                 </thead>
                 <tbody>

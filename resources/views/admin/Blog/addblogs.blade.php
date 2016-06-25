@@ -93,7 +93,7 @@
                     <div class="form-group">
                       <label for="">Main Image</label>
                       <input type="file" name="blogImage" class="form-control" id="" placeholder="Upload jpg or png image">
-                      <p class="help-block">Upload 358X300 Pixels jpg or png image.</p>
+                      <p class="help-block">Upload 750X395 Pixels jpg or png image.</p>
                     </div>
                     <div class="form-group">
                       <label for="">Thumbnail Image</label>

@@ -56,7 +56,7 @@
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="#">Testimonials</a></li>
             <li class="active">All Testimonials</li>
           </ol>
@@ -76,9 +76,9 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    
+                    <th style="width:10px;">S.No.</th>
                     <th data-orderable="false">Clients Name</th>
-                    <th data-orderable="false">Designation</th>
+                    <th data-orderable="false">Content</th>
                     <th data-orderable="false">Company</th>
                     <th data-orderable="false">Image</th>
                     <th style="width: 100px;" data-orderable="false">Action</th>
@@ -96,9 +96,9 @@
                  
                   ?>
                   <tr>
-                    
+                    <td>{{$i}}</td>
                     <td style="text-transform: capitalize;">{{$clientName}}</td>
-                    <td style="text-transform: capitalize;">{{ $testimonials[$key]->testiMonial }}</td>
+                    <td style="text-transform: capitalize;"><?PHP echo stripcslashes(substr($testimonials[$key]->testiMonial, 0, 50)); ?></td>
                     <td style="text-transform: capitalize;">{{ $testimonials[$key]->clientCompany }}</td>
                     <td style="text-transform: capitalize;"><img class="thumbnail" src="{{ url('testimonialsImages') }}/{{ $testimonials[$key]->clientImage }}" width="45" height="45" /></td>
                     
