@@ -455,9 +455,17 @@ Route::get('/', function () {
     
     $featuredpostjobs = DB::table('recruiter_jobdetailspost')->where('featuredjob', 1)
                       ->join('recruiter_companydetailspost', 'recruiter_jobdetailspost.id', '=', 'recruiter_companydetailspost.job_id')->orderBy('recruiter_jobdetailspost.id', 'desc')
-                      ->get();                  
+                      ->get();
 
- return view('homepage')->with('allpostjobs', $allpostjobs)->with('featuredpostjobs', $featuredpostjobs);
+    $results = DB::table('job')->paginate('5');
+    $banners = DB::table('home_slider')->select('*')->where('status', '=', 1)->take(5)->get();
+    $tbl_package = DB::table('tbl_package')->select('*')->get();
+    $news = DB::table('news')->where('status', '=', '1')->orderBy('id', 'desc')->take(5)->get();
+    $testimonials  = DB::table('testimonials')->select('*')->get();
+    $filter_gallery = DB::table('filter_gallery')->select('*')->get();
+                                    
+
+ return view('homepage')->with('allpostjobs', $allpostjobs)->with('featuredpostjobs', $featuredpostjobs)->with('banners',$banners)->with('results', $results)->with('tbl_package',$tbl_package)->with('news',$news)->with('testimonials', $testimonials)->with('filter_gallery', $filter_gallery);
 });
 
 
