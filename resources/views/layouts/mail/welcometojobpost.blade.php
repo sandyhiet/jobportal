@@ -1,8 +1,11 @@
 @extends('layouts.mail.mailmaster')
 @section('mailcontent')
-	<h3>Recruiter Registration Confirmation Mail</h3>
-	<p class="lead">{!!$mailmessage1!!}</p>
-	<p>{!!$mailmessage!!}</p>
+	<h3>Post New Job by Recruiter on the following details:-</h3>
+	<p class="lead">{!!$mailmessage!!}</p>
+	<p>Company Name: {{$name}}</p>
+	<p>Email: {{$email}}</p>
+	<p>Location: {{$location}}</p>
+	<p>Job Title: {{$jobtitle}}</p>
 	
 	<!-- <p class="callout">
 		Login to your admin account to check more 

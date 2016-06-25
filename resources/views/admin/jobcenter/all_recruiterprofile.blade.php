@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Dashboard</title>
+  <title>{{$pagetitle}}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -15,10 +15,10 @@
   <!-- jvectormap -->
   <link rel="stylesheet" href="{{url('plugins/jvectormap/jquery-jvectormap-1.2.2.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}">
+<link rel="stylesheet" href="{{url('dist/css/AdminLTE.min.css')}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{url('dist/css/skins/_all-skins.min.css')}}">
+<link rel="stylesheet" href="{{url('dist/css/skins/_all-skins.min.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,37 +26,33 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  </head>
-    <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
+      <!-- =============================================== -->
 
-          <!-- Left side column. contains the sidebar -->
-          @include('admin/adminleftsidebar')
+      <!-- Left side column. contains the sidebar -->
+      @include('admin/adminleftsidebar')
 
-          <!-- =============================================== -->
+      <!-- =============================================== -->
 
-         
-<!-- Content Wrapper. Contains page content -->
+      <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            All News
+          Recruiter Profiles
             <!-- <small>coming soon</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">All News</a></li>
-            <li class="active">All News</li>
+            <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#">Job Center</a></li>
+            <li class="active">Recruiter Profile</li>
           </ol>
         </section>
 
         <!-- Main content -->
-           
-            @include('layouts.error-notification')
-            <!-- Main content -->
-
         <section class="content">
 
           <!-- Default box -->
@@ -70,49 +66,35 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>S.No.</th>
-                    <th data-orderable="false" style="width:150px;">News Title</th>
-                    <th data-orderable="false" style="width:450px;">News Content</th>
-                    <th data-orderable="false">Image</th>
-                    <th data-orderable="false">Status</th>
-                    <th data-orderable="false">Action</th>
-
+                    
+                    <th data-orderable="false">SN.</th>
+                    <th data-orderable="false">Name/Company name</th>
+                    <th data-orderable="false">Email</th>
+                    <th data-orderable="false">Mobile No.</th>
+                    <th style="width: 100px;" data-orderable="false">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  
-                  <?php
-                  $i=1;
-                  foreach ($news as $key => $New) {
-                  $newsTitle      = $news[$key]->newsTitle;
-                  $newsTitle      = explode('_', $newsTitle);
-                  $newsTitle      = implode($newsTitle, ' ');
-                  $newsDesc       = $news[$key]->newsDescription;
-                  $newsDesc        = substr($newsDesc, 0, 100).'...';
-                  // $newsImage      = $news[$key]->newsImage
-                  $status =        $news[$key]->status;
+                  <?php 
+
+                      $i=1;
+                      foreach($recruiter_profile as $key=>$val){
+                      $companyname = ucfirst($recruiter_profile[$key]->companyname);
                    ?>
+
                   <tr>
                     
-
-                  <td>{{$i}}</td>
-                  <td>{{$newsTitle}}</td>
-                  <td>{!!$newsDesc!!}</td>
-                  <td> <img class="thumbnail" src="{{ url('newsImages') }}/{{ $news[$key]->newsImage }}" width="45" height="45" /></td>
-
-                   
-                   <td>{{$status}}</td>
-
-             <td>
-                      
-                        
-                        <a href="{{url('admin/edit_news/'.$news[$key]->id)}}">Edit</a>|
-                        <a onclick="return confirm('Delete this Testimonial?')" href="{{url('deleteNews/'.$news[$key]->id)}}"">Delete</a>
+                    <td style="text-transform: capitalize;">{{$i}}</td>
+                    <td style="text-transform: capitalize;">{{ $companyname }}</td>
+                    <td style="text-transform: capitalize;">{{ $recruiter_profile[$key]->email }}</td>
+                    <td style="text-transform: capitalize;">{{$recruiter_profile[$key]->contact_no}}</td>
+                    
+                    <td>
+                       <a onclick="return confirm('Delete this Profile?')" href="{{url('deleteRecruiterProfile/'.$recruiter_profile[$key]->user_id)}}">Delete</a>
                     </td>
                     
                   </tr>
-                  <?php $i++;
-                  }?>
+                  <?php  $i++; }?>
                   
                   
                 </tbody>
@@ -123,15 +105,7 @@
           </div><!-- /.box -->
 
         </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-
-
-
-
-
-
-
-  </div>
+       </div>
 </div>
 
 <!-- jQuery 2.2.0 -->

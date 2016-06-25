@@ -107,7 +107,11 @@
 
 							<li><a href="{{url('recruiter_registration')}}">Register</a></li>
 							<li><a href="{{url('recruiter_login')}}">Login</a></li>
+						<?php
+				           if (Auth::check() && Auth::user()->usertype == 'jobrecruiter') { ?>
 							<li><a href="{{url('recruiter_logout')}}">Logout</a></li>
+							<li><a href="{{url('recruiter_changepassword')}}">Change Password</a></li>
+					    <?php } ?>
 							<li><a href="{{url('recruiter_jobspost')}}">Job Post</a></li>
 
 					    </ul>

@@ -241,7 +241,9 @@ return view('read_news')->with('news',$news);
 
     /***********ADMIN PROFILE ROUTES END********/
 
+/************ADMIN MIDDLEWARE SATART ***************/
 
+<<<<<<< HEAD
 
 
     Route::get('/', function () {
@@ -424,6 +426,9 @@ Route::get('date',function(){
      //AUTH PROCTED ROUTE & Admin Related WorK//////////////////
 
    Route::group(['middleware' => 'checkAdminAuth'],function(){
+=======
+Route::group(['middleware' => 'checkAdminAuth'],function(){
+>>>>>>> refs/remotes/origin/master
 
 
      Route::get('logout', 'Auth\AuthController@userLogout');
@@ -509,7 +514,7 @@ Route::get('date',function(){
 
 
 
-        /*//////////////////////////Role Category///////////////////////////////////////////////////*/
+        /*************   Role Category ***********************/
 
         Route::get('admin/add_role_category', function(){
              $data = array('pagetitle'=>'Add Role Category');
@@ -537,19 +542,208 @@ Route::get('date',function(){
 
         Route::post('update_role',      'ServiceCategory\categoryController@update_role');
 
-        ///////////////////////////////// Admin Relate Work End /////////////////////////////////////////////
+        /************ Admin Relate Work End ***************/
 
 
+<<<<<<< HEAD
        
    });
+=======
+        /************ Admin Job center Route start ***************/ 
+>>>>>>> refs/remotes/origin/master
+
+        Route::get('admin/all_recruiter_profile' , function(){
+           $data = array('pagetitle' => 'All Recruiter Profile');
+           $recruiter_profile = DB::table('users')->where('users.usertype', 'jobrecruiter')->where('users.activeAccount', 1)
+                ->join('jobrecruiter_profile', 'users.id', '=', 'jobrecruiter_profile.user_id')->orderBy('users.id', 'desc')
+                ->get();
+            return view('admin.jobcenter.all_recruiterprofile' , $data)->with('recruiter_profile' ,$recruiter_profile);
+        });
+
+
+        Route::get('deleteRecruiterProfile/{user_id}', 'jobController@deleteRecruiterProfile');
+
+        Route::get('admin/all_recruiterjobpost' , function(){
+           $data = array('pagetitle' => 'All Recruiter Post Job');
+           $recruiter_postjob = DB::table('recruiter_jobdetailspost')
+                ->join('recruiter_companydetailspost', 'recruiter_jobdetailspost.id', '=', 'recruiter_companydetailspost.job_id')->orderBy('recruiter_jobdetailspost.id', 'desc')
+                ->get();
+            return view('admin.jobcenter.all_recruiterpostjobs' , $data)->with('recruiter_postjob' ,$recruiter_postjob);
+        });
+
+        Route::get('admin/recruiterjobdetails/{id}' , function($id){
+           $data = array('pagetitle' => 'Job Detail');
+           $postjobdetail = DB::table('recruiter_jobdetailspost')->select('*')->where('id', $id)->get();
+           $postjobdetail_id =$postjobdetail[0]->id;
+           $postcompanydetail = DB::table('recruiter_companydetailspost')->select('*')->where('id', $postjobdetail_id)->get();
+               
+            return view('admin.jobcenter.recruiterjobdetail' , $data)->with('postjobdetail' ,$postjobdetail)->with('postcompanydetail' ,$postcompanydetail);
+        });
+
+<<<<<<< HEAD
+    Route::get('frontlogout', 'Auth\AuthAndRoleController@frontlogout');
+    
+
+    Route::get('jobseeker_dashboard',function(){
+        return view('jobseeker_dashboard');
+    });
+
+    Route::get('jobseeker/post_resume', function(){
+        $data = array('pagetitle'=>'Job Post');
+        return view('jobseeker.post_resume', $data);
+    });
+=======
+    
+        Route::get('admin/approverecruiterjobpost/{id}', 'jobController@approve_recruiterjobpost');
+        
+        Route::get('admin/rejectrecruiterjobpost/{id}', 'jobController@reject_recruiterjobpost');
+
+
+        Route::get('admin/all_recruiterRejectedjob' , function(){
+           $data = array('pagetitle' => 'All Recruiter Rejected Job');
+           $recruiter_postjob = DB::table('recruiter_jobdetailspost')->where('status', '=', 0)
+                ->join('recruiter_companydetailspost', 'recruiter_jobdetailspost.id', '=', 'recruiter_companydetailspost.job_id')->orderBy('recruiter_jobdetailspost.id', 'desc')
+                ->get();
+            return view('admin.jobcenter.all_rejectedrecruiterpostjobs' , $data)->with('recruiter_postjob' ,$recruiter_postjob);
+        });
+
+        Route::get('admin/all_recruiterApprovedjob' , function(){
+           $data = array('pagetitle' => 'All Recruiter Approved Job');
+           $recruiter_postjob = DB::table('recruiter_jobdetailspost')->where('status', '=', 1)
+                ->join('recruiter_companydetailspost', 'recruiter_jobdetailspost.id', '=', 'recruiter_companydetailspost.job_id')->orderBy('recruiter_jobdetailspost.id', 'desc')
+                ->get();
+            return view('admin.jobcenter.all_approvedrecruiterpostjobs' , $data)->with('recruiter_postjob' ,$recruiter_postjob);
+        });
+>>>>>>> refs/remotes/origin/master
+
+        Route::get('deleteRecruiterPostjob/{id}', 'jobController@deleteRecruiterPostjob');
+
+         /************ Admin Job center Route end ***************/ 
+
+       
+});
+
+/************ADMIN MIDDLEWARE END ***************/
+
+
+
+    
+    Route::get('countries_json', function(){
+    return DB::table('tbl_country')->select('country_name')->get();
+    });
+    Route::get('state_json', function(){
+    return DB::table('tbl_state')->select('state_name', 'state_id')->get();
+    });
+    Route::get('district_json/{state_name}', function($state_name){
+    $tbl_state = DB::table('tbl_state')->select('state_id')->where('state_name', '=', $state_name)->get();
+    return $tbl_city= DB::table('tbl_city')->select('city_name', 'id')->where('state_id', '=', $tbl_city[0]->state_id)->get();
+    });
+
+     
+
+
+
+
+
+<<<<<<< HEAD
+        Route::get('fileentry', 'FileEntryController@index');
+        Route::get('fileentry/get/{filename}', [
+            'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+        Route::post('fileentry/add',[ 
+                'as' => 'addentry', 'uses' => 'FileEntryController@add']);
+=======
+>>>>>>> refs/remotes/origin/master
+
+    
 
 
 /*****************JOB PORTAL FRONT ROUTE START****************/
+
+
+
+Route::get('/', function () {
+
+    $allpostjobs = DB::table('recruiter_jobdetailspost')
+                      ->join('recruiter_companydetailspost', 'recruiter_jobdetailspost.id', '=', 'recruiter_companydetailspost.job_id')->orderBy('recruiter_jobdetailspost.id', 'desc')
+                      ->get();
+
     
+    $featuredpostjobs = DB::table('recruiter_jobdetailspost')->where('featuredjob', 1)
+                      ->join('recruiter_companydetailspost', 'recruiter_jobdetailspost.id', '=', 'recruiter_companydetailspost.job_id')->orderBy('recruiter_jobdetailspost.id', 'desc')
+                      ->get();                  
+
+ return view('homepage')->with('allpostjobs', $allpostjobs)->with('featuredpostjobs', $featuredpostjobs);
+});
+
+
+
+Route::get('company_detail/{id}', function ($id) {
+
+<<<<<<< HEAD
+        $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+        return view('jobseeker/jobseeker_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile)->with('work_details', $work_details);
+    });
+=======
+     $company_details = DB::table('recruiter_companydetailspost')->select('*')->where('job_id', '=', $id)->get();
+     $job_details = DB::table('recruiter_jobdetailspost')->select('*')->where('id', '=', $id)->get();
+>>>>>>> refs/remotes/origin/master
+
+    return view('recruiter/companydetails')->with('company_details', $company_details)->with('job_details', $job_details);
+});
+
+Route::get('candidates', function () {
+    return view('candidates');
+});
+
+
+Route::get('job-details', function () {
+    return view('job-details');
+});
+Route::get('post-a-resume', function () {
+    return view('post-a-resume');
+});
+Route::get('resume', function () {
+    return view('resume');
+});
+
+Route::get('company', function () {
+    return view('company');
+});
+
+Route::get('blog', function () {
+    return view('blog');
+});
+
+Route::get('post', function () {
+    return view('post');
+});
+
+Route::get('about', function () {
+    return view('about');
+});
+
+Route::get('testimonials', function () {
+    return view('testimonials');
+});
+
+Route::get('options', function () {
+    return view('options');
+});
+
+Route::get('ajaxData' ,function(){
+    return view('ajaxData');
+});
+
+Route::get('date',function(){
+return view('date');
+});
+
+
+/************Front middleware start ***************/
 
 Route::group(['middleware' => 'checkFrontAuth'], function(){
 
-     ////////////////////jobseeker start//////////////////////
+ ////////////////////jobseeker start//////////////////////
 
     Route::get('frontlogout', 'Auth\AuthAndRoleController@frontlogout');
     
@@ -565,145 +759,120 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
 
 
 
-        Route::get('jobseeker/allresume_list', function(){
-        $data = array('pagetitle'=>'all Post');
-        $resume_post = DB::table('resume_post')->select('*')->get();
-        return view('jobseeker.allresume_list', $data)->with('resume_post',$resume_post);
-            });
-
-
-
-        Route::get('jobseeker/viewdetail', function(){
-                $data = array('pagetitle'=>'viewdetail');
-                // $resume_post = DB::table('resume_post')->select('*')->where('id', '=', $id)->get();
-               $resume_post = DB::table('resume_post')->select('*')->get();
-
-                return view('jobseeker.viewdetail', $data)->with('resume_post', $resume_post);
-        });
-         
-        Route::post('save_resume', 'job\jobController@resume_post');
-
-         Route::get('delete_resume/{id}', 'job\jobController@resume_delete');
-
-
-
-         // file  upload
-
-
-        Route::get('fileentry', 'FileEntryController@index');
-        Route::get('fileentry/get/{filename}', [
-            'as' => 'getentry', 'uses' => 'FileEntryController@get']);
-        Route::post('fileentry/add',[ 
-                'as' => 'addentry', 'uses' => 'FileEntryController@add']);
-
-
-
-         // file upload
-
-
-
-        //  Route::get('jobseeker/resume_update/{id}', function($id){
-        //         $data = array('pagetitle'=>'viewdetail');
-        //         $resume_post = DB::table('resume_post')->select('*')->where('id', '=', $id)->get();
-        //         return view('jobseeker/resume_update', $data)->with('resume_post', $resume_post);
-        // });
-          Route::get('jobseeker/resume_update/{id}', function($id){
-                $data = array('pagetitle'=>'viewdetail');
-                $resume_post = DB::table('resume_post')->select('*')->where('id', $id)->get();
-
-                // $resume_post = DB::table('resume_post')->get();
-                return view('jobseeker/resume_update', $data)->with('resume_post', $resume_post);
+    Route::get('jobseeker/allresume_list', function(){
+    $data = array('pagetitle'=>'all Post');
+    $resume_post = DB::table('resume_post')->select('*')->get();
+    return view('jobseeker.allresume_list', $data)->with('resume_post',$resume_post);
         });
 
-         Route::post('jobseeker_resume_update', 'job\jobController@jobseeker_resume_update');
 
 
-        Route::post('saveResumePost', 'jobseeker\jobseekerController@saveResumePost');
+    Route::get('jobseeker/viewdetail', function(){
+            $data = array('pagetitle'=>'viewdetail');
+            // $resume_post = DB::table('resume_post')->select('*')->where('id', '=', $id)->get();
+           $resume_post = DB::table('resume_post')->select('*')->get();
 
-        Route::get('update_your_detail', function () {
-            if(Auth::check() && Auth::user()->usertype == 'jobseeker'){
-                //return 'go to update page';
-                 $users = DB::table('users')->where('id', '=', Auth::user()->id)->get();
-                 $personal_details = DB::table('jobseeker_persional')->where('job_seeker_id', '=', Auth::user()->id)->get();
-                 $education_details = DB::table('jobseeker_education')->where('job_seeker_id', '=', Auth::user()->id)->get();
-                 $experience_details = DB::table('jobseeker_experience')->where('job_seeker_id', '=', Auth::user()->id)->get();
-                 $socialnetwork_details = DB::table('jobseeker_socialnetwork')->where('job_seeker_id', '=', Auth::user()->id)->get();
-                 return view('update_jobseeker')->with('users',$users)->with('personal_details',$personal_details)->with('education_details',$education_details)->with('experience_details',$experience_details)->with('socialnetwork_details',$socialnetwork_details);
-            } else {
-                return redirect('/');
-            }
-            
-        });
+            return view('jobseeker.viewdetail', $data)->with('resume_post', $resume_post);
+    });
+     
+    Route::post('save_resume', 'job\jobController@resume_post');
 
-        Route::get('jobseeker/jobseeker_profile', function(){
-        $data = array('pagetitle'=>'Admin Profile');
-        $admin_profile = DB::table('admin_profile')->select('*')->get();
-        $work_details = DB::table('work_details')->select('*')->get();
+     Route::get('delete_resume/{id}', 'job\jobController@resume_delete');
 
-        $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
-        return view('jobseeker/jobseeker_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile)->with('work_details', $work_details);
+
+
+     // file  upload
+
+
+    Route::get('fileentry', 'FileEntryController@index');
+    Route::get('fileentry/get/{filename}', [
+           'as' => 'getentry', 'uses' => 'FileEntryController@get']);
+    Route::post('fileentry/add',[ 
+            'as' => 'addentry', 'uses' => 'FileEntryController@add']);
+
+
+
+     // file upload
+
+
+
+    //  Route::get('jobseeker/resume_update/{id}', function($id){
+    //         $data = array('pagetitle'=>'viewdetail');
+    //         $resume_post = DB::table('resume_post')->select('*')->where('id', '=', $id)->get();
+    //         return view('jobseeker/resume_update', $data)->with('resume_post', $resume_post);
+    // });
+      Route::get('jobseeker/resume_update/{id}', function($id){
+            $data = array('pagetitle'=>'viewdetail');
+            $resume_post = DB::table('resume_post')->select('*')->where('id', $id)->get();
+
+            // $resume_post = DB::table('resume_post')->get();
+            return view('jobseeker/resume_update', $data)->with('resume_post', $resume_post);
     });
 
-        Route::post('AdminProfile', 'jobseeker\jobseekerController@savesubAdminProfile');
-        Route::post('updatePassword', 'jobseeker\jobseekerController@updatePassword');
+     Route::post('jobseeker_resume_update', 'job\jobController@jobseeker_resume_update');
+
+
+    Route::post('saveResumePost', 'jobseeker\jobseekerController@saveResumePost');
+
+    Route::get('update_your_detail', function () {
+        if(Auth::check() && Auth::user()->usertype == 'jobseeker'){
+            //return 'go to update page';
+             $users = DB::table('users')->where('id', '=', Auth::user()->id)->get();
+             $personal_details = DB::table('jobseeker_persional')->where('job_seeker_id', '=', Auth::user()->id)->get();
+             $education_details = DB::table('jobseeker_education')->where('job_seeker_id', '=', Auth::user()->id)->get();
+             $experience_details = DB::table('jobseeker_experience')->where('job_seeker_id', '=', Auth::user()->id)->get();
+             $socialnetwork_details = DB::table('jobseeker_socialnetwork')->where('job_seeker_id', '=', Auth::user()->id)->get();
+             return view('update_jobseeker')->with('users',$users)->with('personal_details',$personal_details)->with('education_details',$education_details)->with('experience_details',$experience_details)->with('socialnetwork_details',$socialnetwork_details);
+        } else {
+            return redirect('/');
+        }
+        
+    });
+
+    Route::get('jobseeker/jobseeker_profile', function(){
+    $data = array('pagetitle'=>'Admin Profile');
+    $admin_profile = DB::table('admin_profile')->select('*')->get();
+    $work_details = DB::table('work_details')->select('*')->get();
+
+    $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+    return view('jobseeker/jobseeker_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile)->with('work_details', $work_details);
+   });
+
+    Route::post('AdminProfile', 'jobseeker\jobseekerController@savesubAdminProfile');
+    Route::post('updatePassword', 'jobseeker\jobseekerController@updatePassword');
 
 
 
-        Route::post('editjobseekerpassword', 'jobseeker\jobseekerController@editjobseekerpassword');
-        Route::post('saveResumePost', 'jobseeker\jobseekerController@saveResumePost');
-        Route::post('editjobseekerPersonalDetails', 'jobseeker\jobseekerController@editjobseekerPersonalDetails');
-        Route::post('editjobseekerEducationDetails', 'jobseeker\jobseekerController@editjobseekerEducationDetails');
-        Route::post('editjobseekerExperienceDetails', 'jobseeker\jobseekerController@editjobseekerExperienceDetails');
-        Route::post('check_js_mail', 'jobseeker\jobseekerController@check_js_mail');
-        Route::post('editjobseekersocialnetworkDetails', 'jobseeker\jobseekerController@editjobseekersocialnetworkDetails');
-        Route::post('editjobseekerResume', 'jobseeker\jobseekerController@editjobseekerResume');
+    Route::post('editjobseekerpassword', 'jobseeker\jobseekerController@editjobseekerpassword');
+    Route::post('saveResumePost', 'jobseeker\jobseekerController@saveResumePost');
+    Route::post('editjobseekerPersonalDetails', 'jobseeker\jobseekerController@editjobseekerPersonalDetails');
+    Route::post('editjobseekerEducationDetails', 'jobseeker\jobseekerController@editjobseekerEducationDetails');
+    Route::post('editjobseekerExperienceDetails', 'jobseeker\jobseekerController@editjobseekerExperienceDetails');
+    Route::post('check_js_mail', 'jobseeker\jobseekerController@check_js_mail');
+    Route::post('editjobseekersocialnetworkDetails', 'jobseeker\jobseekerController@editjobseekersocialnetworkDetails');
+    Route::post('editjobseekerResume', 'jobseeker\jobseekerController@editjobseekerResume');
 
-       
-            
-
-            ///////////////////|||\\    RECRUITER   \\\</////////////////////////////////////>
+   
         
 
-        Route::get('recruiter_dashboard', function() {
-            return view('recruiter_dashboard');
+        ///////////////////|||\\    RECRUITER   \\\</////////////////////////////////////>
+    
+
+    Route::get('recruiter_dashboard', function() {
+        return view('recruiter_dashboard');
+    });
+
+    Route::get('recruiter_dashboard/upgradeplan', function() {
+        return view('recruiter.upgrade');
+    });
+
+    Route::post('packageupdate/{id}','jobController@packageupdate');
+
+    Route::get('recruiter/post_job', function(){
+    $data = array('pagetitle'=>'Job Post');
+     return view('recruiter.post_job', $data);
         });
-
-        Route::get('recruiter_dashboard/upgradeplan', function() {
-            return view('recruiter.upgrade');
-        });
-
-        Route::post('packageupdate/{id}','jobController@packageupdate');
-
-        Route::get('recruiter/post_job', function(){
-        $data = array('pagetitle'=>'Job Post');
-         return view('recruiter.post_job', $data);
-            });
-
-        Route::get('recruiter/package', function(){
-            $data = array('pagetitle' => 'Plan');
-            return view('recruiter.package' ,$data);
-        });
-
-        Route::get('recruiter/viewdetail_job/{id}', function($id){
-                $data = array('pagetitle'=>'viewdetail');
-                $job = DB::table('job_post')->select('*')->where('id', '=', $id)->get();
-                return view('recruiter.viewdetail_job', $data)->with('job', $job);
-        });
-
-
-        Route::get('recruiter/allpost', function(){
-        $data = array('pagetitle'=>'all Post');
-        $job = DB::table('job_post')->select('*')->get();
-        return view('recruiter.allpost', $data)->with('job',$job);
-            });
-
-
-        Route::get('recruiter/job_update/{id}', function($id){
-                $data = array('pagetitle'=>'job_update');
-                $job = DB::table('job_post')->select('*')->where('id', '=', $id)->get();
-                $category = DB::table('tbl_category')->where('category_id', '=', $id)->get();
-                return view('recruiter/job_update', $data)->with('job', $job);
-        });
+<<<<<<< HEAD
         Route::get('up_downgrade/{email}', function($email){
                 $data = array('pagetitle'=>'job_update');
                 $tbl_package = DB::table('tbl_package')->select('*')->get();
@@ -717,22 +886,75 @@ Route::group(['middleware' => 'checkFrontAuth'], function(){
         $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
         return view('recruiter/recruiter_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
         });
+=======
 
-        Route::post('AdminProfile', 'job\jobController@AdminProfile');
-        Route::post('updatePassword', 'job\jobController@updatePassword');
+    Route::get('recruiter/package', function(){
+        $data = array('pagetitle' => 'Plan');
+        return view('recruiter.package' ,$data);
+    });
+
+    Route::get('recruiter/viewdetail_job/{id}', function($id){
+            $data = array('pagetitle'=>'viewdetail');
+            $job = DB::table('job_post')->select('*')->where('id', '=', $id)->get();
+            return view('recruiter.viewdetail_job', $data)->with('job', $job);
+    });
 
 
+    Route::get('recruiter/allpost', function(){
+    $data = array('pagetitle'=>'all Post');
+    $job = DB::table('job_post')->select('*')->get();
+    return view('recruiter.allpost', $data)->with('job',$job);
+        });
+
+>>>>>>> refs/remotes/origin/master
+
+    Route::get('recruiter/job_update/{id}', function($id){
+            $data = array('pagetitle'=>'job_update');
+            $job = DB::table('job_post')->select('*')->where('id', '=', $id)->get();
+            $category = DB::table('tbl_category')->where('category_id', '=', $id)->get();
+            return view('recruiter/job_update', $data)->with('job', $job);
+    });
+     Route::get('up_downgrade/{email}', function($email){
+            $data = array('pagetitle'=>'job_update');
+            $tbl_package = DB::table('tbl_package')->select('*')->get();
+            // $category = DB::table('tbl_category')->where('category_id', '=', $id)->get();
+            return view('recruiter/up_downgrade', $data)->with('job', $job);
+    });
+
+    Route::get('recruiter/recruiter_profile', function(){
+    $data = array('pagetitle'=>'Admin Profile');
+    $admin_profile = DB::table('admin_profile')->select('*')->get();
+    $subadmin_profile = DB::table('users')->select('*')->where('id', '=', Auth::user()->id)->get();
+    return view('recruiter/recruiter_profile', $data)->with('admin_profile', $admin_profile)->with('subadmin_profile', $subadmin_profile);
+   });
+
+    Route::post('AdminProfile', 'job\jobController@AdminProfile');
+    Route::post('updatePassword', 'job\jobController@updatePassword');
+
+<<<<<<< HEAD
         Route::post('recruiter_update', 'job\jobController@recruiter_update');
 
         Route::get('delete_job/{id}', 'job\jobController@job_delete');
+=======
 
+     Route::post('recruiter_update', 'job\jobController@recruiter_update');
+>>>>>>> refs/remotes/origin/master
 
+     Route::get('delete_job/{id}', 'job\jobController@job_delete');
+
+<<<<<<< HEAD
         Route::get('job_listing', 'job\jobController@jobs');
+=======
+
+     Route::get('job_listing', 'job\jobController@jobs');
+>>>>>>> refs/remotes/origin/master
 
 
 
 
 });
+
+/************Front middleware end ***************/
 
 
 /********Start Recruiter Route ******/
@@ -783,6 +1005,12 @@ Route::get('recruiter_jobspost', function() {
 });
 
 Route::post('saverecruiterjobpost', 'jobController@recruiterjobpost');
+
+Route::get('recruiter_changepassword', function() {
+    return view('recruiter/recruiter_changepassword');
+});
+
+Route::post('recruiterchangepassword', 'Auth\AuthAndRoleController@recruiterchangepassword');
 
 
 
