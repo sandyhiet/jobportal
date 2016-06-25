@@ -106,7 +106,7 @@
                     </div>
                     <div class="form-group">
                       <label for="">Description</label>
-                      <textarea class="form-control" readonly>{!! $postjobdetail[0]->jobdescription !!}</textarea>
+                      <textarea class="form-control" style="height:120px" readonly>{!! $postjobdetail[0]->jobdescription !!}</textarea>
                     </div>
                     <div class="form-group">
                       <label for="">Application Email/URL</label>
@@ -135,7 +135,7 @@
                       </div>
                       <div class="form-group">
                         <label for="">Description (Optional)</label>
-                        <textarea class="form-control" readonly>{!! $postcompanydetail[0]->companydescription !!}</textarea>
+                        <textarea class="form-control" style="height:150px" readonly>{!! $postcompanydetail[0]->companydescription !!}</textarea>
                       </div>
                       <div class="form-group">
                         <label for="">Video (Optional)</label>

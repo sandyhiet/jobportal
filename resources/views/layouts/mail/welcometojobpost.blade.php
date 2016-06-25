@@ -1,6 +1,6 @@
 @extends('layouts.mail.mailmaster')
 @section('mailcontent')
-	<h3>New Job Post.</h3>
+	<h3>Post New Job by Recruiter on the following details:-</h3>
 	<p class="lead">{!!$mailmessage!!}</p>
 	<p>Company Name: {{$name}}</p>
 	<p>Email: {{$email}}</p>

@@ -160,27 +160,22 @@ class jobController extends Controller
 
         $user_id = DB::table('users')->select('*')->where('email','=',$email)->get();
         $id = $user_id[0]->id;
-        $hashvalue = md5(1,999999);
+        $hashvalue = md5(999999);
        
 
         //Job recruiter send confirmation mail
 
         $mailmessage    = env('SITEURL').'recruiterregistration/'.$id.'/'.$hashvalue;
-        $subject         = 'Recruiter Registration';
+        $mailmessage1    =  'Please click the following link to activate your Account';
+        $subject         = 'Activate your Application Account';
 
-        $mailData       = array('mailmessage'=>$mailmessage);
-        $data           = array( 'email' => stripslashes($email),'subject' => $subject );       
-        Mail::send('layouts.mail.recruiter_registration_mail', $mailData, function ($message) use ($data) {
-            //return $CandidateEmail;
-            $message->from(env('EMAILFROM'), env('EMAILNAME'));
-            //$message->to($CandidateEmail)->cc('bar@example.com');
-            $message->to($data['email']);
-            $message->cc('gupta.sandhya@intactinnovations.com');
-            //$message->bcc($address, $name = null);
-            //$message->replyTo($address, $name = null);
-            $message->subject($data['subject']); 
-        });
-      
+        $mailData       = array('mailmessage'=>$mailmessage, 'mailmessage1'=>$mailmessage1);
+        $data           = array('email' => stripslashes($email),'subject' => $subject );  
+
+        $recruiterregistersendmail ='layouts.mail.recruiter_registration_mail';
+        IitplMailer::sendemailwithoutname($recruiterregistersendmail,$mailData,$data);
+
+
 
         return redirect()->back()->withInput()->with('message', 'Registration link is send to your email.');
     }
@@ -197,7 +192,7 @@ class jobController extends Controller
         $jobcategory                = $req->jobcategory;
         $jobdescription             = $req->jobdescription;
         $joburl                     = $req->joburl;
-
+        $featuredjob                = $req->featuredjob;
 
         $companyname                = $req->companyname;
        
@@ -218,8 +213,8 @@ class jobController extends Controller
         $rules = [
             
             'email'                 => 'required|email|max:50',
-            'jobtitle'              => 'required|max:50',
-            'location'              => 'required|max:50',
+            'jobtitle'              => 'required|max:25',
+            'location'              => 'required|max:20',
             'jobregion'             => 'required',
             'jobtype'               => 'required',
             'jobcategory'           => 'required',
@@ -259,7 +254,8 @@ class jobController extends Controller
             'jobtype'                =>$jobtype,
             'jobcategory'            =>$jobcategory,
             'jobdescription'         =>$jobdescription,
-            'joburl'                 =>$joburl
+            'joburl'                 =>$joburl,
+            'featuredjob'            =>$featuredjob
            
             
            
@@ -281,6 +277,9 @@ class jobController extends Controller
             
             $destinationPath    ='jobpostimage'; // upload path folder should be in public folder
             $thumb220x100       ='jobpostimage/thumb220x100'; // upload 128*128
+            $thumb60x60         ='jobpostimage/thumb60x60';
+            $thumb332x120       ='jobpostimage/thumb332x120';
+            $thumb400x265       ='jobpostimage/thumb400x265';
             
             $extension      = $company_logo->getClientOriginalExtension(); // getting image extension
             $originalName   = $company_logo->getClientOriginalName();
@@ -295,6 +294,22 @@ class jobController extends Controller
                     'height' => 100,
                     'crop' => true
                 ))->save($thumb220x100.'/'.$fileName1);
+                Image::make($company_logo,array(
+                    'width' => 60,
+                    'height' => 60,
+                    'crop' => true
+                ))->save($thumb60x60.'/'.$fileName1);
+                Image::make($company_logo,array(
+                    'width' => 332,
+                    'height' => 120,
+                    'crop' => true
+                ))->save($thumb332x120.'/'.$fileName1);
+
+                Image::make($company_logo,array(
+                    'width' => 400,
+                    'height' => 265,
+                    'crop' => true
+                ))->save($thumb400x265.'/'.$fileName1);
                 //save original
                 Image::make($company_logo)->save($destinationPath.'/'.$fileName1);
                 
@@ -327,7 +342,7 @@ class jobController extends Controller
         ]);
 
         $mailData = array(
-            'mailmessage' => 'New Job Post.',
+            'mailmessage' => 'Recruiter job post under approval.',
             'name' => ucfirst($companyname),
             'email'         => $email,
             'location' => ucfirst($location),
@@ -431,16 +446,19 @@ class jobController extends Controller
 
     public function deleteRecruiterPostjob($id){
 
-    DB::table('recruiter_jobdetailspost')->where('recruiter_jobdetailspost.id', $id)->delete();
-    $getcompanyImage = DB::table('recruiter_companydetailspost')->where('recruiter_companydetailspost.job_id', $id)->get();
-    $companyImage = $getcompanyImage[0]->company_logo;
-    DB::table('recruiter_companydetailspost')->where('recruiter_companydetailspost.job_id', $id)->delete();
+        DB::table('recruiter_jobdetailspost')->where('recruiter_jobdetailspost.id', $id)->delete();
+        $getcompanyImage = DB::table('recruiter_companydetailspost')->where('recruiter_companydetailspost.job_id', $id)->get();
+        $companyImage = $getcompanyImage[0]->company_logo;
+        DB::table('recruiter_companydetailspost')->where('recruiter_companydetailspost.job_id', $id)->delete();
 
-     unlink("jobpostimage/".$companyImage);
-     unlink("jobpostimage/thumb220x100/".$companyImage);
+         unlink("jobpostimage/".$companyImage);
+         unlink("jobpostimage/thumb220x100/".$companyImage);
+         unlink("jobpostimage/thumb60x60/".$companyImage);
+         unlink("jobpostimage/thumb332x120/".$companyImage);
+         unlink("jobpostimage/thumb400x265/".$companyImage);
    
 
-     return redirect()->back()->with('message', 'One recoard deleted.'); 
+      return redirect()->back()->with('message', 'One recoard deleted.'); 
 
     }
 
