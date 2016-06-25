@@ -12,6 +12,30 @@
 		<link rel="shortcut icon" href="images/favicon.png">
 
 		<!-- Main Stylesheet -->
+
+		<link href="css/style.css" rel="stylesheet">
+
+
+
+  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  
+  <link href="runnable.css" rel="stylesheet" />
+  <!-- Load jQuery and the validate plugin -->
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+	
+
+		<!-- HTML5 shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+
+	</head>
+	
+	<body id="home">
+
 		<link href="{{url('css/style.css')}}" rel="stylesheet">
 	   <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 	   <link href="{{url('runnable.css')}}" rel="stylesheet" />
@@ -27,6 +51,7 @@
 	?>
 	
 	<body id="{{$bodytagid}}">
+
 
 		<!-- ============ PAGE LOADER START ============ -->
 
@@ -54,10 +79,17 @@
 							<li><a href="{{url('#')}}">Job Details</a></li>
 							<li><a href="{{url('#')}}">Resume</a></li>
 							<li><a href="{{url('#')}}">Company</a></li>
-							<li><a href="{{url('#')}}">Blog</a></li>
+
+							<li><a href="{{url('blog')}}">Blog</a></li>
+							<li><a href="{{url('#')}}">Single Post</a></li>
+							<li><a href="{{url('about')}}">About Us</a></li>
+							<li><a href="{{url('testimonial')}}">Testimonials</a></li>
+
+							<!-- <li><a href="{{url('#')}}">Blog</a></li>
 							<li><a href="{{url('#')}}">Single Post</a></li>
 							<li><a href="{{url('#')}}">About Us</a></li>
-							<li><a href="{{url('#')}}">Testimonials</a></li>
+							<li><a href="{{url('#')}}">Testimonials</a></li> -->
+
 							<li><a href="{{url('#')}}">Options</a></li>
 						</ul>
 					</li>
@@ -69,6 +101,10 @@
 					</li>
 					<li><a href="#">Job Recruiter</a>
 						<ul>
+
+							<li><a class="link-recruiter-register">Register</a></li>
+							<li><a class="link-recruiter-login">Login</a></li>
+
 							<li><a href="{{url('recruiter_registration')}}">Register</a></li>
 							<li><a href="{{url('recruiter_login')}}">Login</a></li>
 						<?php
@@ -77,6 +113,7 @@
 							<li><a href="{{url('recruiter_changepassword')}}">Change Password</a></li>
 					    <?php } ?>
 							<li><a href="{{url('recruiter_jobspost')}}">Job Post</a></li>
+
 					    </ul>
 					</li>
 				</ul>		
@@ -395,7 +432,11 @@
 
 
 		<!-- Modernizr Plugin -->
+
+		<script src="js/modernizr.custom.79639.js"></script>
+
 		<script src="{{url('js/modernizr.custom.79639.js')}}"></script>
+
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="{{url('js/jquery-1.11.2.min.js')}}"></script>
@@ -430,7 +471,11 @@
 		<script src="{{url('js/jquery.nouislider.all.min.js')}}"></script>
 
 		<!-- Bootstrap Wysiwyg Plugin -->
+
+		<script src="js/bootstrap3-wysihtml5.all.min.js"></script>
+
 		<script src="{{url('js/bootstrap3-wysihtml5.all.min.js')}}"></script>
+
 
 		<!-- Flickr Plugin -->
 		<script src="{{url('js/jflickrfeed.min.js')}}"></script>
@@ -442,7 +487,11 @@
 		<script src="{{url('js/magic.js')}}"></script>
 
 		<!-- jQuery Settings -->
+
+		<script src="js/settings.js"></script>
+
 		<script src="{{url('js/settings.js')}}"></script>
+
 
 		
 

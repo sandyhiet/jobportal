@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 namespace App\Http\Controllers\homePage;
+use App\Http\Controllers\homePage\homeSliderController;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Image;
@@ -884,6 +885,22 @@ return redirect()->back()->with('message', 'News delete');
         //      }
                 
         //   }
+
+
+
+
+
+
+   
+
+   
+
+
+
+
+
+
+
            
         
 }

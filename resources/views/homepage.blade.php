@@ -3,6 +3,13 @@
 @section('content')
 
 
+     <!-- ============ NAVBAR START ============ -->
+
+		
+
+		<!-- ============ NAVBAR END ============ -->
+
+		<!-- ============ HEADER END ============ -->
 <!-- ============ SLIDES START ============ -->
 
 		<div id="slider" class="sl-slider-wrapper">
@@ -484,74 +491,30 @@
 						<div class="owl-carousel">
 
 							<!-- Testimonial 1 -->
+
+							<?php 
+							foreach($testimonials as $keys => $value)
+								{
+									?>
 							<div>
 								<div class="col-sm-3 col-md-2">
-									<img src="http://placehold.it/140x140.jpg" class="img-circle img-responsive" alt="testimonial" />
+								<img class="img-circle img-responsive" src="{{ url('testimonialsImages') }}/{{ $testimonials[$keys]->clientImage }}"/>
+									
 								</div>
 								<div class="col-sm-9 col-md-10">
 									<blockquote>
-										<p>Thanks for the great service. Jobseek has completely surpassed our expectations.
-										Jobseek is the most valuable business resource we have ever purchased.</p>
+										<p><?PHP echo stripcslashes(substr($testimonials[$keys]->testiMonial, 0, 220)); ?>...</p>
 										<footer>
-											Anthony Walsh
-											<cite title="Brand Manager in Ebay Inc.">Brand Manager in Ebay Inc.</cite>
+											{{$testimonials[$keys]->clientName}}
+											<cite title="Brand Manager in Ebay Inc.">{{$testimonials[$keys]->clientCompany}}</cite>
 										</footer>
 									</blockquote>
 								</div>
 							</div>
+							<?php } ?>
 
-							<!-- Testimonial 2 -->
-							<div>
-								<div class="col-sm-3 col-md-2">
-									<img src="http://placehold.it/140x140.jpg" class="img-circle img-responsive" alt="testimonial" />
-								</div>
-								<div class="col-sm-9 col-md-10">
-									<blockquote>
-										<p>I didn't even need training. I couldn't have asked for more than this.
-										It really saves me time and effort. Jobseek is exactly what our business has been lacking.
-										I would be lost without Jobseek.</p>
-										<footer>
-											Becky Daniels
-											<cite title="HR Manager in Apple Inc.">HR Manager in Apple Inc.</cite>
-										</footer>
-									</blockquote>
-								</div>
 							</div>
-
-							<!-- Testimonial 3 -->
-							<div>
-								<div class="col-sm-3 col-md-2">
-									<img src="http://placehold.it/140x140.jpg" class="img-circle img-responsive" alt="testimonial" />
-								</div>
-								<div class="col-sm-9 col-md-10">
-									<blockquote>
-										<p>I just can't get enough of Jobseek. I want to get a T-Shirt with Jobseek on it so I can show it off to everyone. This is simply unbelievable!</p>
-										<footer>
-											Erick Olson
-											<cite title="Key Account Manager in Twitter Inc.">Key Account Manager in Twitter Inc.</cite>
-										</footer>
-									</blockquote>
-								</div>
-							</div>
-
-							<!-- Testimonial 4 -->
-							<div>
-								<div class="col-sm-3 col-md-2">
-									<img src="http://placehold.it/140x140.jpg" class="img-circle img-responsive" alt="testimonial" />
-								</div>
-								<div class="col-sm-9 col-md-10">
-									<blockquote>
-										<p>Jobseek is worth much more than I paid. I'm good to go. I couldn't have asked for more than this. Keep up the excellent work.</p>
-										<footer>
-											Nadine Boyd
-											<cite title="CEO in Company Name">CEO in Company Name</cite>
-										</footer>
-									</blockquote>
-								</div>
-							</div>
-
-						</div>
-						<p><a href="testimonials.html" class="btn btn-primary">Read All</a></p>
+						<p><a href="{{url('testimonial')}}" class="btn btn-primary">Read All</a></p>
 					</div>
 				</div>
 			</div>
@@ -573,64 +536,24 @@
 						<div class="owl-carousel">
 
 							<!-- Blog post 1 -->
+							<?php 
+							$i=1;
+							foreach($news as $key => $value) {?>
 							<div>
-								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
-								<h4>Lorem ipsum dolor sit amet</h4>
-								<h5>
-									<span><i class="fa fa-calendar"></i>28.08.2015</span>
-									<span><i class="fa fa-comment"></i>8 Comments</span>
-								</h5>
-								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
-								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
-							</div>
+							
+					       <img class="img-responsive" src="{{url('newsImages/thumb800x530/'.$news[$key]->newsImage)}}"/>
 
-							<!-- Blog post 2 -->
-							<div>
-								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
-								<h4>Lorem ipsum dolor sit amet</h4>
-								<h5>
-									<span><i class="fa fa-calendar"></i>28.08.2015</span>
-									<span><i class="fa fa-comment"></i>8 Comments</span>
-								</h5>
-								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
-								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
-							</div>
+								
 
-							<!-- Blog post 3 -->
-							<div>
-								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
-								<h4>Lorem ipsum dolor sit amet</h4>
-								<h5>
-									<span><i class="fa fa-calendar"></i>28.08.2015</span>
-									<span><i class="fa fa-comment"></i>8 Comments</span>
-								</h5>
-								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
-								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
-							</div>
 
-							<!-- Blog post 4 -->
-							<div>
-								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
-								<h4>Lorem ipsum dolor sit amet</h4>
-								<h5>
-									<span><i class="fa fa-calendar"></i>28.08.2015</span>
-									<span><i class="fa fa-comment"></i>8 Comments</span>
-								</h5>
-								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
-								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
-							</div>
+								<h4><?php echo implode(explode('_', $news[$key]->newsTitle), ' '); ?></h4>
+								
+                   
+                               <p style="text-align: justify;"><?PHP echo stripcslashes(substr($news[$key]->newsDescription, 0, 220)); ?>...</p>
 
-							<!-- Blog post 5 -->
-							<div>
-								<img src="http://placehold.it/800x530.jpg" class="img-responsive" alt="Blog Post" />
-								<h4>Lorem ipsum dolor sit amet</h4>
-								<h5>
-									<span><i class="fa fa-calendar"></i>28.08.2015</span>
-									<span><i class="fa fa-comment"></i>8 Comments</span>
-								</h5>
-								<p>Consectetur adipiscing elit. Duis lobortis tincidunt pretium. Suspendisse ullamcorper quis neque quis viverra. Cras ut leo in lectus gravida fringilla. In hac habitasse platea dictumst. Fusce facilisis sapien dolor, non fermentum magna tempus ac. Fusce quis eros sit amet magna aliquam euismod ac eget libero. Fusce accumsan in eros vitae posuere.</p>
-								<p><a href="post.html" class="btn btn-primary">Read more</a></p>
+								<p><a href="{{url('read_news/'.$news[$key]->newsTitle)}}" class="btn btn-primary">Read more</a></p>
 							</div>
+							<?php $i++; }?>
 
 						</div>
 					</div>
@@ -651,39 +574,25 @@
 					<div class="col-sm-12">
 						<h1>Happy Clients</h1>
 						<h4>Some of the many companies we’ve helped</h4>
+
+
+						  
+
 						<div class="owl-carousel">
-							
+							<?php 
+							$i=1;
+							foreach($filter_gallery as $key => $value) {?>
 							<!-- Logo 1 -->
 							<div>
-								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
+								<img class="img-responsive pad" src="{{url('gallery/filterGallery/thumb133x69/'.$filter_gallery[$key]->image)}}" alt="">
 							</div>
 							
-							<!-- Logo 2 -->
-							<div>
-								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
-							</div>
-							
-							<!-- Logo 3 -->
-							<div>
-								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
-							</div>
-							
-							<!-- Logo 4 -->
-							<div>
-								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
-							</div>
-							
-							<!-- Logo 5 -->
-							<div>
-								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
-							</div>
-							
-							<!-- Logo 6 -->
-							<div>
-								<a href="company.html"><img src="http://placehold.it/133x69.gif" alt="" /></a>
-							</div>
+				     <?php $i++; }?>
+
 
 						</div>
+
+
 					</div>
 				</div>
 			</div>

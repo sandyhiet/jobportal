@@ -44,13 +44,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-           All Role Category 
+           All Key Skill 
             <!-- <small>Featured Post Content</small> -->
           </h1>
           <ol class="breadcrumb">
-            <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#">Role</a></li>
-            <li class="active">All Role Category</li>
+            <li><a href="{{url('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="#">Skill</a></li>
+            <li class="active">All KeySkill</li>
           </ol>
         </section>
 
@@ -77,7 +77,8 @@
                 <?php 
                   $i=1;
                   foreach($all_role_category as $key=>$val){
- 
+
+                    
                   ?>
                   <tr>
                     <td style="text-transform: capitalize;">{{$i}}</td>
@@ -85,9 +86,9 @@
                     <td style="text-transform: capatalize;">{{$all_role_category[$key]->role_category_name}}</td>
                     
                     <td>
-                      <a href="{{url('admin/update_role/'.$all_role_category[$key]->id)}}">Edit</a> | 
+                      <a href="{{url('update_role/'.$all_role_category[$key]->id)}}">Edit</a> | 
                       <a onclick="return confirm('Delete this Category?')" 
-                      href="{{url('admin/deleteRolecategory/'.$all_role_category[$key]->id)}}">Delete</a>
+                      href="{{url('deleteRolecategory/'.$all_role_category[$key]->id)}}">Delete</a>
                     </td>
                     
                   </tr>

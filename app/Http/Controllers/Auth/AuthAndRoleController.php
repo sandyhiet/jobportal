@@ -17,7 +17,6 @@ use DB;
 use Mail;
 use IitplMailer;
 
-
 //use App\Role;
 //use App\Permission;
 
@@ -603,95 +602,39 @@ class AuthAndRoleController extends Controller
 
     }
 
-    public function jobseeker_login(){
-        //Auth::logout();
+    public function jobseekerlogin(){
+        Auth::logout();
 
-        $email              = Input::get('email');
-        $password           = Input::get('password');
+        $email = Input::get('email');
+        $password = Input::get('password');
 
-        $inputs = [
+        $userdata = array(
+            'email' => Input::get('email'),
+            'password' => Input::get('password')
+        );
 
-            'email'              => $email,
-            'password'           => $password,
-        ];
+        $remember = Input::has('remember') ? true:false;
 
-        $rules = [
-
-            'email'          => 'required | email',
-            'password'       => 'required',
-        ];
-
-        $messages = [
-
-           
-            'email.required'    => 'Enter the email .',
-            'password.required'  => 'Enter the password.'
-            
-           
-        ];
-
-        $validator = Validator::make($inputs, $rules, $messages);
-        if($validator->fails()){
-            return redirect('jobseekerlogin')->withInput()->with('errors', $validator->errors() );
-        } else {
-            $userdata = array(
-                'email' => Input::get('email'),
-                'password' => Input::get('password')
-            );
- 
-            if(Auth::attempt($userdata)){
-                $getuserType = DB::table('users')->select('usertype')->where('email','=',$userdata['email'])->get();
-                if($getuserType[0]->usertype != 'jobseeker'){
-                    return redirect()->back()->withInput()
-                ->with('singleerrors', 'Either email or password is wrong.');
-                        
-                }else{
-                     return redirect('jobseeker_dashboard');
-                }
- 
- 
-            } else {
-                return redirect()->back()->withInput()
-                ->with('singleerrors', 'Either email or password is wrong.');
-       
-            }
+        if(Auth::attempt($userdata, $remember)){
+            return view('jobseeker_dashboard');
+            // return 'jobseeker_dashboard';
+        } else { 
+            return 'Auth Fail';
         }
- 
+
+
+
+        //return $request->email;
     }
+
+ 
+ 
 
 
    
 
+
     public function recruiterlogin(){
-
-
-        $email                        = $req->email;
-        $password                     = $req->password;
-        
-
-
-        $inputs = [
-            
-            'email'               => $email,
-            'password'            => $password
-            
-        ];
-        /*//In ajax validation may or may not be taken in inputs and message it should taken be in rules//*/
-        $rules = [
-
-            'email'               => 'required',
-            'password'            => 'required',
-           
-        ];
-
-        
-
-        $validation = Validator::make($inputs, $rules);
-
-        if( $validation->fails() ){
-            return $validation->errors();
-        }
-
 
         Auth::logout();
         $userdata = array(
@@ -709,14 +652,12 @@ class AuthAndRoleController extends Controller
 
 
         } else { 
-
         return redirect()->back();
 
         }
 
 
     }
-
 
 
     
